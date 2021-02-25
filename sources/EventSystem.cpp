@@ -21,7 +21,29 @@ void EventSystem::SetupCallbacks(GLFWwindow* pWindow)
             case GLFW_RELEASE:
                 Engine::GetEventSystem()->GetKeyboard().m_Keys[key] = PressState::Release;
                 break;
+            default:
+                break;
         }
+    });
+
+    glfwSetMouseButtonCallback(pWindow, [](GLFWwindow*, int button, int action, int mods)
+    {
+        switch (action)
+        {
+            case GLFW_PRESS:
+                Engine::GetEventSystem()->GetMouse().m_Buttons[button] = PressState::Press;
+                break;
+            case GLFW_RELEASE:
+                Engine::GetEventSystem()->GetMouse().m_Buttons[button] = PressState::Release;
+                break;
+            default:
+                break;
+        }
+    });
+
+    glfwSetCursorPosCallback(pWindow, [](GLFWwindow*, double xpos, double ypos)
+    {
+        Engine::GetEventSystem()->GetMouse().m_Position = glm::vec3(static_cast<float>(xpos), static_cast<float>(ypos), 0);
     });
 }
 

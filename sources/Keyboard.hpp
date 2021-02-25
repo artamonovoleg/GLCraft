@@ -2,26 +2,17 @@
 
 #include <array>
 #include <GLFW/glfw3.h>
-
-enum class PressState
-{
-    None,
-    Press,
-    Hold,
-    Release
-};
-
-class EventSystem;
+#include "PressState.hpp"
 
 class Keyboard
 {
     private:
         friend class EventSystem;
-        mutable std::array<PressState, GLFW_KEY_LAST> m_Keys;
+        mutable PressState m_Keys[GLFW_KEY_LAST];
     public:
         Keyboard()
         {
-            m_Keys.fill(PressState::None);
+            std::fill(m_Keys, m_Keys + GLFW_KEY_LAST, PressState::None);
         }
 
         bool GetKeyDown(int key) const
