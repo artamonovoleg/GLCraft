@@ -15,8 +15,6 @@ class Window
         int m_Width, m_Height;
         GLFWwindow* m_Window;
     public:
-
-
         Window(const WindowProps& props)
             : m_Width(props.width), m_Height(props.height)
         {
@@ -32,4 +30,6 @@ class Window
         {
             return glfwWindowShouldClose(m_Window);
         }
+
+        operator GLFWwindow* () const { return m_Window; }
 };

@@ -1,6 +1,7 @@
 #pragma once
 
 #include <array>
+#include <GLFW/glfw3.h>
 
 enum class PressState
 {
@@ -10,10 +11,13 @@ enum class PressState
     Release
 };
 
+class EventSystem;
+
 class Keyboard
 {
     private:
-        std::array<PressState, 256> m_Keys;
+        friend class EventSystem;
+        mutable std::array<PressState, GLFW_KEY_LAST> m_Keys;
     public:
         Keyboard()
         {
@@ -26,8 +30,8 @@ class Keyboard
 
             if (m_Keys[key] == PressState::Press)
             {
-                bool res = true;
-                m_Keys[key] == PressState::Hold;
+                res = true;
+                m_Keys[key] = PressState::Hold;
             }
 
             return res;
@@ -39,8 +43,8 @@ class Keyboard
 
             if (m_Keys[key] == PressState::Release)
             {
-                bool res = true;
-                m_Keys[key] == PressState::None;
+                res = true;
+                m_Keys[key] = PressState::None;
             }
 
             return res;

@@ -6,6 +6,8 @@ class EventSystem
 {
     private:
         Keyboard m_Keyboard;
+
+        void SetupCallbacks(GLFWwindow* pWindow);
     public:
         EventSystem();
 
