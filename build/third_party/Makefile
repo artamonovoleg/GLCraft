@@ -175,6 +175,48 @@ depend:
 	cd /Users/artamonovoleg/Documents/GLCraft/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
+# Convenience name for target.
+third_party/CMakeFiles/glad.dir/rule:
+	cd /Users/artamonovoleg/Documents/GLCraft/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 third_party/CMakeFiles/glad.dir/rule
+.PHONY : third_party/CMakeFiles/glad.dir/rule
+
+# Convenience name for target.
+glad: third_party/CMakeFiles/glad.dir/rule
+
+.PHONY : glad
+
+# fast build rule for target.
+glad/fast:
+	cd /Users/artamonovoleg/Documents/GLCraft/build && $(MAKE) $(MAKESILENT) -f third_party/CMakeFiles/glad.dir/build.make third_party/CMakeFiles/glad.dir/build
+.PHONY : glad/fast
+
+glad/src/glad.o: glad/src/glad.c.o
+
+.PHONY : glad/src/glad.o
+
+# target to build an object file
+glad/src/glad.c.o:
+	cd /Users/artamonovoleg/Documents/GLCraft/build && $(MAKE) $(MAKESILENT) -f third_party/CMakeFiles/glad.dir/build.make third_party/CMakeFiles/glad.dir/glad/src/glad.c.o
+.PHONY : glad/src/glad.c.o
+
+glad/src/glad.i: glad/src/glad.c.i
+
+.PHONY : glad/src/glad.i
+
+# target to preprocess a source file
+glad/src/glad.c.i:
+	cd /Users/artamonovoleg/Documents/GLCraft/build && $(MAKE) $(MAKESILENT) -f third_party/CMakeFiles/glad.dir/build.make third_party/CMakeFiles/glad.dir/glad/src/glad.c.i
+.PHONY : glad/src/glad.c.i
+
+glad/src/glad.s: glad/src/glad.c.s
+
+.PHONY : glad/src/glad.s
+
+# target to generate assembly for a file
+glad/src/glad.c.s:
+	cd /Users/artamonovoleg/Documents/GLCraft/build && $(MAKE) $(MAKESILENT) -f third_party/CMakeFiles/glad.dir/build.make third_party/CMakeFiles/glad.dir/glad/src/glad.c.s
+.PHONY : glad/src/glad.c.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -187,6 +229,10 @@ help:
 	@echo "... install/strip"
 	@echo "... list_install_components"
 	@echo "... rebuild_cache"
+	@echo "... glad"
+	@echo "... glad/src/glad.o"
+	@echo "... glad/src/glad.i"
+	@echo "... glad/src/glad.s"
 .PHONY : help
 
 

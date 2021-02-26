@@ -6,6 +6,18 @@
 
 #IncludeRegexTransform: 
 
+../third_party/glad/include/KHR/khrplatform.h
+stdint.h
+-
+inttypes.h
+-
+stdint.h
+-
+
+../third_party/glad/include/glad/glad.h
+KHR/khrplatform.h
+-
+
 ../third_party/glfw/include/GLFW/glfw3.h
 stddef.h
 -
@@ -1058,10 +1070,6 @@ detail/setup.hpp
 detail/func_vector_relational.inl
 ../third_party/glm/glm/detail/func_vector_relational.inl
 
-/Users/artamonovoleg/Documents/GLCraft/sources/Engine.cpp
-Engine.hpp
-/Users/artamonovoleg/Documents/GLCraft/sources/Engine.hpp
-
 /Users/artamonovoleg/Documents/GLCraft/sources/Engine.hpp
 memory
 -
@@ -1069,18 +1077,6 @@ Window.hpp
 /Users/artamonovoleg/Documents/GLCraft/sources/Window.hpp
 EventSystem.hpp
 /Users/artamonovoleg/Documents/GLCraft/sources/EventSystem.hpp
-
-/Users/artamonovoleg/Documents/GLCraft/sources/EventSystem.cpp
-GLFW/glfw3.h
--
-EventSystem.hpp
-/Users/artamonovoleg/Documents/GLCraft/sources/EventSystem.hpp
-Engine.hpp
-/Users/artamonovoleg/Documents/GLCraft/sources/Engine.hpp
-Window.hpp
-/Users/artamonovoleg/Documents/GLCraft/sources/Window.hpp
-iostream
--
 
 /Users/artamonovoleg/Documents/GLCraft/sources/EventSystem.hpp
 Keyboard.hpp
@@ -1114,6 +1110,8 @@ GLFW/glfw3.h
 memory
 -
 iostream
+-
+glad/glad.h
 -
 Engine.hpp
 /Users/artamonovoleg/Documents/GLCraft/sources/Engine.hpp

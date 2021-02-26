@@ -129,6 +129,7 @@ GLCraft: sources/CMakeFiles/GLCraft.dir/EventSystem.cpp.o
 GLCraft: sources/CMakeFiles/GLCraft.dir/main.cpp.o
 GLCraft: sources/CMakeFiles/GLCraft.dir/build.make
 GLCraft: third_party/glfw/src/libglfw3.a
+GLCraft: third_party/libglad.a
 GLCraft: sources/CMakeFiles/GLCraft.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/artamonovoleg/Documents/GLCraft/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX executable ../GLCraft"
 	cd /Users/artamonovoleg/Documents/GLCraft/build/sources && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/GLCraft.dir/link.txt --verbose=$(VERBOSE)

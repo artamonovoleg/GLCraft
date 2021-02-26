@@ -29,6 +29,7 @@ set(CMAKE_TARGET_DEFINITIONS_C
 
 # The include file search paths:
 set(CMAKE_C_TARGET_INCLUDE_PATH
+  "../third_party/./glad/include"
   "../third_party/glfw/include"
   "../third_party/glfw/src"
   "third_party/glfw/src"

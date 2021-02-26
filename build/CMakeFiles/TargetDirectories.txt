@@ -6,6 +6,7 @@
 /Users/artamonovoleg/Documents/GLCraft/build/CMakeFiles/edit_cache.dir
 /Users/artamonovoleg/Documents/GLCraft/build/third_party/CMakeFiles/install/local.dir
 /Users/artamonovoleg/Documents/GLCraft/build/third_party/CMakeFiles/install/strip.dir
+/Users/artamonovoleg/Documents/GLCraft/build/third_party/CMakeFiles/glad.dir
 /Users/artamonovoleg/Documents/GLCraft/build/third_party/CMakeFiles/install.dir
 /Users/artamonovoleg/Documents/GLCraft/build/third_party/CMakeFiles/list_install_components.dir
 /Users/artamonovoleg/Documents/GLCraft/build/third_party/CMakeFiles/rebuild_cache.dir

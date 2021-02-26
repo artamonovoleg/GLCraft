@@ -14,12 +14,14 @@ set(CMAKE_CXX_COMPILER_ID "AppleClang")
 set(CMAKE_CXX_TARGET_INCLUDE_PATH
   "../sources/../third_party/glfw/include"
   "../sources/../third_party/glm"
+  "../sources/../third_party/glad/include"
   "../third_party/glfw/include"
   )
 
 # Targets to which this target links.
 set(CMAKE_TARGET_LINKED_INFO_FILES
   "/Users/artamonovoleg/Documents/GLCraft/build/third_party/glfw/src/CMakeFiles/glfw.dir/DependInfo.cmake"
+  "/Users/artamonovoleg/Documents/GLCraft/build/third_party/CMakeFiles/glad.dir/DependInfo.cmake"
   )
 
 # Fortran module output directory.
