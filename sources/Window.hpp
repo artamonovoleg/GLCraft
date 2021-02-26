@@ -15,21 +15,11 @@ class Window
         int m_Width, m_Height;
         GLFWwindow* m_Window;
     public:
-        Window(const WindowProps& props)
-            : m_Width(props.width), m_Height(props.height)
-        {
-            m_Window = glfwCreateWindow(m_Width, m_Height, props.title.c_str(), nullptr, nullptr);
-        }
+        Window(const WindowProps& props);
+        ~Window();
 
-        ~Window()
-        {
-            glfwDestroyWindow(m_Window);
-        }
-
-        bool ShouldClose()
-        {
-            return glfwWindowShouldClose(m_Window);
-        }
+        bool ShouldClose();
+        void SwapBuffers();
 
         operator GLFWwindow* () const { return m_Window; }
 };

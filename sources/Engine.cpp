@@ -1,3 +1,4 @@
+#include <glad/glad.h>
 #include "Engine.hpp"
 
 std::unique_ptr<Window>         m_Window = nullptr;
@@ -6,7 +7,16 @@ std::unique_ptr<EventSystem>    m_EventSystem = nullptr;
 void Engine::Init(const WindowProps& props)
 {
     glfwInit();
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+    glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+
+#ifdef __APPLE__
+    glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
+#endif
+
     m_Window        = std::make_unique<Window>(props);
+    gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
     m_EventSystem   = std::make_unique<EventSystem>();
 }
 
