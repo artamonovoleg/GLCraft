@@ -323,6 +323,15 @@ sources/CMakeFiles/GLCraft.dir/EventSystem.cpp.o: ../sources/Mouse.hpp
 sources/CMakeFiles/GLCraft.dir/EventSystem.cpp.o: ../sources/PressState.hpp
 sources/CMakeFiles/GLCraft.dir/EventSystem.cpp.o: ../sources/Window.hpp
 
+sources/CMakeFiles/GLCraft.dir/Shader.cpp.o: ../third_party/glad/include/KHR/khrplatform.h
+sources/CMakeFiles/GLCraft.dir/Shader.cpp.o: ../third_party/glad/include/glad/glad.h
+sources/CMakeFiles/GLCraft.dir/Shader.cpp.o: ../sources/Shader.cpp
+sources/CMakeFiles/GLCraft.dir/Shader.cpp.o: ../sources/Shader.hpp
+
+sources/CMakeFiles/GLCraft.dir/Window.cpp.o: ../third_party/glfw/include/GLFW/glfw3.h
+sources/CMakeFiles/GLCraft.dir/Window.cpp.o: ../sources/Window.cpp
+sources/CMakeFiles/GLCraft.dir/Window.cpp.o: ../sources/Window.hpp
+
 sources/CMakeFiles/GLCraft.dir/main.cpp.o: ../third_party/glad/include/KHR/khrplatform.h
 sources/CMakeFiles/GLCraft.dir/main.cpp.o: ../third_party/glad/include/glad/glad.h
 sources/CMakeFiles/GLCraft.dir/main.cpp.o: ../third_party/glfw/include/GLFW/glfw3.h
@@ -482,6 +491,7 @@ sources/CMakeFiles/GLCraft.dir/main.cpp.o: ../sources/EventSystem.hpp
 sources/CMakeFiles/GLCraft.dir/main.cpp.o: ../sources/Keyboard.hpp
 sources/CMakeFiles/GLCraft.dir/main.cpp.o: ../sources/Mouse.hpp
 sources/CMakeFiles/GLCraft.dir/main.cpp.o: ../sources/PressState.hpp
+sources/CMakeFiles/GLCraft.dir/main.cpp.o: ../sources/Shader.hpp
 sources/CMakeFiles/GLCraft.dir/main.cpp.o: ../sources/Window.hpp
 sources/CMakeFiles/GLCraft.dir/main.cpp.o: ../sources/main.cpp
 

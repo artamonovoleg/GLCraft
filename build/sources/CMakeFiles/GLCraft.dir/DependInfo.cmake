@@ -6,6 +6,8 @@ set(CMAKE_DEPENDS_LANGUAGES
 set(CMAKE_DEPENDS_CHECK_CXX
   "/Users/artamonovoleg/Documents/GLCraft/sources/Engine.cpp" "/Users/artamonovoleg/Documents/GLCraft/build/sources/CMakeFiles/GLCraft.dir/Engine.cpp.o"
   "/Users/artamonovoleg/Documents/GLCraft/sources/EventSystem.cpp" "/Users/artamonovoleg/Documents/GLCraft/build/sources/CMakeFiles/GLCraft.dir/EventSystem.cpp.o"
+  "/Users/artamonovoleg/Documents/GLCraft/sources/Shader.cpp" "/Users/artamonovoleg/Documents/GLCraft/build/sources/CMakeFiles/GLCraft.dir/Shader.cpp.o"
+  "/Users/artamonovoleg/Documents/GLCraft/sources/Window.cpp" "/Users/artamonovoleg/Documents/GLCraft/build/sources/CMakeFiles/GLCraft.dir/Window.cpp.o"
   "/Users/artamonovoleg/Documents/GLCraft/sources/main.cpp" "/Users/artamonovoleg/Documents/GLCraft/build/sources/CMakeFiles/GLCraft.dir/main.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "AppleClang")

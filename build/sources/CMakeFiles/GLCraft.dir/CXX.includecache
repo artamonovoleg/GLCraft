@@ -1070,6 +1070,12 @@ detail/setup.hpp
 detail/func_vector_relational.inl
 ../third_party/glm/glm/detail/func_vector_relational.inl
 
+/Users/artamonovoleg/Documents/GLCraft/sources/Engine.cpp
+glad/glad.h
+-
+Engine.hpp
+/Users/artamonovoleg/Documents/GLCraft/sources/Engine.hpp
+
 /Users/artamonovoleg/Documents/GLCraft/sources/Engine.hpp
 memory
 -
@@ -1077,6 +1083,18 @@ Window.hpp
 /Users/artamonovoleg/Documents/GLCraft/sources/Window.hpp
 EventSystem.hpp
 /Users/artamonovoleg/Documents/GLCraft/sources/EventSystem.hpp
+
+/Users/artamonovoleg/Documents/GLCraft/sources/EventSystem.cpp
+GLFW/glfw3.h
+-
+EventSystem.hpp
+/Users/artamonovoleg/Documents/GLCraft/sources/EventSystem.hpp
+Engine.hpp
+/Users/artamonovoleg/Documents/GLCraft/sources/Engine.hpp
+Window.hpp
+/Users/artamonovoleg/Documents/GLCraft/sources/Window.hpp
+iostream
+-
 
 /Users/artamonovoleg/Documents/GLCraft/sources/EventSystem.hpp
 Keyboard.hpp
@@ -1100,6 +1118,24 @@ PressState.hpp
 
 /Users/artamonovoleg/Documents/GLCraft/sources/PressState.hpp
 
+/Users/artamonovoleg/Documents/GLCraft/sources/Shader.cpp
+iostream
+-
+fstream
+-
+glad/glad.h
+-
+Shader.hpp
+/Users/artamonovoleg/Documents/GLCraft/sources/Shader.hpp
+
+/Users/artamonovoleg/Documents/GLCraft/sources/Shader.hpp
+string
+-
+
+/Users/artamonovoleg/Documents/GLCraft/sources/Window.cpp
+Window.hpp
+/Users/artamonovoleg/Documents/GLCraft/sources/Window.hpp
+
 /Users/artamonovoleg/Documents/GLCraft/sources/Window.hpp
 string
 -
@@ -1117,6 +1153,6 @@ fstream
 -
 Engine.hpp
 /Users/artamonovoleg/Documents/GLCraft/sources/Engine.hpp
-sstream
--
+Shader.hpp
+/Users/artamonovoleg/Documents/GLCraft/sources/Shader.hpp
 

@@ -210,7 +210,7 @@ third_party/glm/glm/clean:
 third_party/CMakeFiles/glad.dir/all:
 	$(MAKE) $(MAKESILENT) -f third_party/CMakeFiles/glad.dir/build.make third_party/CMakeFiles/glad.dir/depend
 	$(MAKE) $(MAKESILENT) -f third_party/CMakeFiles/glad.dir/build.make third_party/CMakeFiles/glad.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/artamonovoleg/Documents/GLCraft/build/CMakeFiles --progress-num=5,6 "Built target glad"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/artamonovoleg/Documents/GLCraft/build/CMakeFiles --progress-num=7,8 "Built target glad"
 .PHONY : third_party/CMakeFiles/glad.dir/all
 
 # Build rule for subdir invocation for target.
@@ -264,7 +264,7 @@ third_party/glfw/CMakeFiles/uninstall.dir/clean:
 third_party/glfw/src/CMakeFiles/glfw.dir/all:
 	$(MAKE) $(MAKESILENT) -f third_party/glfw/src/CMakeFiles/glfw.dir/build.make third_party/glfw/src/CMakeFiles/glfw.dir/depend
 	$(MAKE) $(MAKESILENT) -f third_party/glfw/src/CMakeFiles/glfw.dir/build.make third_party/glfw/src/CMakeFiles/glfw.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/artamonovoleg/Documents/GLCraft/build/CMakeFiles --progress-num=7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22 "Built target glfw"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/artamonovoleg/Documents/GLCraft/build/CMakeFiles --progress-num=9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24 "Built target glfw"
 .PHONY : third_party/glfw/src/CMakeFiles/glfw.dir/all
 
 # Build rule for subdir invocation for target.
@@ -292,12 +292,12 @@ sources/CMakeFiles/GLCraft.dir/all: third_party/CMakeFiles/glad.dir/all
 sources/CMakeFiles/GLCraft.dir/all: third_party/glfw/src/CMakeFiles/glfw.dir/all
 	$(MAKE) $(MAKESILENT) -f sources/CMakeFiles/GLCraft.dir/build.make sources/CMakeFiles/GLCraft.dir/depend
 	$(MAKE) $(MAKESILENT) -f sources/CMakeFiles/GLCraft.dir/build.make sources/CMakeFiles/GLCraft.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/artamonovoleg/Documents/GLCraft/build/CMakeFiles --progress-num=1,2,3,4 "Built target GLCraft"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/artamonovoleg/Documents/GLCraft/build/CMakeFiles --progress-num=1,2,3,4,5,6 "Built target GLCraft"
 .PHONY : sources/CMakeFiles/GLCraft.dir/all
 
 # Build rule for subdir invocation for target.
 sources/CMakeFiles/GLCraft.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/artamonovoleg/Documents/GLCraft/build/CMakeFiles 22
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/artamonovoleg/Documents/GLCraft/build/CMakeFiles 24
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 sources/CMakeFiles/GLCraft.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/artamonovoleg/Documents/GLCraft/build/CMakeFiles 0
 .PHONY : sources/CMakeFiles/GLCraft.dir/rule

@@ -244,6 +244,60 @@ EventSystem.cpp.s:
 	cd /Users/artamonovoleg/Documents/GLCraft/build && $(MAKE) $(MAKESILENT) -f sources/CMakeFiles/GLCraft.dir/build.make sources/CMakeFiles/GLCraft.dir/EventSystem.cpp.s
 .PHONY : EventSystem.cpp.s
 
+Shader.o: Shader.cpp.o
+
+.PHONY : Shader.o
+
+# target to build an object file
+Shader.cpp.o:
+	cd /Users/artamonovoleg/Documents/GLCraft/build && $(MAKE) $(MAKESILENT) -f sources/CMakeFiles/GLCraft.dir/build.make sources/CMakeFiles/GLCraft.dir/Shader.cpp.o
+.PHONY : Shader.cpp.o
+
+Shader.i: Shader.cpp.i
+
+.PHONY : Shader.i
+
+# target to preprocess a source file
+Shader.cpp.i:
+	cd /Users/artamonovoleg/Documents/GLCraft/build && $(MAKE) $(MAKESILENT) -f sources/CMakeFiles/GLCraft.dir/build.make sources/CMakeFiles/GLCraft.dir/Shader.cpp.i
+.PHONY : Shader.cpp.i
+
+Shader.s: Shader.cpp.s
+
+.PHONY : Shader.s
+
+# target to generate assembly for a file
+Shader.cpp.s:
+	cd /Users/artamonovoleg/Documents/GLCraft/build && $(MAKE) $(MAKESILENT) -f sources/CMakeFiles/GLCraft.dir/build.make sources/CMakeFiles/GLCraft.dir/Shader.cpp.s
+.PHONY : Shader.cpp.s
+
+Window.o: Window.cpp.o
+
+.PHONY : Window.o
+
+# target to build an object file
+Window.cpp.o:
+	cd /Users/artamonovoleg/Documents/GLCraft/build && $(MAKE) $(MAKESILENT) -f sources/CMakeFiles/GLCraft.dir/build.make sources/CMakeFiles/GLCraft.dir/Window.cpp.o
+.PHONY : Window.cpp.o
+
+Window.i: Window.cpp.i
+
+.PHONY : Window.i
+
+# target to preprocess a source file
+Window.cpp.i:
+	cd /Users/artamonovoleg/Documents/GLCraft/build && $(MAKE) $(MAKESILENT) -f sources/CMakeFiles/GLCraft.dir/build.make sources/CMakeFiles/GLCraft.dir/Window.cpp.i
+.PHONY : Window.cpp.i
+
+Window.s: Window.cpp.s
+
+.PHONY : Window.s
+
+# target to generate assembly for a file
+Window.cpp.s:
+	cd /Users/artamonovoleg/Documents/GLCraft/build && $(MAKE) $(MAKESILENT) -f sources/CMakeFiles/GLCraft.dir/build.make sources/CMakeFiles/GLCraft.dir/Window.cpp.s
+.PHONY : Window.cpp.s
+
 main.o: main.cpp.o
 
 .PHONY : main.o
@@ -290,6 +344,12 @@ help:
 	@echo "... EventSystem.o"
 	@echo "... EventSystem.i"
 	@echo "... EventSystem.s"
+	@echo "... Shader.o"
+	@echo "... Shader.i"
+	@echo "... Shader.s"
+	@echo "... Window.o"
+	@echo "... Window.i"
+	@echo "... Window.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

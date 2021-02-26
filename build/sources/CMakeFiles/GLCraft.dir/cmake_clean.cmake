@@ -3,6 +3,8 @@ file(REMOVE_RECURSE
   "../GLCraft.pdb"
   "CMakeFiles/GLCraft.dir/Engine.cpp.o"
   "CMakeFiles/GLCraft.dir/EventSystem.cpp.o"
+  "CMakeFiles/GLCraft.dir/Shader.cpp.o"
+  "CMakeFiles/GLCraft.dir/Window.cpp.o"
   "CMakeFiles/GLCraft.dir/main.cpp.o"
 )
 
