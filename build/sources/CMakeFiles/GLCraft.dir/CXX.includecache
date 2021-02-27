@@ -1070,63 +1070,99 @@ detail/setup.hpp
 detail/func_vector_relational.inl
 ../third_party/glm/glm/detail/func_vector_relational.inl
 
-/Users/olegartamonov/Documents/C++/GLCraft/sources/Engine.hpp
+/Users/artamonovoleg/Documents/GLCraft/sources/Block.hpp
+
+/Users/artamonovoleg/Documents/GLCraft/sources/Chunk.hpp
+vector
+-
+glm/glm.hpp
+-
+ChunkData.hpp
+/Users/artamonovoleg/Documents/GLCraft/sources/ChunkData.hpp
+Vertex.hpp
+/Users/artamonovoleg/Documents/GLCraft/sources/Vertex.hpp
+
+/Users/artamonovoleg/Documents/GLCraft/sources/ChunkData.hpp
+array
+-
+Block.hpp
+/Users/artamonovoleg/Documents/GLCraft/sources/Block.hpp
+
+/Users/artamonovoleg/Documents/GLCraft/sources/Engine.hpp
 memory
 -
 Window.hpp
-/Users/olegartamonov/Documents/C++/GLCraft/sources/Window.hpp
+/Users/artamonovoleg/Documents/GLCraft/sources/Window.hpp
 EventSystem.hpp
-/Users/olegartamonov/Documents/C++/GLCraft/sources/EventSystem.hpp
+/Users/artamonovoleg/Documents/GLCraft/sources/EventSystem.hpp
 
-/Users/olegartamonov/Documents/C++/GLCraft/sources/EventSystem.hpp
+/Users/artamonovoleg/Documents/GLCraft/sources/EventSystem.hpp
 Keyboard.hpp
-/Users/olegartamonov/Documents/C++/GLCraft/sources/Keyboard.hpp
+/Users/artamonovoleg/Documents/GLCraft/sources/Keyboard.hpp
 Mouse.hpp
-/Users/olegartamonov/Documents/C++/GLCraft/sources/Mouse.hpp
+/Users/artamonovoleg/Documents/GLCraft/sources/Mouse.hpp
 
-/Users/olegartamonov/Documents/C++/GLCraft/sources/IndexBuffer.hpp
+/Users/artamonovoleg/Documents/GLCraft/sources/IndexBuffer.hpp
 cstdint
 -
 glad/glad.h
 -
 
-/Users/olegartamonov/Documents/C++/GLCraft/sources/Keyboard.hpp
+/Users/artamonovoleg/Documents/GLCraft/sources/Keyboard.hpp
 array
 -
 GLFW/glfw3.h
 -
 PressState.hpp
-/Users/olegartamonov/Documents/C++/GLCraft/sources/PressState.hpp
+/Users/artamonovoleg/Documents/GLCraft/sources/PressState.hpp
 
-/Users/olegartamonov/Documents/C++/GLCraft/sources/Mouse.hpp
+/Users/artamonovoleg/Documents/GLCraft/sources/Mouse.hpp
 glm/glm.hpp
 -
 PressState.hpp
-/Users/olegartamonov/Documents/C++/GLCraft/sources/PressState.hpp
+/Users/artamonovoleg/Documents/GLCraft/sources/PressState.hpp
 
-/Users/olegartamonov/Documents/C++/GLCraft/sources/PressState.hpp
+/Users/artamonovoleg/Documents/GLCraft/sources/PressState.hpp
 
-/Users/olegartamonov/Documents/C++/GLCraft/sources/Shader.hpp
+/Users/artamonovoleg/Documents/GLCraft/sources/Shader.cpp
+Shader.hpp
+/Users/artamonovoleg/Documents/GLCraft/sources/Shader.hpp
+
+/Users/artamonovoleg/Documents/GLCraft/sources/Shader.hpp
+glad/glad.h
+-
+glm/glm.hpp
+-
 string
 -
+fstream
+-
+sstream
+-
+iostream
+-
 
-/Users/olegartamonov/Documents/C++/GLCraft/sources/VertexArray.hpp
+/Users/artamonovoleg/Documents/GLCraft/sources/Vertex.hpp
+glm/glm.hpp
+-
+
+/Users/artamonovoleg/Documents/GLCraft/sources/VertexArray.hpp
 glad/glad.h
 -
 
-/Users/olegartamonov/Documents/C++/GLCraft/sources/VertexBuffer.hpp
+/Users/artamonovoleg/Documents/GLCraft/sources/VertexBuffer.hpp
 cstdint
 -
 glad/glad.h
 -
 
-/Users/olegartamonov/Documents/C++/GLCraft/sources/Window.hpp
+/Users/artamonovoleg/Documents/GLCraft/sources/Window.hpp
 string
 -
 GLFW/glfw3.h
 -
 
-/Users/olegartamonov/Documents/C++/GLCraft/sources/main.cpp
+/Users/artamonovoleg/Documents/GLCraft/sources/main.cpp
 memory
 -
 iostream
@@ -1136,13 +1172,15 @@ glad/glad.h
 fstream
 -
 Engine.hpp
-/Users/olegartamonov/Documents/C++/GLCraft/sources/Engine.hpp
+/Users/artamonovoleg/Documents/GLCraft/sources/Engine.hpp
 Shader.hpp
-/Users/olegartamonov/Documents/C++/GLCraft/sources/Shader.hpp
+/Users/artamonovoleg/Documents/GLCraft/sources/Shader.hpp
 VertexArray.hpp
-/Users/olegartamonov/Documents/C++/GLCraft/sources/VertexArray.hpp
+/Users/artamonovoleg/Documents/GLCraft/sources/VertexArray.hpp
 VertexBuffer.hpp
-/Users/olegartamonov/Documents/C++/GLCraft/sources/VertexBuffer.hpp
+/Users/artamonovoleg/Documents/GLCraft/sources/VertexBuffer.hpp
 IndexBuffer.hpp
-/Users/olegartamonov/Documents/C++/GLCraft/sources/IndexBuffer.hpp
+/Users/artamonovoleg/Documents/GLCraft/sources/IndexBuffer.hpp
+Chunk.hpp
+/Users/artamonovoleg/Documents/GLCraft/sources/Chunk.hpp
 

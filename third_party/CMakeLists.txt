@@ -12,3 +12,4 @@ add_library(glad STATIC ./glad/src/glad.c)
 
 add_subdirectory(glfw)
 add_subdirectory(glm)
+add_subdirectory(stb_image)

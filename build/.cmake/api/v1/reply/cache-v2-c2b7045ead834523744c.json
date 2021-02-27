@@ -67,7 +67,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "/Users/olegartamonov/Documents/C++/GLCraft/build"
+			"value" : "/Users/artamonovoleg/Documents/GLCraft/build"
 		},
 		{
 			"name" : "CMAKE_CACHE_MAJOR_VERSION",
@@ -131,7 +131,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "/opt/homebrew/Cellar/cmake/3.19.6/bin/cmake"
+			"value" : "/usr/local/Cellar/cmake/3.19.6/bin/cmake"
 		},
 		{
 			"name" : "CMAKE_CPACK_COMMAND",
@@ -143,7 +143,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "/opt/homebrew/Cellar/cmake/3.19.6/bin/cpack"
+			"value" : "/usr/local/Cellar/cmake/3.19.6/bin/cpack"
 		},
 		{
 			"name" : "CMAKE_CTEST_COMMAND",
@@ -155,7 +155,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "/opt/homebrew/Cellar/cmake/3.19.6/bin/ctest"
+			"value" : "/usr/local/Cellar/cmake/3.19.6/bin/ctest"
 		},
 		{
 			"name" : "CMAKE_CXX_COMPILER",
@@ -375,7 +375,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "/opt/homebrew/Cellar/cmake/3.19.6/bin/ccmake"
+			"value" : "/usr/local/Cellar/cmake/3.19.6/bin/ccmake"
 		},
 		{
 			"name" : "CMAKE_EXECUTABLE_FORMAT",
@@ -579,7 +579,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "/Users/olegartamonov/Documents/C++/GLCraft"
+			"value" : "/Users/artamonovoleg/Documents/GLCraft"
 		},
 		{
 			"name" : "CMAKE_INSTALL_BINDIR",
@@ -1003,7 +1003,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "7"
+			"value" : "8"
 		},
 		{
 			"name" : "CMAKE_OBJCOPY",
@@ -1223,7 +1223,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "/opt/homebrew/Cellar/cmake/3.19.6/share/cmake"
+			"value" : "/usr/local/Cellar/cmake/3.19.6/share/cmake"
 		},
 		{
 			"name" : "CMAKE_SHARED_LINKER_FLAGS",
@@ -1483,7 +1483,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "/Users/olegartamonov/Documents/C++/GLCraft/build/sources"
+			"value" : "/Users/artamonovoleg/Documents/GLCraft/build/sources"
 		},
 		{
 			"name" : "GLCraft_SOURCE_DIR",
@@ -1495,7 +1495,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "/Users/olegartamonov/Documents/C++/GLCraft/sources"
+			"value" : "/Users/artamonovoleg/Documents/GLCraft/sources"
 		},
 		{
 			"name" : "GLFW_BINARY_DIR",
@@ -1507,7 +1507,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "/Users/olegartamonov/Documents/C++/GLCraft/build/third_party/glfw"
+			"value" : "/Users/artamonovoleg/Documents/GLCraft/build/third_party/glfw"
 		},
 		{
 			"name" : "GLFW_BUILD_DOCS",
@@ -1567,7 +1567,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "/Users/olegartamonov/Documents/C++/GLCraft/third_party/glfw"
+			"value" : "/Users/artamonovoleg/Documents/GLCraft/third_party/glfw"
 		},
 		{
 			"name" : "GLFW_USE_OSMESA",
@@ -1615,7 +1615,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "/Users/olegartamonov/Documents/C++/GLCraft/build/third_party/glm"
+			"value" : "/Users/artamonovoleg/Documents/GLCraft/build/third_party/glm"
 		},
 		{
 			"name" : "glm_SOURCE_DIR",
@@ -1627,7 +1627,31 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "/Users/olegartamonov/Documents/C++/GLCraft/third_party/glm"
+			"value" : "/Users/artamonovoleg/Documents/GLCraft/third_party/glm"
+		},
+		{
+			"name" : "stb_image_BINARY_DIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Value Computed by CMake"
+				}
+			],
+			"type" : "STATIC",
+			"value" : "/Users/artamonovoleg/Documents/GLCraft/build/third_party/stb_image"
+		},
+		{
+			"name" : "stb_image_SOURCE_DIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Value Computed by CMake"
+				}
+			],
+			"type" : "STATIC",
+			"value" : "/Users/artamonovoleg/Documents/GLCraft/third_party/stb_image"
 		}
 	],
 	"kind" : "cache",

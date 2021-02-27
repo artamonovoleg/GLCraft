@@ -4,21 +4,21 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
-  "/Users/olegartamonov/Documents/C++/GLCraft/third_party/glfw/src/cocoa_init.m" "/Users/olegartamonov/Documents/C++/GLCraft/build/third_party/glfw/src/CMakeFiles/glfw.dir/cocoa_init.m.o"
-  "/Users/olegartamonov/Documents/C++/GLCraft/third_party/glfw/src/cocoa_joystick.m" "/Users/olegartamonov/Documents/C++/GLCraft/build/third_party/glfw/src/CMakeFiles/glfw.dir/cocoa_joystick.m.o"
-  "/Users/olegartamonov/Documents/C++/GLCraft/third_party/glfw/src/cocoa_monitor.m" "/Users/olegartamonov/Documents/C++/GLCraft/build/third_party/glfw/src/CMakeFiles/glfw.dir/cocoa_monitor.m.o"
-  "/Users/olegartamonov/Documents/C++/GLCraft/third_party/glfw/src/cocoa_time.c" "/Users/olegartamonov/Documents/C++/GLCraft/build/third_party/glfw/src/CMakeFiles/glfw.dir/cocoa_time.c.o"
-  "/Users/olegartamonov/Documents/C++/GLCraft/third_party/glfw/src/cocoa_window.m" "/Users/olegartamonov/Documents/C++/GLCraft/build/third_party/glfw/src/CMakeFiles/glfw.dir/cocoa_window.m.o"
-  "/Users/olegartamonov/Documents/C++/GLCraft/third_party/glfw/src/context.c" "/Users/olegartamonov/Documents/C++/GLCraft/build/third_party/glfw/src/CMakeFiles/glfw.dir/context.c.o"
-  "/Users/olegartamonov/Documents/C++/GLCraft/third_party/glfw/src/egl_context.c" "/Users/olegartamonov/Documents/C++/GLCraft/build/third_party/glfw/src/CMakeFiles/glfw.dir/egl_context.c.o"
-  "/Users/olegartamonov/Documents/C++/GLCraft/third_party/glfw/src/init.c" "/Users/olegartamonov/Documents/C++/GLCraft/build/third_party/glfw/src/CMakeFiles/glfw.dir/init.c.o"
-  "/Users/olegartamonov/Documents/C++/GLCraft/third_party/glfw/src/input.c" "/Users/olegartamonov/Documents/C++/GLCraft/build/third_party/glfw/src/CMakeFiles/glfw.dir/input.c.o"
-  "/Users/olegartamonov/Documents/C++/GLCraft/third_party/glfw/src/monitor.c" "/Users/olegartamonov/Documents/C++/GLCraft/build/third_party/glfw/src/CMakeFiles/glfw.dir/monitor.c.o"
-  "/Users/olegartamonov/Documents/C++/GLCraft/third_party/glfw/src/nsgl_context.m" "/Users/olegartamonov/Documents/C++/GLCraft/build/third_party/glfw/src/CMakeFiles/glfw.dir/nsgl_context.m.o"
-  "/Users/olegartamonov/Documents/C++/GLCraft/third_party/glfw/src/osmesa_context.c" "/Users/olegartamonov/Documents/C++/GLCraft/build/third_party/glfw/src/CMakeFiles/glfw.dir/osmesa_context.c.o"
-  "/Users/olegartamonov/Documents/C++/GLCraft/third_party/glfw/src/posix_thread.c" "/Users/olegartamonov/Documents/C++/GLCraft/build/third_party/glfw/src/CMakeFiles/glfw.dir/posix_thread.c.o"
-  "/Users/olegartamonov/Documents/C++/GLCraft/third_party/glfw/src/vulkan.c" "/Users/olegartamonov/Documents/C++/GLCraft/build/third_party/glfw/src/CMakeFiles/glfw.dir/vulkan.c.o"
-  "/Users/olegartamonov/Documents/C++/GLCraft/third_party/glfw/src/window.c" "/Users/olegartamonov/Documents/C++/GLCraft/build/third_party/glfw/src/CMakeFiles/glfw.dir/window.c.o"
+  "/Users/artamonovoleg/Documents/GLCraft/third_party/glfw/src/cocoa_init.m" "/Users/artamonovoleg/Documents/GLCraft/build/third_party/glfw/src/CMakeFiles/glfw.dir/cocoa_init.m.o"
+  "/Users/artamonovoleg/Documents/GLCraft/third_party/glfw/src/cocoa_joystick.m" "/Users/artamonovoleg/Documents/GLCraft/build/third_party/glfw/src/CMakeFiles/glfw.dir/cocoa_joystick.m.o"
+  "/Users/artamonovoleg/Documents/GLCraft/third_party/glfw/src/cocoa_monitor.m" "/Users/artamonovoleg/Documents/GLCraft/build/third_party/glfw/src/CMakeFiles/glfw.dir/cocoa_monitor.m.o"
+  "/Users/artamonovoleg/Documents/GLCraft/third_party/glfw/src/cocoa_time.c" "/Users/artamonovoleg/Documents/GLCraft/build/third_party/glfw/src/CMakeFiles/glfw.dir/cocoa_time.c.o"
+  "/Users/artamonovoleg/Documents/GLCraft/third_party/glfw/src/cocoa_window.m" "/Users/artamonovoleg/Documents/GLCraft/build/third_party/glfw/src/CMakeFiles/glfw.dir/cocoa_window.m.o"
+  "/Users/artamonovoleg/Documents/GLCraft/third_party/glfw/src/context.c" "/Users/artamonovoleg/Documents/GLCraft/build/third_party/glfw/src/CMakeFiles/glfw.dir/context.c.o"
+  "/Users/artamonovoleg/Documents/GLCraft/third_party/glfw/src/egl_context.c" "/Users/artamonovoleg/Documents/GLCraft/build/third_party/glfw/src/CMakeFiles/glfw.dir/egl_context.c.o"
+  "/Users/artamonovoleg/Documents/GLCraft/third_party/glfw/src/init.c" "/Users/artamonovoleg/Documents/GLCraft/build/third_party/glfw/src/CMakeFiles/glfw.dir/init.c.o"
+  "/Users/artamonovoleg/Documents/GLCraft/third_party/glfw/src/input.c" "/Users/artamonovoleg/Documents/GLCraft/build/third_party/glfw/src/CMakeFiles/glfw.dir/input.c.o"
+  "/Users/artamonovoleg/Documents/GLCraft/third_party/glfw/src/monitor.c" "/Users/artamonovoleg/Documents/GLCraft/build/third_party/glfw/src/CMakeFiles/glfw.dir/monitor.c.o"
+  "/Users/artamonovoleg/Documents/GLCraft/third_party/glfw/src/nsgl_context.m" "/Users/artamonovoleg/Documents/GLCraft/build/third_party/glfw/src/CMakeFiles/glfw.dir/nsgl_context.m.o"
+  "/Users/artamonovoleg/Documents/GLCraft/third_party/glfw/src/osmesa_context.c" "/Users/artamonovoleg/Documents/GLCraft/build/third_party/glfw/src/CMakeFiles/glfw.dir/osmesa_context.c.o"
+  "/Users/artamonovoleg/Documents/GLCraft/third_party/glfw/src/posix_thread.c" "/Users/artamonovoleg/Documents/GLCraft/build/third_party/glfw/src/CMakeFiles/glfw.dir/posix_thread.c.o"
+  "/Users/artamonovoleg/Documents/GLCraft/third_party/glfw/src/vulkan.c" "/Users/artamonovoleg/Documents/GLCraft/build/third_party/glfw/src/CMakeFiles/glfw.dir/vulkan.c.o"
+  "/Users/artamonovoleg/Documents/GLCraft/third_party/glfw/src/window.c" "/Users/artamonovoleg/Documents/GLCraft/build/third_party/glfw/src/CMakeFiles/glfw.dir/window.c.o"
   )
 set(CMAKE_C_COMPILER_ID "AppleClang")
 

@@ -34,9 +34,14 @@ class VertexBuffer
             glBufferData(GL_ARRAY_BUFFER, size, data, GL_STATIC_DRAW);
         }
 
-        void SetLayout(GLuint index, GLint size, GLsizei stride, const void *pointer)
+        // Todo: Write it later
+        void SetLayout()
         {
-            glVertexAttribPointer(index, size, GL_FLOAT, GL_FALSE, stride, pointer);
-            glEnableVertexAttribArray(index);
+            // position attribute
+            glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)0);
+            glEnableVertexAttribArray(0);
+            // texture coord attribute
+            glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(3 * sizeof(float)));
+            glEnableVertexAttribArray(1);
         }
 };

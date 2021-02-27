@@ -53,19 +53,19 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /opt/homebrew/Cellar/cmake/3.19.6/bin/cmake
+CMAKE_COMMAND = /usr/local/Cellar/cmake/3.19.6/bin/cmake
 
 # The command to remove a file.
-RM = /opt/homebrew/Cellar/cmake/3.19.6/bin/cmake -E rm -f
+RM = /usr/local/Cellar/cmake/3.19.6/bin/cmake -E rm -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/olegartamonov/Documents/C++/GLCraft
+CMAKE_SOURCE_DIR = /Users/artamonovoleg/Documents/GLCraft
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/olegartamonov/Documents/C++/GLCraft/build
+CMAKE_BINARY_DIR = /Users/artamonovoleg/Documents/GLCraft/build
 
 # Utility rule file for uninstall.
 
@@ -73,7 +73,7 @@ CMAKE_BINARY_DIR = /Users/olegartamonov/Documents/C++/GLCraft/build
 include third_party/glfw/CMakeFiles/uninstall.dir/progress.make
 
 third_party/glfw/CMakeFiles/uninstall:
-	cd /Users/olegartamonov/Documents/C++/GLCraft/build/third_party/glfw && /opt/homebrew/Cellar/cmake/3.19.6/bin/cmake -P /Users/olegartamonov/Documents/C++/GLCraft/build/third_party/glfw/cmake_uninstall.cmake
+	cd /Users/artamonovoleg/Documents/GLCraft/build/third_party/glfw && /usr/local/Cellar/cmake/3.19.6/bin/cmake -P /Users/artamonovoleg/Documents/GLCraft/build/third_party/glfw/cmake_uninstall.cmake
 
 uninstall: third_party/glfw/CMakeFiles/uninstall
 uninstall: third_party/glfw/CMakeFiles/uninstall.dir/build.make
@@ -86,10 +86,10 @@ third_party/glfw/CMakeFiles/uninstall.dir/build: uninstall
 .PHONY : third_party/glfw/CMakeFiles/uninstall.dir/build
 
 third_party/glfw/CMakeFiles/uninstall.dir/clean:
-	cd /Users/olegartamonov/Documents/C++/GLCraft/build/third_party/glfw && $(CMAKE_COMMAND) -P CMakeFiles/uninstall.dir/cmake_clean.cmake
+	cd /Users/artamonovoleg/Documents/GLCraft/build/third_party/glfw && $(CMAKE_COMMAND) -P CMakeFiles/uninstall.dir/cmake_clean.cmake
 .PHONY : third_party/glfw/CMakeFiles/uninstall.dir/clean
 
 third_party/glfw/CMakeFiles/uninstall.dir/depend:
-	cd /Users/olegartamonov/Documents/C++/GLCraft/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/olegartamonov/Documents/C++/GLCraft /Users/olegartamonov/Documents/C++/GLCraft/third_party/glfw /Users/olegartamonov/Documents/C++/GLCraft/build /Users/olegartamonov/Documents/C++/GLCraft/build/third_party/glfw /Users/olegartamonov/Documents/C++/GLCraft/build/third_party/glfw/CMakeFiles/uninstall.dir/DependInfo.cmake --color=$(COLOR)
+	cd /Users/artamonovoleg/Documents/GLCraft/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/artamonovoleg/Documents/GLCraft /Users/artamonovoleg/Documents/GLCraft/third_party/glfw /Users/artamonovoleg/Documents/GLCraft/build /Users/artamonovoleg/Documents/GLCraft/build/third_party/glfw /Users/artamonovoleg/Documents/GLCraft/build/third_party/glfw/CMakeFiles/uninstall.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : third_party/glfw/CMakeFiles/uninstall.dir/depend
 

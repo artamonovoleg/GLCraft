@@ -1,4 +1,4 @@
-# Install script for directory: /Users/olegartamonov/Documents/C++/GLCraft/third_party
+# Install script for directory: /Users/artamonovoleg/Documents/GLCraft/third_party
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -39,11 +39,16 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("/Users/olegartamonov/Documents/C++/GLCraft/build/third_party/glfw/cmake_install.cmake")
+  include("/Users/artamonovoleg/Documents/GLCraft/build/third_party/glfw/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("/Users/olegartamonov/Documents/C++/GLCraft/build/third_party/glm/cmake_install.cmake")
+  include("/Users/artamonovoleg/Documents/GLCraft/build/third_party/glm/cmake_install.cmake")
+endif()
+
+if(NOT CMAKE_INSTALL_LOCAL_ONLY)
+  # Include the install script for the subdirectory.
+  include("/Users/artamonovoleg/Documents/GLCraft/build/third_party/stb_image/cmake_install.cmake")
 endif()
 

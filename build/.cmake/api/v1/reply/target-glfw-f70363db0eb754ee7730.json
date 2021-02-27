@@ -101,7 +101,7 @@
 			"compileCommandFragments" : 
 			[
 				{
-					"fragment" : " -arch x86_64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX11.1.sdk -fPIC"
+					"fragment" : " -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX11.1.sdk -fPIC"
 				},
 				{
 					"backtrace" : 3,
@@ -122,19 +122,19 @@
 			[
 				{
 					"backtrace" : 6,
-					"path" : "/Users/olegartamonov/Documents/C++/GLCraft/third_party/./glad/include"
+					"path" : "/Users/artamonovoleg/Documents/GLCraft/third_party/./glad/include"
 				},
 				{
 					"backtrace" : 7,
-					"path" : "/Users/olegartamonov/Documents/C++/GLCraft/third_party/glfw/include"
+					"path" : "/Users/artamonovoleg/Documents/GLCraft/third_party/glfw/include"
 				},
 				{
 					"backtrace" : 8,
-					"path" : "/Users/olegartamonov/Documents/C++/GLCraft/third_party/glfw/src"
+					"path" : "/Users/artamonovoleg/Documents/GLCraft/third_party/glfw/src"
 				},
 				{
 					"backtrace" : 8,
-					"path" : "/Users/olegartamonov/Documents/C++/GLCraft/build/third_party/glfw/src"
+					"path" : "/Users/artamonovoleg/Documents/GLCraft/build/third_party/glfw/src"
 				}
 			],
 			"language" : "C",

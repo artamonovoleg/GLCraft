@@ -9,7 +9,7 @@
 					"childIndexes" : 
 					[
 						1,
-						6
+						7
 					],
 					"hasInstallRule" : true,
 					"minimumCMakeVersion" : 
@@ -24,7 +24,8 @@
 					"childIndexes" : 
 					[
 						2,
-						4
+						4,
+						6
 					],
 					"hasInstallRule" : true,
 					"minimumCMakeVersion" : 
@@ -55,7 +56,7 @@
 					"source" : "third_party/glfw",
 					"targetIndexes" : 
 					[
-						3
+						4
 					]
 				},
 				{
@@ -98,6 +99,20 @@
 					"source" : "third_party/glm/glm"
 				},
 				{
+					"build" : "third_party/stb_image",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16"
+					},
+					"parentIndex" : 1,
+					"projectIndex" : 3,
+					"source" : "third_party/stb_image",
+					"targetIndexes" : 
+					[
+						3
+					]
+				},
+				{
 					"build" : "sources",
 					"minimumCMakeVersion" : 
 					{
@@ -119,13 +134,14 @@
 					"childIndexes" : 
 					[
 						1,
-						2
+						2,
+						3
 					],
 					"directoryIndexes" : 
 					[
 						0,
 						1,
-						6
+						7
 					],
 					"name" : "GLCraft",
 					"targetIndexes" : 
@@ -145,7 +161,7 @@
 					"targetIndexes" : 
 					[
 						2,
-						3
+						4
 					]
 				},
 				{
@@ -156,30 +172,49 @@
 					],
 					"name" : "glm",
 					"parentIndex" : 0
+				},
+				{
+					"directoryIndexes" : 
+					[
+						6
+					],
+					"name" : "stb_image",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						3
+					]
 				}
 			],
 			"targets" : 
 			[
 				{
-					"directoryIndex" : 6,
+					"directoryIndex" : 7,
 					"id" : "GLCraft::@5d746b4c5dd79dd0e6ad",
-					"jsonFile" : "target-GLCraft-0752812d95f84f8c1f01.json",
+					"jsonFile" : "target-GLCraft-5167791ebe6528782697.json",
 					"name" : "GLCraft",
 					"projectIndex" : 0
 				},
 				{
 					"directoryIndex" : 1,
 					"id" : "glad::@037116246cbfaaeb5504",
-					"jsonFile" : "target-glad-bf05916f82466dea8d69.json",
+					"jsonFile" : "target-glad-c39b9c36bc867a6fc5e7.json",
 					"name" : "glad",
 					"projectIndex" : 0
 				},
 				{
 					"directoryIndex" : 3,
 					"id" : "glfw::@d5fdcda1ec52eb23cf38",
-					"jsonFile" : "target-glfw-bfa8bb831acf9ebbc5d1.json",
+					"jsonFile" : "target-glfw-f70363db0eb754ee7730.json",
 					"name" : "glfw",
 					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 6,
+					"id" : "stb_image::@c0252c6284d2acba4711",
+					"jsonFile" : "target-stb_image-ae85d0c85d7cafeba257.json",
+					"name" : "stb_image",
+					"projectIndex" : 3
 				},
 				{
 					"directoryIndex" : 2,
@@ -194,8 +229,8 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "/Users/olegartamonov/Documents/C++/GLCraft/build",
-		"source" : "/Users/olegartamonov/Documents/C++/GLCraft"
+		"build" : "/Users/artamonovoleg/Documents/GLCraft/build",
+		"source" : "/Users/artamonovoleg/Documents/GLCraft"
 	},
 	"version" : 
 	{

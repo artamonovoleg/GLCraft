@@ -7,6 +7,7 @@
 #include "VertexArray.hpp"
 #include "VertexBuffer.hpp"
 #include "IndexBuffer.hpp"
+#include "Chunk.hpp"
 
 int main()
 {
@@ -14,31 +15,21 @@ int main()
 
     Shader mainShader("../shaders/vert.glsl", "../shaders/frag.glsl");
 
-    float vertices[] = {
-         0.5f,  0.5f, 0.0f,  // top right
-         0.5f, -0.5f, 0.0f,  // bottom right
-        -0.5f, -0.5f, 0.0f,  // bottom left
-        -0.5f,  0.5f, 0.0f   // top left 
-    };
-
-    unsigned int indices[] = {  // note that we start from 0!
-        0, 1, 3,  // first Triangle
-        1, 2, 3   // second Triangle
-    };
-
     VertexArray va;
     VertexBuffer vb;
     IndexBuffer ib;
 
+    Chunk chunk ({ 0, 0, 0 });
+
     va.Bind();
 
     vb.Bind();
-    vb.Map(vertices, sizeof(vertices));
+    vb.Map(chunk.GetVertices().data(), chunk.GetVerticesSize());
+    vb.SetLayout();
 
     ib.Bind();
-    ib.Map(indices, sizeof(indices));
+    ib.Map(chunk.GetIndices().data(), chunk.GetIndicesSize());
     
-    vb.SetLayout(0, 3, 3 * sizeof(float), (void*)0);
 
     auto& keyboard = Engine::GetEventSystem()->GetKeyboard();
     auto& mouse = Engine::GetEventSystem()->GetMouse();

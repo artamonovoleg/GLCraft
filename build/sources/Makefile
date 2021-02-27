@@ -58,19 +58,19 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /opt/homebrew/Cellar/cmake/3.19.6/bin/cmake
+CMAKE_COMMAND = /usr/local/Cellar/cmake/3.19.6/bin/cmake
 
 # The command to remove a file.
-RM = /opt/homebrew/Cellar/cmake/3.19.6/bin/cmake -E rm -f
+RM = /usr/local/Cellar/cmake/3.19.6/bin/cmake -E rm -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/olegartamonov/Documents/C++/GLCraft
+CMAKE_SOURCE_DIR = /Users/artamonovoleg/Documents/GLCraft
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/olegartamonov/Documents/C++/GLCraft/build
+CMAKE_BINARY_DIR = /Users/artamonovoleg/Documents/GLCraft/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -78,37 +78,37 @@ CMAKE_BINARY_DIR = /Users/olegartamonov/Documents/C++/GLCraft/build
 # Special rule for the target install/local
 install/local: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
-	/opt/homebrew/Cellar/cmake/3.19.6/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+	/usr/local/Cellar/cmake/3.19.6/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
 .PHONY : install/local
 
 # Special rule for the target install/local
 install/local/fast: preinstall/fast
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
-	/opt/homebrew/Cellar/cmake/3.19.6/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+	/usr/local/Cellar/cmake/3.19.6/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
 .PHONY : install/local/fast
 
 # Special rule for the target install/strip
 install/strip: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
-	/opt/homebrew/Cellar/cmake/3.19.6/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+	/usr/local/Cellar/cmake/3.19.6/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
 .PHONY : install/strip
 
 # Special rule for the target install/strip
 install/strip/fast: preinstall/fast
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
-	/opt/homebrew/Cellar/cmake/3.19.6/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+	/usr/local/Cellar/cmake/3.19.6/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
 .PHONY : install/strip/fast
 
 # Special rule for the target install
 install: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
-	/opt/homebrew/Cellar/cmake/3.19.6/bin/cmake -P cmake_install.cmake
+	/usr/local/Cellar/cmake/3.19.6/bin/cmake -P cmake_install.cmake
 .PHONY : install
 
 # Special rule for the target install
 install/fast: preinstall/fast
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
-	/opt/homebrew/Cellar/cmake/3.19.6/bin/cmake -P cmake_install.cmake
+	/usr/local/Cellar/cmake/3.19.6/bin/cmake -P cmake_install.cmake
 .PHONY : install/fast
 
 # Special rule for the target list_install_components
@@ -124,7 +124,7 @@ list_install_components/fast: list_install_components
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/opt/homebrew/Cellar/cmake/3.19.6/bin/cmake --regenerate-during-build -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	/usr/local/Cellar/cmake/3.19.6/bin/cmake --regenerate-during-build -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : rebuild_cache
 
 # Special rule for the target rebuild_cache
@@ -135,7 +135,7 @@ rebuild_cache/fast: rebuild_cache
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake cache editor..."
-	/opt/homebrew/Cellar/cmake/3.19.6/bin/ccmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	/usr/local/Cellar/cmake/3.19.6/bin/ccmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : edit_cache
 
 # Special rule for the target edit_cache
@@ -145,14 +145,14 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	cd /Users/olegartamonov/Documents/C++/GLCraft/build && $(CMAKE_COMMAND) -E cmake_progress_start /Users/olegartamonov/Documents/C++/GLCraft/build/CMakeFiles /Users/olegartamonov/Documents/C++/GLCraft/build/sources//CMakeFiles/progress.marks
-	cd /Users/olegartamonov/Documents/C++/GLCraft/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 sources/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/olegartamonov/Documents/C++/GLCraft/build/CMakeFiles 0
+	cd /Users/artamonovoleg/Documents/GLCraft/build && $(CMAKE_COMMAND) -E cmake_progress_start /Users/artamonovoleg/Documents/GLCraft/build/CMakeFiles /Users/artamonovoleg/Documents/GLCraft/build/sources//CMakeFiles/progress.marks
+	cd /Users/artamonovoleg/Documents/GLCraft/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 sources/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/artamonovoleg/Documents/GLCraft/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /Users/olegartamonov/Documents/C++/GLCraft/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 sources/clean
+	cd /Users/artamonovoleg/Documents/GLCraft/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 sources/clean
 .PHONY : clean
 
 # The main clean target
@@ -162,22 +162,22 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /Users/olegartamonov/Documents/C++/GLCraft/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 sources/preinstall
+	cd /Users/artamonovoleg/Documents/GLCraft/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 sources/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /Users/olegartamonov/Documents/C++/GLCraft/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 sources/preinstall
+	cd /Users/artamonovoleg/Documents/GLCraft/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 sources/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /Users/olegartamonov/Documents/C++/GLCraft/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /Users/artamonovoleg/Documents/GLCraft/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Convenience name for target.
 sources/CMakeFiles/GLCraft.dir/rule:
-	cd /Users/olegartamonov/Documents/C++/GLCraft/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 sources/CMakeFiles/GLCraft.dir/rule
+	cd /Users/artamonovoleg/Documents/GLCraft/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 sources/CMakeFiles/GLCraft.dir/rule
 .PHONY : sources/CMakeFiles/GLCraft.dir/rule
 
 # Convenience name for target.
@@ -187,8 +187,35 @@ GLCraft: sources/CMakeFiles/GLCraft.dir/rule
 
 # fast build rule for target.
 GLCraft/fast:
-	cd /Users/olegartamonov/Documents/C++/GLCraft/build && $(MAKE) $(MAKESILENT) -f sources/CMakeFiles/GLCraft.dir/build.make sources/CMakeFiles/GLCraft.dir/build
+	cd /Users/artamonovoleg/Documents/GLCraft/build && $(MAKE) $(MAKESILENT) -f sources/CMakeFiles/GLCraft.dir/build.make sources/CMakeFiles/GLCraft.dir/build
 .PHONY : GLCraft/fast
+
+Chunk.o: Chunk.cpp.o
+
+.PHONY : Chunk.o
+
+# target to build an object file
+Chunk.cpp.o:
+	cd /Users/artamonovoleg/Documents/GLCraft/build && $(MAKE) $(MAKESILENT) -f sources/CMakeFiles/GLCraft.dir/build.make sources/CMakeFiles/GLCraft.dir/Chunk.cpp.o
+.PHONY : Chunk.cpp.o
+
+Chunk.i: Chunk.cpp.i
+
+.PHONY : Chunk.i
+
+# target to preprocess a source file
+Chunk.cpp.i:
+	cd /Users/artamonovoleg/Documents/GLCraft/build && $(MAKE) $(MAKESILENT) -f sources/CMakeFiles/GLCraft.dir/build.make sources/CMakeFiles/GLCraft.dir/Chunk.cpp.i
+.PHONY : Chunk.cpp.i
+
+Chunk.s: Chunk.cpp.s
+
+.PHONY : Chunk.s
+
+# target to generate assembly for a file
+Chunk.cpp.s:
+	cd /Users/artamonovoleg/Documents/GLCraft/build && $(MAKE) $(MAKESILENT) -f sources/CMakeFiles/GLCraft.dir/build.make sources/CMakeFiles/GLCraft.dir/Chunk.cpp.s
+.PHONY : Chunk.cpp.s
 
 Engine.o: Engine.cpp.o
 
@@ -196,7 +223,7 @@ Engine.o: Engine.cpp.o
 
 # target to build an object file
 Engine.cpp.o:
-	cd /Users/olegartamonov/Documents/C++/GLCraft/build && $(MAKE) $(MAKESILENT) -f sources/CMakeFiles/GLCraft.dir/build.make sources/CMakeFiles/GLCraft.dir/Engine.cpp.o
+	cd /Users/artamonovoleg/Documents/GLCraft/build && $(MAKE) $(MAKESILENT) -f sources/CMakeFiles/GLCraft.dir/build.make sources/CMakeFiles/GLCraft.dir/Engine.cpp.o
 .PHONY : Engine.cpp.o
 
 Engine.i: Engine.cpp.i
@@ -205,7 +232,7 @@ Engine.i: Engine.cpp.i
 
 # target to preprocess a source file
 Engine.cpp.i:
-	cd /Users/olegartamonov/Documents/C++/GLCraft/build && $(MAKE) $(MAKESILENT) -f sources/CMakeFiles/GLCraft.dir/build.make sources/CMakeFiles/GLCraft.dir/Engine.cpp.i
+	cd /Users/artamonovoleg/Documents/GLCraft/build && $(MAKE) $(MAKESILENT) -f sources/CMakeFiles/GLCraft.dir/build.make sources/CMakeFiles/GLCraft.dir/Engine.cpp.i
 .PHONY : Engine.cpp.i
 
 Engine.s: Engine.cpp.s
@@ -214,7 +241,7 @@ Engine.s: Engine.cpp.s
 
 # target to generate assembly for a file
 Engine.cpp.s:
-	cd /Users/olegartamonov/Documents/C++/GLCraft/build && $(MAKE) $(MAKESILENT) -f sources/CMakeFiles/GLCraft.dir/build.make sources/CMakeFiles/GLCraft.dir/Engine.cpp.s
+	cd /Users/artamonovoleg/Documents/GLCraft/build && $(MAKE) $(MAKESILENT) -f sources/CMakeFiles/GLCraft.dir/build.make sources/CMakeFiles/GLCraft.dir/Engine.cpp.s
 .PHONY : Engine.cpp.s
 
 EventSystem.o: EventSystem.cpp.o
@@ -223,7 +250,7 @@ EventSystem.o: EventSystem.cpp.o
 
 # target to build an object file
 EventSystem.cpp.o:
-	cd /Users/olegartamonov/Documents/C++/GLCraft/build && $(MAKE) $(MAKESILENT) -f sources/CMakeFiles/GLCraft.dir/build.make sources/CMakeFiles/GLCraft.dir/EventSystem.cpp.o
+	cd /Users/artamonovoleg/Documents/GLCraft/build && $(MAKE) $(MAKESILENT) -f sources/CMakeFiles/GLCraft.dir/build.make sources/CMakeFiles/GLCraft.dir/EventSystem.cpp.o
 .PHONY : EventSystem.cpp.o
 
 EventSystem.i: EventSystem.cpp.i
@@ -232,7 +259,7 @@ EventSystem.i: EventSystem.cpp.i
 
 # target to preprocess a source file
 EventSystem.cpp.i:
-	cd /Users/olegartamonov/Documents/C++/GLCraft/build && $(MAKE) $(MAKESILENT) -f sources/CMakeFiles/GLCraft.dir/build.make sources/CMakeFiles/GLCraft.dir/EventSystem.cpp.i
+	cd /Users/artamonovoleg/Documents/GLCraft/build && $(MAKE) $(MAKESILENT) -f sources/CMakeFiles/GLCraft.dir/build.make sources/CMakeFiles/GLCraft.dir/EventSystem.cpp.i
 .PHONY : EventSystem.cpp.i
 
 EventSystem.s: EventSystem.cpp.s
@@ -241,7 +268,7 @@ EventSystem.s: EventSystem.cpp.s
 
 # target to generate assembly for a file
 EventSystem.cpp.s:
-	cd /Users/olegartamonov/Documents/C++/GLCraft/build && $(MAKE) $(MAKESILENT) -f sources/CMakeFiles/GLCraft.dir/build.make sources/CMakeFiles/GLCraft.dir/EventSystem.cpp.s
+	cd /Users/artamonovoleg/Documents/GLCraft/build && $(MAKE) $(MAKESILENT) -f sources/CMakeFiles/GLCraft.dir/build.make sources/CMakeFiles/GLCraft.dir/EventSystem.cpp.s
 .PHONY : EventSystem.cpp.s
 
 Shader.o: Shader.cpp.o
@@ -250,7 +277,7 @@ Shader.o: Shader.cpp.o
 
 # target to build an object file
 Shader.cpp.o:
-	cd /Users/olegartamonov/Documents/C++/GLCraft/build && $(MAKE) $(MAKESILENT) -f sources/CMakeFiles/GLCraft.dir/build.make sources/CMakeFiles/GLCraft.dir/Shader.cpp.o
+	cd /Users/artamonovoleg/Documents/GLCraft/build && $(MAKE) $(MAKESILENT) -f sources/CMakeFiles/GLCraft.dir/build.make sources/CMakeFiles/GLCraft.dir/Shader.cpp.o
 .PHONY : Shader.cpp.o
 
 Shader.i: Shader.cpp.i
@@ -259,7 +286,7 @@ Shader.i: Shader.cpp.i
 
 # target to preprocess a source file
 Shader.cpp.i:
-	cd /Users/olegartamonov/Documents/C++/GLCraft/build && $(MAKE) $(MAKESILENT) -f sources/CMakeFiles/GLCraft.dir/build.make sources/CMakeFiles/GLCraft.dir/Shader.cpp.i
+	cd /Users/artamonovoleg/Documents/GLCraft/build && $(MAKE) $(MAKESILENT) -f sources/CMakeFiles/GLCraft.dir/build.make sources/CMakeFiles/GLCraft.dir/Shader.cpp.i
 .PHONY : Shader.cpp.i
 
 Shader.s: Shader.cpp.s
@@ -268,7 +295,7 @@ Shader.s: Shader.cpp.s
 
 # target to generate assembly for a file
 Shader.cpp.s:
-	cd /Users/olegartamonov/Documents/C++/GLCraft/build && $(MAKE) $(MAKESILENT) -f sources/CMakeFiles/GLCraft.dir/build.make sources/CMakeFiles/GLCraft.dir/Shader.cpp.s
+	cd /Users/artamonovoleg/Documents/GLCraft/build && $(MAKE) $(MAKESILENT) -f sources/CMakeFiles/GLCraft.dir/build.make sources/CMakeFiles/GLCraft.dir/Shader.cpp.s
 .PHONY : Shader.cpp.s
 
 Window.o: Window.cpp.o
@@ -277,7 +304,7 @@ Window.o: Window.cpp.o
 
 # target to build an object file
 Window.cpp.o:
-	cd /Users/olegartamonov/Documents/C++/GLCraft/build && $(MAKE) $(MAKESILENT) -f sources/CMakeFiles/GLCraft.dir/build.make sources/CMakeFiles/GLCraft.dir/Window.cpp.o
+	cd /Users/artamonovoleg/Documents/GLCraft/build && $(MAKE) $(MAKESILENT) -f sources/CMakeFiles/GLCraft.dir/build.make sources/CMakeFiles/GLCraft.dir/Window.cpp.o
 .PHONY : Window.cpp.o
 
 Window.i: Window.cpp.i
@@ -286,7 +313,7 @@ Window.i: Window.cpp.i
 
 # target to preprocess a source file
 Window.cpp.i:
-	cd /Users/olegartamonov/Documents/C++/GLCraft/build && $(MAKE) $(MAKESILENT) -f sources/CMakeFiles/GLCraft.dir/build.make sources/CMakeFiles/GLCraft.dir/Window.cpp.i
+	cd /Users/artamonovoleg/Documents/GLCraft/build && $(MAKE) $(MAKESILENT) -f sources/CMakeFiles/GLCraft.dir/build.make sources/CMakeFiles/GLCraft.dir/Window.cpp.i
 .PHONY : Window.cpp.i
 
 Window.s: Window.cpp.s
@@ -295,7 +322,7 @@ Window.s: Window.cpp.s
 
 # target to generate assembly for a file
 Window.cpp.s:
-	cd /Users/olegartamonov/Documents/C++/GLCraft/build && $(MAKE) $(MAKESILENT) -f sources/CMakeFiles/GLCraft.dir/build.make sources/CMakeFiles/GLCraft.dir/Window.cpp.s
+	cd /Users/artamonovoleg/Documents/GLCraft/build && $(MAKE) $(MAKESILENT) -f sources/CMakeFiles/GLCraft.dir/build.make sources/CMakeFiles/GLCraft.dir/Window.cpp.s
 .PHONY : Window.cpp.s
 
 main.o: main.cpp.o
@@ -304,7 +331,7 @@ main.o: main.cpp.o
 
 # target to build an object file
 main.cpp.o:
-	cd /Users/olegartamonov/Documents/C++/GLCraft/build && $(MAKE) $(MAKESILENT) -f sources/CMakeFiles/GLCraft.dir/build.make sources/CMakeFiles/GLCraft.dir/main.cpp.o
+	cd /Users/artamonovoleg/Documents/GLCraft/build && $(MAKE) $(MAKESILENT) -f sources/CMakeFiles/GLCraft.dir/build.make sources/CMakeFiles/GLCraft.dir/main.cpp.o
 .PHONY : main.cpp.o
 
 main.i: main.cpp.i
@@ -313,7 +340,7 @@ main.i: main.cpp.i
 
 # target to preprocess a source file
 main.cpp.i:
-	cd /Users/olegartamonov/Documents/C++/GLCraft/build && $(MAKE) $(MAKESILENT) -f sources/CMakeFiles/GLCraft.dir/build.make sources/CMakeFiles/GLCraft.dir/main.cpp.i
+	cd /Users/artamonovoleg/Documents/GLCraft/build && $(MAKE) $(MAKESILENT) -f sources/CMakeFiles/GLCraft.dir/build.make sources/CMakeFiles/GLCraft.dir/main.cpp.i
 .PHONY : main.cpp.i
 
 main.s: main.cpp.s
@@ -322,7 +349,7 @@ main.s: main.cpp.s
 
 # target to generate assembly for a file
 main.cpp.s:
-	cd /Users/olegartamonov/Documents/C++/GLCraft/build && $(MAKE) $(MAKESILENT) -f sources/CMakeFiles/GLCraft.dir/build.make sources/CMakeFiles/GLCraft.dir/main.cpp.s
+	cd /Users/artamonovoleg/Documents/GLCraft/build && $(MAKE) $(MAKESILENT) -f sources/CMakeFiles/GLCraft.dir/build.make sources/CMakeFiles/GLCraft.dir/main.cpp.s
 .PHONY : main.cpp.s
 
 # Help Target
@@ -338,6 +365,9 @@ help:
 	@echo "... list_install_components"
 	@echo "... rebuild_cache"
 	@echo "... GLCraft"
+	@echo "... Chunk.o"
+	@echo "... Chunk.i"
+	@echo "... Chunk.s"
 	@echo "... Engine.o"
 	@echo "... Engine.i"
 	@echo "... Engine.s"
@@ -364,6 +394,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /Users/olegartamonov/Documents/C++/GLCraft/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /Users/artamonovoleg/Documents/GLCraft/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 
