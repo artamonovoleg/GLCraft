@@ -4,6 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
+  "/Users/artamonovoleg/Documents/GLCraft/sources/Camera.cpp" "/Users/artamonovoleg/Documents/GLCraft/build/sources/CMakeFiles/GLCraft.dir/Camera.cpp.o"
   "/Users/artamonovoleg/Documents/GLCraft/sources/Chunk.cpp" "/Users/artamonovoleg/Documents/GLCraft/build/sources/CMakeFiles/GLCraft.dir/Chunk.cpp.o"
   "/Users/artamonovoleg/Documents/GLCraft/sources/Engine.cpp" "/Users/artamonovoleg/Documents/GLCraft/build/sources/CMakeFiles/GLCraft.dir/Engine.cpp.o"
   "/Users/artamonovoleg/Documents/GLCraft/sources/EventSystem.cpp" "/Users/artamonovoleg/Documents/GLCraft/build/sources/CMakeFiles/GLCraft.dir/EventSystem.cpp.o"

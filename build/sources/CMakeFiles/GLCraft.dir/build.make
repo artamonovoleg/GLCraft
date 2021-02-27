@@ -128,9 +128,22 @@ sources/CMakeFiles/GLCraft.dir/Shader.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/GLCraft.dir/Shader.cpp.s"
 	cd /Users/artamonovoleg/Documents/GLCraft/build/sources && /Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/artamonovoleg/Documents/GLCraft/sources/Shader.cpp -o CMakeFiles/GLCraft.dir/Shader.cpp.s
 
+sources/CMakeFiles/GLCraft.dir/Camera.cpp.o: sources/CMakeFiles/GLCraft.dir/flags.make
+sources/CMakeFiles/GLCraft.dir/Camera.cpp.o: ../sources/Camera.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/artamonovoleg/Documents/GLCraft/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object sources/CMakeFiles/GLCraft.dir/Camera.cpp.o"
+	cd /Users/artamonovoleg/Documents/GLCraft/build/sources && /Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/GLCraft.dir/Camera.cpp.o -c /Users/artamonovoleg/Documents/GLCraft/sources/Camera.cpp
+
+sources/CMakeFiles/GLCraft.dir/Camera.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/GLCraft.dir/Camera.cpp.i"
+	cd /Users/artamonovoleg/Documents/GLCraft/build/sources && /Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/artamonovoleg/Documents/GLCraft/sources/Camera.cpp > CMakeFiles/GLCraft.dir/Camera.cpp.i
+
+sources/CMakeFiles/GLCraft.dir/Camera.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/GLCraft.dir/Camera.cpp.s"
+	cd /Users/artamonovoleg/Documents/GLCraft/build/sources && /Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/artamonovoleg/Documents/GLCraft/sources/Camera.cpp -o CMakeFiles/GLCraft.dir/Camera.cpp.s
+
 sources/CMakeFiles/GLCraft.dir/Chunk.cpp.o: sources/CMakeFiles/GLCraft.dir/flags.make
 sources/CMakeFiles/GLCraft.dir/Chunk.cpp.o: ../sources/Chunk.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/artamonovoleg/Documents/GLCraft/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object sources/CMakeFiles/GLCraft.dir/Chunk.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/artamonovoleg/Documents/GLCraft/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object sources/CMakeFiles/GLCraft.dir/Chunk.cpp.o"
 	cd /Users/artamonovoleg/Documents/GLCraft/build/sources && /Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/GLCraft.dir/Chunk.cpp.o -c /Users/artamonovoleg/Documents/GLCraft/sources/Chunk.cpp
 
 sources/CMakeFiles/GLCraft.dir/Chunk.cpp.i: cmake_force
@@ -143,7 +156,7 @@ sources/CMakeFiles/GLCraft.dir/Chunk.cpp.s: cmake_force
 
 sources/CMakeFiles/GLCraft.dir/main.cpp.o: sources/CMakeFiles/GLCraft.dir/flags.make
 sources/CMakeFiles/GLCraft.dir/main.cpp.o: ../sources/main.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/artamonovoleg/Documents/GLCraft/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object sources/CMakeFiles/GLCraft.dir/main.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/artamonovoleg/Documents/GLCraft/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object sources/CMakeFiles/GLCraft.dir/main.cpp.o"
 	cd /Users/artamonovoleg/Documents/GLCraft/build/sources && /Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/GLCraft.dir/main.cpp.o -c /Users/artamonovoleg/Documents/GLCraft/sources/main.cpp
 
 sources/CMakeFiles/GLCraft.dir/main.cpp.i: cmake_force
@@ -160,6 +173,7 @@ GLCraft_OBJECTS = \
 "CMakeFiles/GLCraft.dir/Window.cpp.o" \
 "CMakeFiles/GLCraft.dir/EventSystem.cpp.o" \
 "CMakeFiles/GLCraft.dir/Shader.cpp.o" \
+"CMakeFiles/GLCraft.dir/Camera.cpp.o" \
 "CMakeFiles/GLCraft.dir/Chunk.cpp.o" \
 "CMakeFiles/GLCraft.dir/main.cpp.o"
 
@@ -170,6 +184,7 @@ GLCraft: sources/CMakeFiles/GLCraft.dir/Engine.cpp.o
 GLCraft: sources/CMakeFiles/GLCraft.dir/Window.cpp.o
 GLCraft: sources/CMakeFiles/GLCraft.dir/EventSystem.cpp.o
 GLCraft: sources/CMakeFiles/GLCraft.dir/Shader.cpp.o
+GLCraft: sources/CMakeFiles/GLCraft.dir/Camera.cpp.o
 GLCraft: sources/CMakeFiles/GLCraft.dir/Chunk.cpp.o
 GLCraft: sources/CMakeFiles/GLCraft.dir/main.cpp.o
 GLCraft: sources/CMakeFiles/GLCraft.dir/build.make
@@ -177,7 +192,7 @@ GLCraft: third_party/glfw/src/libglfw3.a
 GLCraft: third_party/libglad.a
 GLCraft: third_party/stb_image/libstb_image.a
 GLCraft: sources/CMakeFiles/GLCraft.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/artamonovoleg/Documents/GLCraft/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Linking CXX executable ../GLCraft"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/artamonovoleg/Documents/GLCraft/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Linking CXX executable ../GLCraft"
 	cd /Users/artamonovoleg/Documents/GLCraft/build/sources && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/GLCraft.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

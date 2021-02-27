@@ -11,8 +11,9 @@ set(SOURCES ./Engine.cpp
             ./Window.cpp
             ./EventSystem.cpp
             ./Shader.cpp
+            ./Camera.cpp
             ./Chunk.cpp
             ./main.cpp)
 
 add_executable(GLCraft ${SOURCES})
-target_link_libraries(GLCraft glfw glad stb_image)
+target_link_libraries(GLCraft glfw glad stb_image)   

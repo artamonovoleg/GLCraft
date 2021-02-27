@@ -20,6 +20,9 @@ class Window
 
         bool ShouldClose();
         void SwapBuffers();
-
+        
+        int GetWidth() const { return m_Width; }
+        int GetHeight() const { return m_Height; }
+        
         operator GLFWwindow* () const { return m_Window; }
 };

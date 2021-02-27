@@ -18,6 +18,7 @@ void Engine::Init(const WindowProps& props)
     m_Window        = std::make_unique<Window>(props);
     gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
     m_EventSystem   = std::make_unique<EventSystem>();
+    glfwSetInputMode(*m_Window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 }
 
 void Engine::Shutdown()

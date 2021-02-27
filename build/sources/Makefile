@@ -190,6 +190,33 @@ GLCraft/fast:
 	cd /Users/artamonovoleg/Documents/GLCraft/build && $(MAKE) $(MAKESILENT) -f sources/CMakeFiles/GLCraft.dir/build.make sources/CMakeFiles/GLCraft.dir/build
 .PHONY : GLCraft/fast
 
+Camera.o: Camera.cpp.o
+
+.PHONY : Camera.o
+
+# target to build an object file
+Camera.cpp.o:
+	cd /Users/artamonovoleg/Documents/GLCraft/build && $(MAKE) $(MAKESILENT) -f sources/CMakeFiles/GLCraft.dir/build.make sources/CMakeFiles/GLCraft.dir/Camera.cpp.o
+.PHONY : Camera.cpp.o
+
+Camera.i: Camera.cpp.i
+
+.PHONY : Camera.i
+
+# target to preprocess a source file
+Camera.cpp.i:
+	cd /Users/artamonovoleg/Documents/GLCraft/build && $(MAKE) $(MAKESILENT) -f sources/CMakeFiles/GLCraft.dir/build.make sources/CMakeFiles/GLCraft.dir/Camera.cpp.i
+.PHONY : Camera.cpp.i
+
+Camera.s: Camera.cpp.s
+
+.PHONY : Camera.s
+
+# target to generate assembly for a file
+Camera.cpp.s:
+	cd /Users/artamonovoleg/Documents/GLCraft/build && $(MAKE) $(MAKESILENT) -f sources/CMakeFiles/GLCraft.dir/build.make sources/CMakeFiles/GLCraft.dir/Camera.cpp.s
+.PHONY : Camera.cpp.s
+
 Chunk.o: Chunk.cpp.o
 
 .PHONY : Chunk.o
@@ -365,6 +392,9 @@ help:
 	@echo "... list_install_components"
 	@echo "... rebuild_cache"
 	@echo "... GLCraft"
+	@echo "... Camera.o"
+	@echo "... Camera.i"
+	@echo "... Camera.s"
 	@echo "... Chunk.o"
 	@echo "... Chunk.i"
 	@echo "... Chunk.s"
