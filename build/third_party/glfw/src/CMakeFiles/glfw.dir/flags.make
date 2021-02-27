@@ -4,7 +4,9 @@
 # compile C with /Library/Developer/CommandLineTools/usr/bin/cc
 C_DEFINES = -D_GLFW_USE_CONFIG_H
 
-C_INCLUDES = -I/Users/artamonovoleg/Documents/GLCraft/third_party/./glad/include -I/Users/artamonovoleg/Documents/GLCraft/third_party/glfw/include -I/Users/artamonovoleg/Documents/GLCraft/third_party/glfw/src -I/Users/artamonovoleg/Documents/GLCraft/build/third_party/glfw/src
+C_INCLUDES = -I/Users/olegartamonov/Documents/C++/GLCraft/third_party/./glad/include -I/Users/olegartamonov/Documents/C++/GLCraft/third_party/glfw/include -I/Users/olegartamonov/Documents/C++/GLCraft/third_party/glfw/src -I/Users/olegartamonov/Documents/C++/GLCraft/build/third_party/glfw/src
 
-C_FLAGS =  -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX11.1.sdk -fPIC -Wall -std=c99
+C_FLAGSx86_64 =  -arch x86_64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX11.1.sdk -fPIC -Wall -std=c99
+
+C_FLAGS =  -arch x86_64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX11.1.sdk -fPIC -Wall -std=c99
 

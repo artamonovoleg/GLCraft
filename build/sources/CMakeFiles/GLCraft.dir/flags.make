@@ -4,7 +4,9 @@
 # compile CXX with /Library/Developer/CommandLineTools/usr/bin/c++
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/Users/artamonovoleg/Documents/GLCraft/sources/../third_party/glfw/include -I/Users/artamonovoleg/Documents/GLCraft/sources/../third_party/glm -I/Users/artamonovoleg/Documents/GLCraft/sources/../third_party/glad/include -I/Users/artamonovoleg/Documents/GLCraft/third_party/glfw/include
+CXX_INCLUDES = -I/Users/olegartamonov/Documents/C++/GLCraft/sources/../third_party/glfw/include -I/Users/olegartamonov/Documents/C++/GLCraft/sources/../third_party/glm -I/Users/olegartamonov/Documents/C++/GLCraft/sources/../third_party/glad/include -I/Users/olegartamonov/Documents/C++/GLCraft/third_party/glfw/include
 
-CXX_FLAGS =  -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX11.1.sdk -std=gnu++17
+CXX_FLAGSx86_64 =  -arch x86_64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX11.1.sdk -std=gnu++17
+
+CXX_FLAGS =  -arch x86_64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX11.1.sdk -std=gnu++17
 

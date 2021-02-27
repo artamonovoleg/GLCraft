@@ -1,4 +1,4 @@
-# Install script for directory: /Users/artamonovoleg/Documents/GLCraft/sources
+# Install script for directory: /Users/olegartamonov/Documents/C++/GLCraft/sources
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

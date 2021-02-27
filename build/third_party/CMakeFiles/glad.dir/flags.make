@@ -4,7 +4,9 @@
 # compile C with /Library/Developer/CommandLineTools/usr/bin/cc
 C_DEFINES = 
 
-C_INCLUDES = -I/Users/artamonovoleg/Documents/GLCraft/third_party/./glad/include
+C_INCLUDES = -I/Users/olegartamonov/Documents/C++/GLCraft/third_party/./glad/include
 
-C_FLAGS =  -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX11.1.sdk
+C_FLAGSx86_64 =  -arch x86_64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX11.1.sdk
+
+C_FLAGS =  -arch x86_64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX11.1.sdk
 

@@ -156,13 +156,13 @@ sources/CMakeFiles/GLCraft.dir/Engine.cpp.o
  ../third_party/glm/glm/vec3.hpp
  ../third_party/glm/glm/vec4.hpp
  ../third_party/glm/glm/vector_relational.hpp
- /Users/artamonovoleg/Documents/GLCraft/sources/Engine.cpp
- /Users/artamonovoleg/Documents/GLCraft/sources/Engine.hpp
- /Users/artamonovoleg/Documents/GLCraft/sources/EventSystem.hpp
- /Users/artamonovoleg/Documents/GLCraft/sources/Keyboard.hpp
- /Users/artamonovoleg/Documents/GLCraft/sources/Mouse.hpp
- /Users/artamonovoleg/Documents/GLCraft/sources/PressState.hpp
- /Users/artamonovoleg/Documents/GLCraft/sources/Window.hpp
+ /Users/olegartamonov/Documents/C++/GLCraft/sources/Engine.cpp
+ /Users/olegartamonov/Documents/C++/GLCraft/sources/Engine.hpp
+ /Users/olegartamonov/Documents/C++/GLCraft/sources/EventSystem.hpp
+ /Users/olegartamonov/Documents/C++/GLCraft/sources/Keyboard.hpp
+ /Users/olegartamonov/Documents/C++/GLCraft/sources/Mouse.hpp
+ /Users/olegartamonov/Documents/C++/GLCraft/sources/PressState.hpp
+ /Users/olegartamonov/Documents/C++/GLCraft/sources/Window.hpp
 sources/CMakeFiles/GLCraft.dir/EventSystem.cpp.o
  ../third_party/glfw/include/GLFW/glfw3.h
  ../third_party/glm/glm/common.hpp
@@ -316,22 +316,22 @@ sources/CMakeFiles/GLCraft.dir/EventSystem.cpp.o
  ../third_party/glm/glm/vec3.hpp
  ../third_party/glm/glm/vec4.hpp
  ../third_party/glm/glm/vector_relational.hpp
- /Users/artamonovoleg/Documents/GLCraft/sources/Engine.hpp
- /Users/artamonovoleg/Documents/GLCraft/sources/EventSystem.cpp
- /Users/artamonovoleg/Documents/GLCraft/sources/EventSystem.hpp
- /Users/artamonovoleg/Documents/GLCraft/sources/Keyboard.hpp
- /Users/artamonovoleg/Documents/GLCraft/sources/Mouse.hpp
- /Users/artamonovoleg/Documents/GLCraft/sources/PressState.hpp
- /Users/artamonovoleg/Documents/GLCraft/sources/Window.hpp
+ /Users/olegartamonov/Documents/C++/GLCraft/sources/Engine.hpp
+ /Users/olegartamonov/Documents/C++/GLCraft/sources/EventSystem.cpp
+ /Users/olegartamonov/Documents/C++/GLCraft/sources/EventSystem.hpp
+ /Users/olegartamonov/Documents/C++/GLCraft/sources/Keyboard.hpp
+ /Users/olegartamonov/Documents/C++/GLCraft/sources/Mouse.hpp
+ /Users/olegartamonov/Documents/C++/GLCraft/sources/PressState.hpp
+ /Users/olegartamonov/Documents/C++/GLCraft/sources/Window.hpp
 sources/CMakeFiles/GLCraft.dir/Shader.cpp.o
  ../third_party/glad/include/KHR/khrplatform.h
  ../third_party/glad/include/glad/glad.h
- /Users/artamonovoleg/Documents/GLCraft/sources/Shader.cpp
- /Users/artamonovoleg/Documents/GLCraft/sources/Shader.hpp
+ /Users/olegartamonov/Documents/C++/GLCraft/sources/Shader.cpp
+ /Users/olegartamonov/Documents/C++/GLCraft/sources/Shader.hpp
 sources/CMakeFiles/GLCraft.dir/Window.cpp.o
  ../third_party/glfw/include/GLFW/glfw3.h
- /Users/artamonovoleg/Documents/GLCraft/sources/Window.cpp
- /Users/artamonovoleg/Documents/GLCraft/sources/Window.hpp
+ /Users/olegartamonov/Documents/C++/GLCraft/sources/Window.cpp
+ /Users/olegartamonov/Documents/C++/GLCraft/sources/Window.hpp
 sources/CMakeFiles/GLCraft.dir/main.cpp.o
  ../third_party/glad/include/KHR/khrplatform.h
  ../third_party/glad/include/glad/glad.h
@@ -487,11 +487,11 @@ sources/CMakeFiles/GLCraft.dir/main.cpp.o
  ../third_party/glm/glm/vec3.hpp
  ../third_party/glm/glm/vec4.hpp
  ../third_party/glm/glm/vector_relational.hpp
- /Users/artamonovoleg/Documents/GLCraft/sources/Engine.hpp
- /Users/artamonovoleg/Documents/GLCraft/sources/EventSystem.hpp
- /Users/artamonovoleg/Documents/GLCraft/sources/Keyboard.hpp
- /Users/artamonovoleg/Documents/GLCraft/sources/Mouse.hpp
- /Users/artamonovoleg/Documents/GLCraft/sources/PressState.hpp
- /Users/artamonovoleg/Documents/GLCraft/sources/Shader.hpp
- /Users/artamonovoleg/Documents/GLCraft/sources/Window.hpp
- /Users/artamonovoleg/Documents/GLCraft/sources/main.cpp
+ /Users/olegartamonov/Documents/C++/GLCraft/sources/Engine.hpp
+ /Users/olegartamonov/Documents/C++/GLCraft/sources/EventSystem.hpp
+ /Users/olegartamonov/Documents/C++/GLCraft/sources/Keyboard.hpp
+ /Users/olegartamonov/Documents/C++/GLCraft/sources/Mouse.hpp
+ /Users/olegartamonov/Documents/C++/GLCraft/sources/PressState.hpp
+ /Users/olegartamonov/Documents/C++/GLCraft/sources/Shader.hpp
+ /Users/olegartamonov/Documents/C++/GLCraft/sources/Window.hpp
+ /Users/olegartamonov/Documents/C++/GLCraft/sources/main.cpp

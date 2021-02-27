@@ -53,19 +53,19 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /usr/local/Cellar/cmake/3.19.6/bin/cmake
+CMAKE_COMMAND = /opt/homebrew/Cellar/cmake/3.19.6/bin/cmake
 
 # The command to remove a file.
-RM = /usr/local/Cellar/cmake/3.19.6/bin/cmake -E rm -f
+RM = /opt/homebrew/Cellar/cmake/3.19.6/bin/cmake -E rm -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/artamonovoleg/Documents/GLCraft
+CMAKE_SOURCE_DIR = /Users/olegartamonov/Documents/C++/GLCraft
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/artamonovoleg/Documents/GLCraft/build
+CMAKE_BINARY_DIR = /Users/olegartamonov/Documents/C++/GLCraft/build
 
 # Include any dependencies generated for this target.
 include sources/CMakeFiles/GLCraft.dir/depend.make
@@ -78,68 +78,68 @@ include sources/CMakeFiles/GLCraft.dir/flags.make
 
 sources/CMakeFiles/GLCraft.dir/Engine.cpp.o: sources/CMakeFiles/GLCraft.dir/flags.make
 sources/CMakeFiles/GLCraft.dir/Engine.cpp.o: ../sources/Engine.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/artamonovoleg/Documents/GLCraft/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object sources/CMakeFiles/GLCraft.dir/Engine.cpp.o"
-	cd /Users/artamonovoleg/Documents/GLCraft/build/sources && /Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/GLCraft.dir/Engine.cpp.o -c /Users/artamonovoleg/Documents/GLCraft/sources/Engine.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/olegartamonov/Documents/C++/GLCraft/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object sources/CMakeFiles/GLCraft.dir/Engine.cpp.o"
+	cd /Users/olegartamonov/Documents/C++/GLCraft/build/sources && /Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/GLCraft.dir/Engine.cpp.o -c /Users/olegartamonov/Documents/C++/GLCraft/sources/Engine.cpp
 
 sources/CMakeFiles/GLCraft.dir/Engine.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/GLCraft.dir/Engine.cpp.i"
-	cd /Users/artamonovoleg/Documents/GLCraft/build/sources && /Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/artamonovoleg/Documents/GLCraft/sources/Engine.cpp > CMakeFiles/GLCraft.dir/Engine.cpp.i
+	cd /Users/olegartamonov/Documents/C++/GLCraft/build/sources && /Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/olegartamonov/Documents/C++/GLCraft/sources/Engine.cpp > CMakeFiles/GLCraft.dir/Engine.cpp.i
 
 sources/CMakeFiles/GLCraft.dir/Engine.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/GLCraft.dir/Engine.cpp.s"
-	cd /Users/artamonovoleg/Documents/GLCraft/build/sources && /Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/artamonovoleg/Documents/GLCraft/sources/Engine.cpp -o CMakeFiles/GLCraft.dir/Engine.cpp.s
+	cd /Users/olegartamonov/Documents/C++/GLCraft/build/sources && /Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/olegartamonov/Documents/C++/GLCraft/sources/Engine.cpp -o CMakeFiles/GLCraft.dir/Engine.cpp.s
 
 sources/CMakeFiles/GLCraft.dir/Window.cpp.o: sources/CMakeFiles/GLCraft.dir/flags.make
 sources/CMakeFiles/GLCraft.dir/Window.cpp.o: ../sources/Window.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/artamonovoleg/Documents/GLCraft/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object sources/CMakeFiles/GLCraft.dir/Window.cpp.o"
-	cd /Users/artamonovoleg/Documents/GLCraft/build/sources && /Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/GLCraft.dir/Window.cpp.o -c /Users/artamonovoleg/Documents/GLCraft/sources/Window.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/olegartamonov/Documents/C++/GLCraft/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object sources/CMakeFiles/GLCraft.dir/Window.cpp.o"
+	cd /Users/olegartamonov/Documents/C++/GLCraft/build/sources && /Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/GLCraft.dir/Window.cpp.o -c /Users/olegartamonov/Documents/C++/GLCraft/sources/Window.cpp
 
 sources/CMakeFiles/GLCraft.dir/Window.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/GLCraft.dir/Window.cpp.i"
-	cd /Users/artamonovoleg/Documents/GLCraft/build/sources && /Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/artamonovoleg/Documents/GLCraft/sources/Window.cpp > CMakeFiles/GLCraft.dir/Window.cpp.i
+	cd /Users/olegartamonov/Documents/C++/GLCraft/build/sources && /Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/olegartamonov/Documents/C++/GLCraft/sources/Window.cpp > CMakeFiles/GLCraft.dir/Window.cpp.i
 
 sources/CMakeFiles/GLCraft.dir/Window.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/GLCraft.dir/Window.cpp.s"
-	cd /Users/artamonovoleg/Documents/GLCraft/build/sources && /Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/artamonovoleg/Documents/GLCraft/sources/Window.cpp -o CMakeFiles/GLCraft.dir/Window.cpp.s
+	cd /Users/olegartamonov/Documents/C++/GLCraft/build/sources && /Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/olegartamonov/Documents/C++/GLCraft/sources/Window.cpp -o CMakeFiles/GLCraft.dir/Window.cpp.s
 
 sources/CMakeFiles/GLCraft.dir/EventSystem.cpp.o: sources/CMakeFiles/GLCraft.dir/flags.make
 sources/CMakeFiles/GLCraft.dir/EventSystem.cpp.o: ../sources/EventSystem.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/artamonovoleg/Documents/GLCraft/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object sources/CMakeFiles/GLCraft.dir/EventSystem.cpp.o"
-	cd /Users/artamonovoleg/Documents/GLCraft/build/sources && /Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/GLCraft.dir/EventSystem.cpp.o -c /Users/artamonovoleg/Documents/GLCraft/sources/EventSystem.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/olegartamonov/Documents/C++/GLCraft/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object sources/CMakeFiles/GLCraft.dir/EventSystem.cpp.o"
+	cd /Users/olegartamonov/Documents/C++/GLCraft/build/sources && /Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/GLCraft.dir/EventSystem.cpp.o -c /Users/olegartamonov/Documents/C++/GLCraft/sources/EventSystem.cpp
 
 sources/CMakeFiles/GLCraft.dir/EventSystem.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/GLCraft.dir/EventSystem.cpp.i"
-	cd /Users/artamonovoleg/Documents/GLCraft/build/sources && /Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/artamonovoleg/Documents/GLCraft/sources/EventSystem.cpp > CMakeFiles/GLCraft.dir/EventSystem.cpp.i
+	cd /Users/olegartamonov/Documents/C++/GLCraft/build/sources && /Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/olegartamonov/Documents/C++/GLCraft/sources/EventSystem.cpp > CMakeFiles/GLCraft.dir/EventSystem.cpp.i
 
 sources/CMakeFiles/GLCraft.dir/EventSystem.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/GLCraft.dir/EventSystem.cpp.s"
-	cd /Users/artamonovoleg/Documents/GLCraft/build/sources && /Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/artamonovoleg/Documents/GLCraft/sources/EventSystem.cpp -o CMakeFiles/GLCraft.dir/EventSystem.cpp.s
+	cd /Users/olegartamonov/Documents/C++/GLCraft/build/sources && /Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/olegartamonov/Documents/C++/GLCraft/sources/EventSystem.cpp -o CMakeFiles/GLCraft.dir/EventSystem.cpp.s
 
 sources/CMakeFiles/GLCraft.dir/Shader.cpp.o: sources/CMakeFiles/GLCraft.dir/flags.make
 sources/CMakeFiles/GLCraft.dir/Shader.cpp.o: ../sources/Shader.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/artamonovoleg/Documents/GLCraft/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object sources/CMakeFiles/GLCraft.dir/Shader.cpp.o"
-	cd /Users/artamonovoleg/Documents/GLCraft/build/sources && /Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/GLCraft.dir/Shader.cpp.o -c /Users/artamonovoleg/Documents/GLCraft/sources/Shader.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/olegartamonov/Documents/C++/GLCraft/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object sources/CMakeFiles/GLCraft.dir/Shader.cpp.o"
+	cd /Users/olegartamonov/Documents/C++/GLCraft/build/sources && /Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/GLCraft.dir/Shader.cpp.o -c /Users/olegartamonov/Documents/C++/GLCraft/sources/Shader.cpp
 
 sources/CMakeFiles/GLCraft.dir/Shader.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/GLCraft.dir/Shader.cpp.i"
-	cd /Users/artamonovoleg/Documents/GLCraft/build/sources && /Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/artamonovoleg/Documents/GLCraft/sources/Shader.cpp > CMakeFiles/GLCraft.dir/Shader.cpp.i
+	cd /Users/olegartamonov/Documents/C++/GLCraft/build/sources && /Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/olegartamonov/Documents/C++/GLCraft/sources/Shader.cpp > CMakeFiles/GLCraft.dir/Shader.cpp.i
 
 sources/CMakeFiles/GLCraft.dir/Shader.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/GLCraft.dir/Shader.cpp.s"
-	cd /Users/artamonovoleg/Documents/GLCraft/build/sources && /Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/artamonovoleg/Documents/GLCraft/sources/Shader.cpp -o CMakeFiles/GLCraft.dir/Shader.cpp.s
+	cd /Users/olegartamonov/Documents/C++/GLCraft/build/sources && /Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/olegartamonov/Documents/C++/GLCraft/sources/Shader.cpp -o CMakeFiles/GLCraft.dir/Shader.cpp.s
 
 sources/CMakeFiles/GLCraft.dir/main.cpp.o: sources/CMakeFiles/GLCraft.dir/flags.make
 sources/CMakeFiles/GLCraft.dir/main.cpp.o: ../sources/main.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/artamonovoleg/Documents/GLCraft/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object sources/CMakeFiles/GLCraft.dir/main.cpp.o"
-	cd /Users/artamonovoleg/Documents/GLCraft/build/sources && /Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/GLCraft.dir/main.cpp.o -c /Users/artamonovoleg/Documents/GLCraft/sources/main.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/olegartamonov/Documents/C++/GLCraft/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object sources/CMakeFiles/GLCraft.dir/main.cpp.o"
+	cd /Users/olegartamonov/Documents/C++/GLCraft/build/sources && /Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/GLCraft.dir/main.cpp.o -c /Users/olegartamonov/Documents/C++/GLCraft/sources/main.cpp
 
 sources/CMakeFiles/GLCraft.dir/main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/GLCraft.dir/main.cpp.i"
-	cd /Users/artamonovoleg/Documents/GLCraft/build/sources && /Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/artamonovoleg/Documents/GLCraft/sources/main.cpp > CMakeFiles/GLCraft.dir/main.cpp.i
+	cd /Users/olegartamonov/Documents/C++/GLCraft/build/sources && /Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/olegartamonov/Documents/C++/GLCraft/sources/main.cpp > CMakeFiles/GLCraft.dir/main.cpp.i
 
 sources/CMakeFiles/GLCraft.dir/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/GLCraft.dir/main.cpp.s"
-	cd /Users/artamonovoleg/Documents/GLCraft/build/sources && /Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/artamonovoleg/Documents/GLCraft/sources/main.cpp -o CMakeFiles/GLCraft.dir/main.cpp.s
+	cd /Users/olegartamonov/Documents/C++/GLCraft/build/sources && /Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/olegartamonov/Documents/C++/GLCraft/sources/main.cpp -o CMakeFiles/GLCraft.dir/main.cpp.s
 
 # Object files for target GLCraft
 GLCraft_OBJECTS = \
@@ -161,8 +161,8 @@ GLCraft: sources/CMakeFiles/GLCraft.dir/build.make
 GLCraft: third_party/glfw/src/libglfw3.a
 GLCraft: third_party/libglad.a
 GLCraft: sources/CMakeFiles/GLCraft.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/artamonovoleg/Documents/GLCraft/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX executable ../GLCraft"
-	cd /Users/artamonovoleg/Documents/GLCraft/build/sources && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/GLCraft.dir/link.txt --verbose=$(VERBOSE)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/olegartamonov/Documents/C++/GLCraft/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX executable ../GLCraft"
+	cd /Users/olegartamonov/Documents/C++/GLCraft/build/sources && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/GLCraft.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
 sources/CMakeFiles/GLCraft.dir/build: GLCraft
@@ -170,10 +170,10 @@ sources/CMakeFiles/GLCraft.dir/build: GLCraft
 .PHONY : sources/CMakeFiles/GLCraft.dir/build
 
 sources/CMakeFiles/GLCraft.dir/clean:
-	cd /Users/artamonovoleg/Documents/GLCraft/build/sources && $(CMAKE_COMMAND) -P CMakeFiles/GLCraft.dir/cmake_clean.cmake
+	cd /Users/olegartamonov/Documents/C++/GLCraft/build/sources && $(CMAKE_COMMAND) -P CMakeFiles/GLCraft.dir/cmake_clean.cmake
 .PHONY : sources/CMakeFiles/GLCraft.dir/clean
 
 sources/CMakeFiles/GLCraft.dir/depend:
-	cd /Users/artamonovoleg/Documents/GLCraft/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/artamonovoleg/Documents/GLCraft /Users/artamonovoleg/Documents/GLCraft/sources /Users/artamonovoleg/Documents/GLCraft/build /Users/artamonovoleg/Documents/GLCraft/build/sources /Users/artamonovoleg/Documents/GLCraft/build/sources/CMakeFiles/GLCraft.dir/DependInfo.cmake --color=$(COLOR)
+	cd /Users/olegartamonov/Documents/C++/GLCraft/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/olegartamonov/Documents/C++/GLCraft /Users/olegartamonov/Documents/C++/GLCraft/sources /Users/olegartamonov/Documents/C++/GLCraft/build /Users/olegartamonov/Documents/C++/GLCraft/build/sources /Users/olegartamonov/Documents/C++/GLCraft/build/sources/CMakeFiles/GLCraft.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : sources/CMakeFiles/GLCraft.dir/depend
 

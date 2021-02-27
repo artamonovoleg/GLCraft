@@ -1,4 +1,4 @@
-# Install script for directory: /Users/artamonovoleg/Documents/GLCraft/third_party/glm/glm
+# Install script for directory: /Users/olegartamonov/Documents/C++/GLCraft/third_party/glm/glm
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

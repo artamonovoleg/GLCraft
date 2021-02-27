@@ -5,6 +5,69 @@
 #include "Engine.hpp"
 #include "Shader.hpp"
 
+class VertexArray
+{
+    private:
+        unsigned int m_ID;
+    public:
+        VertexArray()
+        {
+            glGenVertexArrays(1, &m_ID);
+        }
+
+        ~VertexArray()
+        {
+            glDeleteVertexArrays(1, &m_ID);
+        }
+
+        void Bind()
+        {
+            glBindVertexArray(m_ID);
+        }
+
+        void Unbind()
+        {
+            glBindVertexArray(0);
+        }
+};
+
+class VertexBuffer
+{
+    private:
+        unsigned int m_ID;
+    public:
+        VertexBuffer()
+        {
+            glGenBuffers(1, &m_ID);
+        }
+
+        ~VertexBuffer()
+        {
+            glDeleteBuffers(1, &m_ID);
+        }
+
+        void Bind()
+        {
+            glBindBuffer(GL_ARRAY_BUFFER, m_ID);
+        }
+
+        void Unbind()
+        {
+            glBindBuffer(GL_ARRAY_BUFFER, 0);
+        }
+
+        void SetVertices(void* data, size_t size)
+        {
+            Bind();
+            glBufferData(GL_ARRAY_BUFFER, size, data, GL_STATIC_DRAW);
+        }
+
+        void SetLayout(GLuint index, GLint size, GLsizei stride, const void *pointer)
+        {
+            glVertexAttribPointer(index, size, GL_FLOAT, GL_FALSE, stride, pointer);
+        }
+};
+
 int main()
 {
     Engine::Init({ 800, 600, "Minecraft" });
@@ -22,30 +85,30 @@ int main()
         0, 1, 3,  // first Triangle
         1, 2, 3   // second Triangle
     };
-    unsigned int VBO, VAO, EBO;
-    glGenVertexArrays(1, &VAO);
-    glGenBuffers(1, &VBO);
+
+    VertexArray va;
+    VertexBuffer vb;
+    unsigned int EBO;
     glGenBuffers(1, &EBO);
 
-    glBindVertexArray(VAO);
+    va.Bind();
 
-    glBindBuffer(GL_ARRAY_BUFFER, VBO);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+    vb.Bind();
+    vb.SetVertices(vertices, sizeof(vertices));
 
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
 
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
+    vb.SetLayout(0, 3, 3 * sizeof(float), (void*)0);
     glEnableVertexAttribArray(0);
 
     glBindBuffer(GL_ARRAY_BUFFER, 0); 
-    glBindVertexArray(0); 
 
     auto& keyboard = Engine::GetEventSystem()->GetKeyboard();
     auto& mouse = Engine::GetEventSystem()->GetMouse();
 
     mainShader.Bind();
-    glBindVertexArray(VAO);
+    va.Bind();
 
     while (!keyboard.GetKey(GLFW_KEY_ESCAPE))
     {

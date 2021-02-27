@@ -4,7 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
-  "/Users/artamonovoleg/Documents/GLCraft/third_party/glad/src/glad.c" "/Users/artamonovoleg/Documents/GLCraft/build/third_party/CMakeFiles/glad.dir/glad/src/glad.c.o"
+  "/Users/olegartamonov/Documents/C++/GLCraft/third_party/glad/src/glad.c" "/Users/olegartamonov/Documents/C++/GLCraft/build/third_party/CMakeFiles/glad.dir/glad/src/glad.c.o"
   )
 set(CMAKE_C_COMPILER_ID "AppleClang")
 
