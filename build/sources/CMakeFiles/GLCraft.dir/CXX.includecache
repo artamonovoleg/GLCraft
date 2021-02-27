@@ -1084,6 +1084,12 @@ Keyboard.hpp
 Mouse.hpp
 /Users/olegartamonov/Documents/C++/GLCraft/sources/Mouse.hpp
 
+/Users/olegartamonov/Documents/C++/GLCraft/sources/IndexBuffer.hpp
+cstdint
+-
+glad/glad.h
+-
+
 /Users/olegartamonov/Documents/C++/GLCraft/sources/Keyboard.hpp
 array
 -
@@ -1102,6 +1108,16 @@ PressState.hpp
 
 /Users/olegartamonov/Documents/C++/GLCraft/sources/Shader.hpp
 string
+-
+
+/Users/olegartamonov/Documents/C++/GLCraft/sources/VertexArray.hpp
+glad/glad.h
+-
+
+/Users/olegartamonov/Documents/C++/GLCraft/sources/VertexBuffer.hpp
+cstdint
+-
+glad/glad.h
 -
 
 /Users/olegartamonov/Documents/C++/GLCraft/sources/Window.hpp
@@ -1123,4 +1139,10 @@ Engine.hpp
 /Users/olegartamonov/Documents/C++/GLCraft/sources/Engine.hpp
 Shader.hpp
 /Users/olegartamonov/Documents/C++/GLCraft/sources/Shader.hpp
+VertexArray.hpp
+/Users/olegartamonov/Documents/C++/GLCraft/sources/VertexArray.hpp
+VertexBuffer.hpp
+/Users/olegartamonov/Documents/C++/GLCraft/sources/VertexBuffer.hpp
+IndexBuffer.hpp
+/Users/olegartamonov/Documents/C++/GLCraft/sources/IndexBuffer.hpp
 

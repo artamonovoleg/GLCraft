@@ -489,9 +489,12 @@ sources/CMakeFiles/GLCraft.dir/main.cpp.o
  ../third_party/glm/glm/vector_relational.hpp
  /Users/olegartamonov/Documents/C++/GLCraft/sources/Engine.hpp
  /Users/olegartamonov/Documents/C++/GLCraft/sources/EventSystem.hpp
+ /Users/olegartamonov/Documents/C++/GLCraft/sources/IndexBuffer.hpp
  /Users/olegartamonov/Documents/C++/GLCraft/sources/Keyboard.hpp
  /Users/olegartamonov/Documents/C++/GLCraft/sources/Mouse.hpp
  /Users/olegartamonov/Documents/C++/GLCraft/sources/PressState.hpp
  /Users/olegartamonov/Documents/C++/GLCraft/sources/Shader.hpp
+ /Users/olegartamonov/Documents/C++/GLCraft/sources/VertexArray.hpp
+ /Users/olegartamonov/Documents/C++/GLCraft/sources/VertexBuffer.hpp
  /Users/olegartamonov/Documents/C++/GLCraft/sources/Window.hpp
  /Users/olegartamonov/Documents/C++/GLCraft/sources/main.cpp

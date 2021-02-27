@@ -97,11 +97,11 @@
 	[
 		{
 			"backtrace" : 2,
-			"id" : "glfw::@d5fdcda1ec52eb23cf38"
+			"id" : "glad::@037116246cbfaaeb5504"
 		},
 		{
 			"backtrace" : 2,
-			"id" : "glad::@037116246cbfaaeb5504"
+			"id" : "glfw::@d5fdcda1ec52eb23cf38"
 		}
 	],
 	"id" : "GLCraft::@5d746b4c5dd79dd0e6ad",

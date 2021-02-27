@@ -488,10 +488,13 @@ sources/CMakeFiles/GLCraft.dir/main.cpp.o: ../third_party/glm/glm/vec4.hpp
 sources/CMakeFiles/GLCraft.dir/main.cpp.o: ../third_party/glm/glm/vector_relational.hpp
 sources/CMakeFiles/GLCraft.dir/main.cpp.o: ../sources/Engine.hpp
 sources/CMakeFiles/GLCraft.dir/main.cpp.o: ../sources/EventSystem.hpp
+sources/CMakeFiles/GLCraft.dir/main.cpp.o: ../sources/IndexBuffer.hpp
 sources/CMakeFiles/GLCraft.dir/main.cpp.o: ../sources/Keyboard.hpp
 sources/CMakeFiles/GLCraft.dir/main.cpp.o: ../sources/Mouse.hpp
 sources/CMakeFiles/GLCraft.dir/main.cpp.o: ../sources/PressState.hpp
 sources/CMakeFiles/GLCraft.dir/main.cpp.o: ../sources/Shader.hpp
+sources/CMakeFiles/GLCraft.dir/main.cpp.o: ../sources/VertexArray.hpp
+sources/CMakeFiles/GLCraft.dir/main.cpp.o: ../sources/VertexBuffer.hpp
 sources/CMakeFiles/GLCraft.dir/main.cpp.o: ../sources/Window.hpp
 sources/CMakeFiles/GLCraft.dir/main.cpp.o: ../sources/main.cpp
 
