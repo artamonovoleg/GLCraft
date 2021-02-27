@@ -65,6 +65,7 @@ class VertexBuffer
         void SetLayout(GLuint index, GLint size, GLsizei stride, const void *pointer)
         {
             glVertexAttribPointer(index, size, GL_FLOAT, GL_FALSE, stride, pointer);
+            glEnableVertexAttribArray(index);
         }
 };
 
@@ -100,9 +101,6 @@ int main()
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
 
     vb.SetLayout(0, 3, 3 * sizeof(float), (void*)0);
-    glEnableVertexAttribArray(0);
-
-    glBindBuffer(GL_ARRAY_BUFFER, 0); 
 
     auto& keyboard = Engine::GetEventSystem()->GetKeyboard();
     auto& mouse = Engine::GetEventSystem()->GetMouse();
