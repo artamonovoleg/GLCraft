@@ -17,7 +17,7 @@ float lastFrame = 0.0f;
 
 int main()
 {
-    Engine::Init({ 800, 600, "Minecraft" });
+    Engine::Init({ 1920, 1080, "Minecraft" });
     Camera camera({ 0.0f, 0.0f, 3.0f });
     
     Shader mainShader("../shaders/vert.glsl", "../shaders/frag.glsl");
@@ -57,8 +57,6 @@ int main()
 
     while (!keyboard.GetKey(GLFW_KEY_ESCAPE))
     {
-        // per-frame time logic
-        // --------------------
         float currentFrame = glfwGetTime();
         deltaTime = currentFrame - lastFrame;
         lastFrame = currentFrame;
