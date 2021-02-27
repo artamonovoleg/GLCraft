@@ -58,7 +58,7 @@ int main()
         glClearColor(0.2, 0.3, 0.4, 1.0);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-        glDrawElements(GL_TRIANGLES, ib.GetIndicesCount(), GL_UNSIGNED_INT, 0);
+        glDrawElements(GL_TRIANGLES, ib.GetCount(), GL_UNSIGNED_INT, 0);
 
         Engine::GetWindow()->SwapBuffers();
         Engine::GetEventSystem()->Process();

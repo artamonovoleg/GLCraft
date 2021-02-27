@@ -36,5 +36,5 @@ class IndexBuffer
             glBufferData(GL_ELEMENT_ARRAY_BUFFER, size, data, GL_STATIC_DRAW);
         }
 
-        size_t GetIndicesCount() { return m_Count; }
+        size_t GetCount() { return m_Count; }
 };
