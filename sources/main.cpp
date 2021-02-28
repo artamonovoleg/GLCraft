@@ -11,6 +11,7 @@
 #include "Texture.hpp"
 #include "TextureCubemap.hpp"
 #include "Camera.hpp"
+#include "Skybox.hpp"
 
 // timing
 float deltaTime = 0.0f;	// time between current frame and last frame
@@ -27,70 +28,15 @@ int main()
 
         Camera camera({ 0.0f, 0.0f, 3.0f });
         
+        Skybox skybox({     "../assets/skybox/right.jpg",
+                            "../assets/skybox/left.jpg",
+                            "../assets/skybox/top.jpg",
+                            "../assets/skybox/bottom.jpg",
+                            "../assets/skybox/front.jpg",
+                            "../assets/skybox/back.jpg" });
+                            
         Shader mainShader("../shaders/vert.glsl", "../shaders/frag.glsl");
         Texture mainTexture("../assets/textures/atlas.png");
-        Shader skyboxShader("../shaders/sbvert.glsl", "../shaders/sbfrag.glsl");
-        TextureCubemap skyboxTex({  "../assets/skybox/right.jpg",
-                                    "../assets/skybox/left.jpg",
-                                    "../assets/skybox/top.jpg",
-                                    "../assets/skybox/bottom.jpg",
-                                    "../assets/skybox/front.jpg",
-                                    "../assets/skybox/back.jpg" });
-
-        float skyboxVertices[] = {
-            // positions          
-            -1.0f,  1.0f, -1.0f,
-            -1.0f, -1.0f, -1.0f,
-            1.0f, -1.0f, -1.0f,
-            1.0f, -1.0f, -1.0f,
-            1.0f,  1.0f, -1.0f,
-            -1.0f,  1.0f, -1.0f,
-
-            -1.0f, -1.0f,  1.0f,
-            -1.0f, -1.0f, -1.0f,
-            -1.0f,  1.0f, -1.0f,
-            -1.0f,  1.0f, -1.0f,
-            -1.0f,  1.0f,  1.0f,
-            -1.0f, -1.0f,  1.0f,
-
-            1.0f, -1.0f, -1.0f,
-            1.0f, -1.0f,  1.0f,
-            1.0f,  1.0f,  1.0f,
-            1.0f,  1.0f,  1.0f,
-            1.0f,  1.0f, -1.0f,
-            1.0f, -1.0f, -1.0f,
-
-            -1.0f, -1.0f,  1.0f,
-            -1.0f,  1.0f,  1.0f,
-            1.0f,  1.0f,  1.0f,
-            1.0f,  1.0f,  1.0f,
-            1.0f, -1.0f,  1.0f,
-            -1.0f, -1.0f,  1.0f,
-
-            -1.0f,  1.0f, -1.0f,
-            1.0f,  1.0f, -1.0f,
-            1.0f,  1.0f,  1.0f,
-            1.0f,  1.0f,  1.0f,
-            -1.0f,  1.0f,  1.0f,
-            -1.0f,  1.0f, -1.0f,
-
-            -1.0f, -1.0f, -1.0f,
-            -1.0f, -1.0f,  1.0f,
-            1.0f, -1.0f, -1.0f,
-            1.0f, -1.0f, -1.0f,
-            -1.0f, -1.0f,  1.0f,
-            1.0f, -1.0f,  1.0f
-        };
-        
-        // skybox VAO
-        unsigned int skyboxVAO, skyboxVBO;
-        glGenVertexArrays(1, &skyboxVAO);
-        glGenBuffers(1, &skyboxVBO);
-        glBindVertexArray(skyboxVAO);
-        glBindBuffer(GL_ARRAY_BUFFER, skyboxVBO);
-        glBufferData(GL_ARRAY_BUFFER, sizeof(skyboxVertices), &skyboxVertices, GL_STATIC_DRAW);
-        glEnableVertexAttribArray(0);
-        glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
 
         VertexArray va;
         VertexBuffer vb;
@@ -115,8 +61,6 @@ int main()
 
         mainShader.SetMat4("u_Projection", proj);
 
-        skyboxShader.Bind();
-        skyboxShader.SetInt("skybox", 0);
         glEnable(GL_DEPTH_TEST);
 
         while (!keyboard.GetKey(GLFW_KEY_ESCAPE))
@@ -138,18 +82,7 @@ int main()
 
             glDrawElements(GL_TRIANGLES, ib.GetCount(), GL_UNSIGNED_INT, 0);
 
-            // draw skybox as last
-            glDepthFunc(GL_LEQUAL);  // change depth function so depth test passes when values are equal to depth buffer's content
-            skyboxShader.Bind();
-            skyboxShader.SetMat4("view", glm::mat4(glm::mat3(camera.GetViewMatrix())));
-            skyboxShader.SetMat4("projection", proj);
-            // skybox cube
-            glBindVertexArray(skyboxVAO);
-            skyboxTex.Bind();
-            glDrawArrays(GL_TRIANGLES, 0, 36);
-            glBindVertexArray(0);
-            glDepthFunc(GL_LESS); // set depth function back to default
-
+            skybox.Draw(proj, camera.GetViewMatrix());
             Engine::GetWindow()->SwapBuffers();
             Engine::GetEventSystem()->Process();
         }

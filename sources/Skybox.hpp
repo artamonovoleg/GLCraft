@@ -14,7 +14,7 @@ class Skybox
         std::shared_ptr<TextureCubemap> m_Texture;
         std::shared_ptr<Shader>         m_Shader;
         
-        unsigned int m_VAO, m_VBO;
+        unsigned int m_VAO = 0, m_VBO = 0;
     public:
         Skybox(const std::vector<std::string>& faces);
 
