@@ -12,6 +12,7 @@ set(SOURCES ./Engine.cpp
             ./EventSystem.cpp
             ./Shader.cpp
             ./Camera.cpp
+            ./Skybox.cpp
             ./Chunk.cpp
             ./main.cpp)
 

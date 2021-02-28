@@ -9,7 +9,7 @@ class Chunk
 {
     private:
         glm::vec3                   m_Pos;
-        ChunkData<16, 256, 16>      m_ChunkData;
+        ChunkData<1, 1, 1>      m_ChunkData;
         std::vector<Vertex>         m_Vertices;
         std::vector<unsigned int>   m_Indices;
 

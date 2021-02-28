@@ -21,7 +21,6 @@ class Texture
             glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
             // load image, create texture and generate mipmaps
             int width, height, nrChannels;
-            stbi_set_flip_vertically_on_load(true); // tell stb_image.h to flip loaded texture's on the y-axis.
             unsigned char *data = stbi_load(filename.c_str(), &width, &height, &nrChannels, 0);
             if (data)
             {
