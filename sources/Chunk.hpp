@@ -29,7 +29,7 @@ class Chunk
         /// Push all vertices and indices
         void GenerateMesh();
     public:
-        Chunk(const glm::ivec3& pos);
+        Chunk(glm::ivec3 pos);
 
         std::vector<Vertex>& GetVertices() { return m_Vertices; }
         size_t GetVerticesSize() const { return m_Vertices.size() * sizeof(Vertex); }

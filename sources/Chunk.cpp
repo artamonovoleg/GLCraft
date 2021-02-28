@@ -3,8 +3,8 @@
 
 #include <iostream>
 
-Chunk::Chunk(const glm::ivec3& pos)
-    : m_Pos(pos)
+Chunk::Chunk(glm::ivec3 pos)
+    : m_Pos(std::move(pos - glm::ivec3(0, 256, 0)))
 {
     GenerateLandscape();
 	GenerateMesh();
