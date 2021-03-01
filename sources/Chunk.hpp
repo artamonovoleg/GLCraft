@@ -6,6 +6,20 @@
 #include "ChunkData.hpp"
 #include "Vertex.hpp"
 
+static std::ostream& operator << (std::ostream& os, const BlockType& type)
+{
+    switch (type)
+    {
+        case BlockType::Air:
+            os << "Air";
+            break;
+        case BlockType::Grass:
+            os << "Grass";
+            break;
+    }
+    return os;
+}
+
 class Chunk
 {
     private:
@@ -31,6 +45,11 @@ class Chunk
         void GenerateMesh();
     public:
         Chunk(glm::ivec3 pos);
+
+        void PrintBlockType(const glm::vec3& pos) 
+        {
+            std::cout << m_ChunkData.At(pos - m_Pos).type << std::endl;
+        }
 
         std::vector<Vertex>& GetVertices() { return m_Vertices; }
         size_t GetVerticesSize() const { return m_Vertices.size() * sizeof(Vertex); }

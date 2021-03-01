@@ -26,7 +26,7 @@ int main()
         auto& window = Engine::GetWindow();
         glm::mat4 proj = glm::perspective(glm::radians(45.0f), window->GetWidth() / static_cast<float>(window->GetHeight()), 0.1f, 30.0f);
 
-        Camera camera({ 0.0f, 256.0f, 3.0f });
+        Camera camera({ 0.0f, 256.0f, 0.0f });
         
         Skybox skybox({     "../assets/skybox/right.jpg",
                             "../assets/skybox/left.jpg",
@@ -42,7 +42,7 @@ int main()
         VertexBuffer vb;
         IndexBuffer ib;
 
-        Chunk chunk ({ 0, 0, 0 });
+        Chunk chunk ({ 0, 0, -1 });
 
         va.Bind();
 
@@ -82,6 +82,8 @@ int main()
 
             glDrawElements(GL_TRIANGLES, ib.GetCount(), GL_UNSIGNED_INT, 0);
 
+            if (keyboard.GetKeyDown(GLFW_KEY_C))
+                chunk.PrintBlockType({ 0, 256, 0 });
             skybox.Draw(proj, camera.GetViewMatrix());
             Engine::GetWindow()->SwapBuffers();
             Engine::GetEventSystem()->Process();
