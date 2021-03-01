@@ -26,7 +26,7 @@ int main()
         auto& window = Engine::GetWindow();
         glm::mat4 proj = glm::perspective(glm::radians(45.0f), window->GetWidth() / static_cast<float>(window->GetHeight()), 0.1f, 30.0f);
 
-        Camera camera({ 8.0f, 256.0f, 8.0f });
+        Camera camera({ 8.0f, 128.0f, 8.0f });
         
         Skybox skybox({     "../assets/skybox/right.jpg",
                             "../assets/skybox/left.jpg",
@@ -83,7 +83,8 @@ int main()
             glDrawElements(GL_TRIANGLES, ib.GetCount(), GL_UNSIGNED_INT, 0);
 
             if (keyboard.GetKeyDown(GLFW_KEY_C))
-                chunk.PrintBlockType(chunk.Raycast(camera.Position, camera.Front, 100000).blockPosition);
+                std::cout << chunk.GetBlock(camera.Position).type << std::endl;
+
             skybox.Draw(proj, camera.GetViewMatrix());
             Engine::GetWindow()->SwapBuffers();
             Engine::GetEventSystem()->Process();
