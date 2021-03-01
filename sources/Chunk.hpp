@@ -54,12 +54,12 @@ class Chunk
             return true;
         } 
 
-        Block GetBlock(const glm::ivec3& pos) 
+        Block* GetBlock(const glm::ivec3& pos) 
         {
             if (BlockInBounds(pos))
-                return m_ChunkData.At(pos);
+                return &m_ChunkData.At(pos);
             else
-                return {};
+                return nullptr;
         }
 
         std::vector<Vertex>& GetVertices() { return m_Vertices; }
