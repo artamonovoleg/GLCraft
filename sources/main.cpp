@@ -83,7 +83,7 @@ int main()
             glDrawElements(GL_TRIANGLES, ib.GetCount(), GL_UNSIGNED_INT, 0);
 
             if (keyboard.GetKeyDown(GLFW_KEY_C))
-                chunk.PrintBlockType(camera.Position);
+                chunk.PrintBlockType(chunk.Raycast(camera.Position, camera.Front, 100000).blockPosition);
             skybox.Draw(proj, camera.GetViewMatrix());
             Engine::GetWindow()->SwapBuffers();
             Engine::GetEventSystem()->Process();
