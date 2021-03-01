@@ -10,19 +10,21 @@ class VertexArray
         VertexArray()
         {
             glGenVertexArrays(1, &m_ID);
+            Bind();
         }
 
         ~VertexArray()
         {
+            Unbind();
             glDeleteVertexArrays(1, &m_ID);
         }
 
-        void Bind()
+        void Bind() const
         {
             glBindVertexArray(m_ID);
         }
 
-        void Unbind()
+        void Unbind() const
         {
             glBindVertexArray(0);
         }

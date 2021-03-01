@@ -12,19 +12,21 @@ class IndexBuffer
         IndexBuffer()
         {
             glGenBuffers(1, &m_ID);
+            Bind();
         }
 
         ~IndexBuffer()
         {
+            Unbind();
             glDeleteBuffers(1, &m_ID);
         }
 
-        void Bind()
+        void Bind() const
         {
             glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_ID);
         }
 
-        void Unbind()
+        void Unbind() const
         {
             glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
         }
@@ -36,5 +38,5 @@ class IndexBuffer
             glBufferData(GL_ELEMENT_ARRAY_BUFFER, size, data, GL_STATIC_DRAW);
         }
 
-        size_t GetCount() { return m_Count; }
+        size_t GetCount() const { return m_Count; }
 };

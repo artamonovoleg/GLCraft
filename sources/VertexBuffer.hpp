@@ -11,19 +11,21 @@ class VertexBuffer
         VertexBuffer()
         {
             glGenBuffers(1, &m_ID);
+            Bind();
         }
 
         ~VertexBuffer()
         {
+            Unbind();
             glDeleteBuffers(1, &m_ID);
         }
 
-        void Bind()
+        void Bind() const
         {
             glBindBuffer(GL_ARRAY_BUFFER, m_ID);
         }
 
-        void Unbind()
+        void Unbind() const
         {
             glBindBuffer(GL_ARRAY_BUFFER, 0);
         }

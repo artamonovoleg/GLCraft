@@ -1,11 +1,16 @@
 #include "Chunk.hpp"
 #include "Block.hpp"
-
-#include <iostream>
+#include "VertexArray.hpp"
+#include "VertexBuffer.hpp"
+#include "IndexBuffer.hpp"
+#include "Shader.hpp"
 
 Chunk::Chunk(glm::ivec3 pos)
     : m_Pos(std::move(pos))
 {
+    m_VA = std::make_shared<VertexArray>();
+    m_VB = std::make_shared<VertexBuffer>();
+    m_IB = std::make_shared<IndexBuffer>();
     GenerateLandscape();
 	GenerateMesh();
 }
@@ -123,4 +128,18 @@ void Chunk::GenerateMesh()
             }
         }
     }
+
+    m_VA->Bind();
+    m_VB->Bind();
+    m_IB->Bind();
+    m_VB->Map(m_Vertices.data(), m_Vertices.size() * sizeof(m_Vertices.at(0)));
+    m_VB->SetLayout();
+    m_IB->Map(m_Indices.data(), m_Indices.size() * sizeof(m_Indices.at(0)));
+}
+
+void Chunk::Draw()
+{
+    m_VA->Bind();
+
+    glDrawElements(GL_TRIANGLES, m_IB->GetCount(), GL_UNSIGNED_INT, 0);
 }

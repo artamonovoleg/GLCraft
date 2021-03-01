@@ -16,8 +16,8 @@ class Shader
     public:
         Shader(const std::string& vertexPath, const std::string& fragmentPath);
 
-        void Bind();
-        void Unbind();
+        void Bind() const;
+        void Unbind() const;
         
         void SetInt(const std::string &name, int value) const;
         void SetMat4(const std::string &name, const glm::mat4 &mat) const;
