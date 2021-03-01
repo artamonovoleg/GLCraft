@@ -4,7 +4,7 @@
 #include <iostream>
 
 Chunk::Chunk(glm::ivec3 pos)
-    : m_Pos(std::move(pos - glm::ivec3(0, 256, 0)))
+    : m_Pos(std::move(pos))
 {
     GenerateLandscape();
 	GenerateMesh();
