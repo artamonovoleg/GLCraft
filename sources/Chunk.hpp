@@ -48,7 +48,11 @@ class Chunk
 
         void PrintBlockType(const glm::vec3& pos) 
         {
-            std::cout << m_ChunkData.At(pos - m_Pos).type << std::endl;
+            auto l = pos - m_Pos;
+            if (l.x >= 0 && l.x < 16 && l.y >= 0 && l.y < 256 && l.z >= 0 && l.z < 256)
+                std::cout << m_ChunkData.At(pos - m_Pos).type << std::endl;
+            else
+                std::cout << "Air" << std::endl;
         }
 
         std::vector<Vertex>& GetVertices() { return m_Vertices; }
