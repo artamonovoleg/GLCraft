@@ -107,7 +107,8 @@ class Chunk
         
             int steppedIndex = -1;
         
-            while (t <= maxDist){
+            while (t <= maxDist)
+            {
                 Block block = GetBlock( { ix, iy, iz } );
                 if (block.type != BlockType::Air)
                 {
@@ -123,8 +124,7 @@ class Chunk
                     if (steppedIndex == 0) norm.x = -stepx;
                     if (steppedIndex == 1) norm.y = -stepy;
                     if (steppedIndex == 2) norm.z = -stepz;
-                    m_ChunkData.At({ ix, iy, iz }).type = BlockType::Air;
-                    std::cout << "Hit" << std::endl;
+                    m_ChunkData.At({ ix, iy + 1, iz }).type = BlockType::Air;
                     GenerateMesh();
                     return;
                 }

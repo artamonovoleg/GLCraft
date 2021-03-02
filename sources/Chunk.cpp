@@ -93,10 +93,7 @@ void Chunk::GenerateLandscape()
         {
             for (size_t x = 0; x < m_ChunkData.X(); x++)
             {
-                if (y < m_ChunkData.Y() / 2)
-                    m_ChunkData.At({ x, y, z }).type = BlockType::Grass;
-                else
-                    m_ChunkData.At({ x, y, z }).type = BlockType::Air;
+                m_ChunkData.At({ x, y, z }).type = BlockType::Grass;
             }
         }
     }
