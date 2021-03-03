@@ -44,104 +44,81 @@ class Chunk
 
         bool BlockInBounds(const glm::ivec3& pos)
         {
-            if (pos.x < 0 || pos.x >= 16) return false;
-            if (pos.y < 0 || pos.y >= 256) return false;
-            if (pos.z < 0 || pos.z >= 16) return false;
-            return true;
-        } 
-
-        Block GetBlock(const glm::ivec3& pos) 
-        {
-            if (BlockInBounds(pos))
-                return m_ChunkData.At(pos);
-            else
-                return {};
+            return !(pos.x < 0 || pos.y < 0 || pos.z < 0 || pos.x >= 16 || pos.y >= 256 || pos.z >= 16);
         }
 
-        void RayCast(const glm::vec3& a, const glm::vec3& dir, float maxDist) 
+        void Raycast(glm::vec3 origin, glm::vec3 dir, float distance)
         {
-            float px = a.x;
-            float py = a.y;
-            float pz = a.z;
-        
-            float dx = dir.x;
-            float dy = dir.y;
-            float dz = dir.z;
-        
             float t = 0.0f;
-            int ix = floor(px);
-            int iy = floor(py);
-            int iz = floor(pz);
-        
-            float stepx = (dx > 0.0f) ? 1.0f : -1.0f;
-            float stepy = (dy > 0.0f) ? 1.0f : -1.0f;
-            float stepz = (dz > 0.0f) ? 1.0f : -1.0f;
-        
-            float infinity = std::numeric_limits<float>::infinity();
-        
-            float txDelta = (dx == 0.0f) ? infinity : abs(1.0f / dx);
-            float tyDelta = (dy == 0.0f) ? infinity : abs(1.0f / dy);
-            float tzDelta = (dz == 0.0f) ? infinity : abs(1.0f / dz);
-        
-            float xdist = (stepx > 0) ? (ix + 1 - px) : (px - ix);
-            float ydist = (stepy > 0) ? (iy + 1 - py) : (py - iy);
-            float zdist = (stepz > 0) ? (iz + 1 - pz) : (pz - iz);
-        
-            float txMax = (txDelta < infinity) ? txDelta * xdist : infinity;
-            float tyMax = (tyDelta < infinity) ? tyDelta * ydist : infinity;
-            float tzMax = (tzDelta < infinity) ? tzDelta * zdist : infinity;
-        
-            int steppedIndex = -1;
-        
-            while (t <= maxDist)
+
+            glm::ivec3 i = glm::ivec3(
+                static_cast<int32_t>(floor(origin.x)),
+                static_cast<int32_t>(floor(origin.y)),
+                static_cast<int32_t>(floor(origin.z))
+            );
+
+            glm::ivec3 step = glm::ivec3(
+                (dir.x > 0) ? 1 : -1,
+                (dir.y > 0) ? 1 : -1,
+                (dir.z > 0) ? 1 : -1
+            );
+
+            glm::vec3 tDelta = glm::vec3(abs(1 / dir.x), abs(1 / dir.y), abs(1 / dir.z));
+            glm::vec3 dist = glm::vec3(
+                (step.x > 0) ? (i.x + 1 - origin.x) : (origin.x - i.x),
+                (step.y > 0) ? (i.y + 1 - origin.y) : (origin.y - i.y),
+                (step.z > 0) ? (i.z + 1 - origin.z) : (origin.z - i.z)
+            );
+
+            glm::vec3 max = tDelta * dist;
+            int32_t steppedIndex = -1;
+
+            while (t <= distance) 
             {
-                Block block = GetBlock({ ix, iy, iz });
-                if (block.type != BlockType::Air)
+                if (BlockInBounds({ i.x, i.y, i.z }) && m_ChunkData.At({ i.x, i.y, i.z }).type != BlockType::Air)
                 {
-                    if (BlockInBounds({ ix, iy, iz }))
-                        m_ChunkData.At({ ix, iy, iz }).type = BlockType::Air;
+                    m_ChunkData.At({ i.x, i.y, i.z }).type = BlockType::Air;
                     m_Vertices.clear();
                     m_Indices.clear();
                     GenerateMesh();
                     return;
                 }
-                if (txMax < tyMax) 
+
+                if (max.x < max.y) 
                 {
-                    if (txMax < tzMax) 
+                    if (max.x < max.z) 
                     {
-                        ix += stepx;
-                        t = txMax;
-                        txMax += txDelta;
+                        i.x += step.x;
+                        t = max.x;
+                        max.x += tDelta.x;
                         steppedIndex = 0;
                     } 
                     else 
                     {
-                        iz += stepz;
-                        t = tzMax;
-                        tzMax += tzDelta;
+                        i.z += step.z;
+                        t = max.z;
+                        max.z += tDelta.z;
                         steppedIndex = 2;
                     }
                 } 
                 else 
                 {
-                    if (tyMax < tzMax) 
+                    if (max.y < max.z) 
                     {
-                        iy += stepy;
-                        t = tyMax;
-                        tyMax += tyDelta;
+                        i.y += step.y;
+                        t = max.y;
+                        max.y += tDelta.y;
                         steppedIndex = 1;
                     } 
                     else 
                     {
-                        iz += stepz;
-                        t = tzMax;
-                        tzMax += tzDelta;
+                        i.z += step.z;
+                        t = max.z;
+                        max.z += tDelta.z;
                         steppedIndex = 2;
                     }
                 }
             }
-            return;
         }
-
         void Draw();
 };

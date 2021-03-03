@@ -19,8 +19,8 @@ float deltaTime = 0.0f;	// time between current frame and last frame
 float lastFrame = 0.0f;
 
 float vertices [] = 
-{   -0.05, 0.0, 
-    0.05, 0.0, 
+{   -0.03, 0.0, 
+    0.03, 0.0, 
     
     0.0, 0.05, 
     0.0, -0.05 };
@@ -62,7 +62,8 @@ int main()
         VertexBuffersLayout layout;
         layout.Push<float>(2, 2);
         Shader cshader("../shaders/crosshair.vert", "../shaders/crosshair.frag");
-
+        
+        glm::vec3 a;
         while (!keyboard.GetKey(GLFW_KEY_ESCAPE))
         {
             float currentFrame = glfwGetTime();
@@ -83,8 +84,8 @@ int main()
             
             chunk.Draw();
 
-            if (keyboard.GetKeyDown(GLFW_KEY_C))
-                chunk.RayCast(camera.Position, camera.Front, 5.0f);
+            if (mouse.GetButtonDown(GLFW_MOUSE_BUTTON_LEFT))
+                chunk.Raycast(camera.Position, camera.Front, 10.0f);
             skybox.Draw(proj, camera.GetViewMatrix());
             Engine::GetWindow()->SwapBuffers();
             Engine::GetEventSystem()->Process();
