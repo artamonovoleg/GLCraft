@@ -58,7 +58,7 @@ class Chunk
                 return {};
         }
 
-        void RayCast(glm::vec3 a, glm::vec3 dir, float maxDist) 
+        void RayCast(const glm::vec3& a, const glm::vec3& dir, float maxDist) 
         {
             float px = a.x;
             float py = a.y;
