@@ -7,20 +7,6 @@
 #include "ChunkData.hpp"
 #include "Vertex.hpp"
 
-static std::ostream& operator << (std::ostream& os, const BlockType& type)
-{
-    switch (type)
-    {
-        case BlockType::Air:
-            os << "Air";
-            break;
-        case BlockType::Grass:
-            os << "Grass";
-            break;
-    }
-    return os;
-}
-
 class VertexArray;
 class VertexBuffer;
 class IndexBuffer;
