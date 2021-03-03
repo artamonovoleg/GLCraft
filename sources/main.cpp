@@ -63,7 +63,6 @@ int main()
         layout.Push<float>(2, 2);
         Shader cshader("../shaders/crosshair.vert", "../shaders/crosshair.frag");
         
-        glm::vec3 a;
         while (!keyboard.GetKey(GLFW_KEY_ESCAPE))
         {
             float currentFrame = glfwGetTime();
