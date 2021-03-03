@@ -6,6 +6,7 @@
 #include "Shader.hpp"
 #include "VertexArray.hpp"
 #include "VertexBuffer.hpp"
+#include "VertexBuffersLayout.hpp"
 #include "IndexBuffer.hpp"
 #include "Chunk.hpp"
 #include "Texture.hpp"
@@ -16,6 +17,13 @@
 // timing
 float deltaTime = 0.0f;	// time between current frame and last frame
 float lastFrame = 0.0f;
+
+float vertices [] = 
+{   -0.05, 0.0, 
+    0.05, 0.0, 
+    
+    0.0, 0.05, 
+    0.0, -0.05 };
 
 int main()
 {
@@ -47,6 +55,13 @@ int main()
         mainShader.SetMat4("u_Projection", proj);
 
         glEnable(GL_DEPTH_TEST);
+        
+        VertexArray cva;
+        VertexBuffer cvb;
+        cvb.Map(vertices, sizeof(vertices));
+        VertexBuffersLayout layout;
+        layout.Push<float>(2, 2);
+        Shader cshader("../shaders/crosshair.vert", "../shaders/crosshair.frag");
 
         while (!keyboard.GetKey(GLFW_KEY_ESCAPE))
         {
@@ -58,7 +73,10 @@ int main()
 
             glClearColor(0.2, 0.3, 0.4, 1.0);
             glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-        
+
+            cshader.Bind();
+            cva.Bind();
+            glDrawArrays(GL_LINES, 0, 8);
             mainTexture.Bind();
             mainShader.Bind();
             mainShader.SetMat4("u_View", camera.GetViewMatrix());
@@ -66,7 +84,7 @@ int main()
             chunk.Draw();
 
             if (keyboard.GetKeyDown(GLFW_KEY_C))
-                chunk.RayCast(camera.Position, camera.Front, 50.0f);
+                chunk.RayCast(camera.Position, camera.Front, 5.0f);
             skybox.Draw(proj, camera.GetViewMatrix());
             Engine::GetWindow()->SwapBuffers();
             Engine::GetEventSystem()->Process();
