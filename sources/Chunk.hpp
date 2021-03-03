@@ -15,9 +15,9 @@ class Shader;
 class Chunk
 {
     private:
-        std::shared_ptr<VertexArray>    m_VA;
-        std::shared_ptr<VertexBuffer>   m_VB;
-        std::shared_ptr<IndexBuffer>    m_IB;
+        std::shared_ptr<VertexArray>            m_VA;
+        std::shared_ptr<VertexBuffer>           m_VB;
+        std::shared_ptr<IndexBuffer>            m_IB;
 
         glm::vec3                   m_Pos;
         ChunkData<16, 256, 16>      m_ChunkData;
