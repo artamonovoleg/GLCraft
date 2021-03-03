@@ -48,7 +48,6 @@ int main()
 
         glEnable(GL_DEPTH_TEST);
 
-        glm::vec3 a;
         while (!keyboard.GetKey(GLFW_KEY_ESCAPE))
         {
             float currentFrame = glfwGetTime();
@@ -67,7 +66,7 @@ int main()
             chunk.Draw();
 
             if (keyboard.GetKeyDown(GLFW_KEY_C))
-                chunk.RayCast(camera.Position, camera.Front, 50, a, a, a);
+                chunk.RayCast(camera.Position, camera.Front, 50.0f);
             skybox.Draw(proj, camera.GetViewMatrix());
             Engine::GetWindow()->SwapBuffers();
             Engine::GetEventSystem()->Process();

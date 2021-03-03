@@ -59,7 +59,7 @@ class Chunk
         bool BlockInBounds(const glm::ivec3& pos)
         {
             if (pos.x < 0 || pos.x >= 16) return false;
-            if (pos.y < 0 || pos.y >= 128) return false;
+            if (pos.y < 0 || pos.y >= 256) return false;
             if (pos.z < 0 || pos.z >= 16) return false;
             return true;
         } 
@@ -72,7 +72,7 @@ class Chunk
                 return {};
         }
 
-        void RayCast(glm::vec3& a, glm::vec3& dir, float maxDist, glm::vec3& end, glm::vec3& norm, glm::vec3& iend) 
+        void RayCast(glm::vec3 a, glm::vec3 dir, float maxDist) 
         {
             float px = a.x;
             float py = a.y;
@@ -109,26 +109,16 @@ class Chunk
         
             while (t <= maxDist)
             {
-                Block block = GetBlock( { ix, iy, iz } );
+                Block block = GetBlock({ ix, iy, iz });
                 if (block.type != BlockType::Air)
                 {
-                    end.x = px + t * dx;
-                    end.y = py + t * dy;
-                    end.z = pz + t * dz;
-        
-                    iend.x = ix;
-                    iend.y = iy;
-                    iend.z = iz;
-        
-                    norm.x = norm.y = norm.z = 0.0f;
-                    if (steppedIndex == 0) norm.x = -stepx;
-                    if (steppedIndex == 1) norm.y = -stepy;
-                    if (steppedIndex == 2) norm.z = -stepz;
-                    m_ChunkData.At({ ix, iy + 1, iz }).type = BlockType::Air;
+                    if (BlockInBounds({ ix, iy, iz }))
+                        m_ChunkData.At({ ix, iy, iz }).type = BlockType::Air;
+                    m_Vertices.clear();
+                    m_Indices.clear();
                     GenerateMesh();
                     return;
                 }
-
                 if (txMax < tyMax) 
                 {
                     if (txMax < tzMax) 
@@ -164,14 +154,7 @@ class Chunk
                     }
                 }
             }
-            iend.x = ix;
-            iend.y = iy;
-            iend.z = iz;
-        
-            end.x = px + t * dx;
-            end.y = py + t * dy;
-            end.z = pz + t * dz;
-            norm.x = norm.y = norm.z = 0.0f;
+            return;
         }
 
         void Draw();
