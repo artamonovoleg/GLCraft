@@ -54,8 +54,8 @@ class Chunk
             else
                 return nullptr;
         }
-
-        void RayCast(const glm::vec3& startPoint, const glm::vec3& direction, float range)
+        
+        void RayCast(const glm::vec3& startPoint, const glm::vec3& direction, float range, glm::vec3& end, glm::vec3& norm, glm::vec3& iend)
         {
             // Ensures passed direction is normalized
             auto nDirection = glm::normalize(direction);
@@ -88,14 +88,30 @@ class Chunk
 
             auto currentVoxel = startVoxel;
 
-            int r = 0;
+            float r = 0.0f;
+            int steppedIndex = -1;
+
             // sanity check to prevent leak
             while (r < range * 3) 
             {
                 Block* block = GetBlock({ currentVoxel.x, currentVoxel.y, currentVoxel.z });
                 if (block != nullptr && block->type != BlockType::Air)
                 {
-                    m_ChunkData.At(currentVoxel).type = BlockType::Air;
+                    end.x = startPoint.x + r * startPoint.x;
+                    end.y = startPoint.y + r * startPoint.y;
+                    end.z = startPoint.z + r * startPoint.z;
+        
+                    iend.x = std::floor(startPoint.x);
+                    iend.y = std::floor(startPoint.y);
+                    iend.z = std::floor(startPoint.z);
+        
+                    norm.x = norm.y = norm.z = 0.0f;
+                    if (steppedIndex == 0) norm.x = -stepX;
+                    if (steppedIndex == 1) norm.y = -stepY;
+                    if (steppedIndex == 2) norm.z = -stepZ;
+
+                    // m_ChunkData.At(currentVoxel).type = BlockType::Air; // Break test
+                    m_ChunkData.At(currentVoxel + glm::ivec3(norm)).type = BlockType::Grass; // Build test
                     m_Vertices.clear();
                     m_Indices.clear();
                     GenerateMesh();
@@ -107,11 +123,13 @@ class Chunk
                     {
                         currentVoxel.x += stepX;
                         tMaxX += tDeltaX;
+                        steppedIndex = 0;
                     }
                     else 
                     {
                         currentVoxel.z += stepZ;
                         tMaxZ += tDeltaZ;
+                        steppedIndex = 2;
                     }
                 }
                 else 
@@ -120,11 +138,13 @@ class Chunk
                     {
                         currentVoxel.y += stepY;
                         tMaxY += tDeltaY;
+                        steppedIndex = 1;
                     }
                     else 
                     {
                         currentVoxel.z += stepZ;
                         tMaxZ += tDeltaZ;
+                        steppedIndex = 2;
                     }
                 }
                 if (tMaxX > 1 && tMaxY > 1 && tMaxZ > 1)

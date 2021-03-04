@@ -34,7 +34,7 @@ int main()
         auto& window = Engine::GetWindow();
         glm::mat4 proj = glm::perspective(glm::radians(45.0f), window->GetWidth() / static_cast<float>(window->GetHeight()), 0.1f, 30.0f);
 
-        Camera camera({ 8.0f, 128.0f, 8.0f });
+        Camera camera({ 8.0f, 129.0f, 8.0f });
         
         Skybox skybox({     "../assets/skybox/right.jpg",
                             "../assets/skybox/left.jpg",
@@ -61,6 +61,10 @@ int main()
         layout.Push<float>(2, 2);
         Shader cshader("../shaders/crosshair.vert", "../shaders/crosshair.frag");
         
+        glm::vec3 norm;
+        glm::vec3 end;
+        glm::vec3 iend;
+
         while (!keyboard.GetKey(GLFW_KEY_ESCAPE))
         {
             float currentFrame = glfwGetTime();
@@ -84,7 +88,7 @@ int main()
             chunk.Draw();
 
             if (mouse.GetButtonDown(GLFW_MOUSE_BUTTON_LEFT))
-                chunk.RayCast(camera.Position, camera.Front, 5.0f);
+                chunk.RayCast(camera.Position, camera.Front, 5.0f, end, norm, iend);
             skybox.Draw(proj, camera.GetViewMatrix());
             Engine::GetWindow()->SwapBuffers();
             Engine::GetEventSystem()->Process();
