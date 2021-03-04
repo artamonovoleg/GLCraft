@@ -9,9 +9,12 @@ struct WindowProps
     std::string title;
 };
 
+class EventSystem;
+
 class Window
 {
     private:
+        friend class EventSystem;
         int m_Width, m_Height;
         GLFWwindow* m_Window;
     public:

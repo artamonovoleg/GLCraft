@@ -27,14 +27,14 @@ float vertices [] =
 
 int main()
 {
-    Engine::Init({ 1920, 1080, "Minecraft" });
+    Engine::Init({ 800, 600, "Minecraft" });
     {
         auto& keyboard = Engine::GetEventSystem()->GetKeyboard();
         auto& mouse = Engine::GetEventSystem()->GetMouse();
         auto& window = Engine::GetWindow();
         glm::mat4 proj = glm::perspective(glm::radians(45.0f), window->GetWidth() / static_cast<float>(window->GetHeight()), 0.1f, 30.0f);
 
-        Camera camera({ 8.0f, 256.0f, 8.0f });
+        Camera camera({ 8.0f, 128.0f, 8.0f });
         
         Skybox skybox({     "../assets/skybox/right.jpg",
                             "../assets/skybox/left.jpg",
@@ -52,8 +52,6 @@ int main()
         mainShader.Bind();
         mainShader.SetInt("texture1", 0);
 
-        mainShader.SetMat4("u_Projection", proj);
-
         glEnable(GL_DEPTH_TEST);
         
         VertexArray cva;
@@ -63,6 +61,10 @@ int main()
         layout.Push<float>(2, 2);
         Shader cshader("../shaders/crosshair.vert", "../shaders/crosshair.frag");
         
+        glm::vec3 end;
+        glm::vec3 norm;
+        glm::vec3 iend;
+
         while (!keyboard.GetKey(GLFW_KEY_ESCAPE))
         {
             float currentFrame = glfwGetTime();
@@ -79,12 +81,14 @@ int main()
             glDrawArrays(GL_LINES, 0, 8);
             mainTexture.Bind();
             mainShader.Bind();
+            mainShader.SetMat4("u_Model", glm::mat4(1.0));
             mainShader.SetMat4("u_View", camera.GetViewMatrix());
+            mainShader.SetMat4("u_Projection", proj);
             
             chunk.Draw();
 
             if (mouse.GetButtonDown(GLFW_MOUSE_BUTTON_LEFT))
-                chunk.Raycast(camera.Position, camera.Front, 10.0f);
+                chunk.RayCast(camera.Position, camera.Front, 5.0f);
             skybox.Draw(proj, camera.GetViewMatrix());
             Engine::GetWindow()->SwapBuffers();
             Engine::GetEventSystem()->Process();
