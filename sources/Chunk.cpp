@@ -137,7 +137,6 @@ void Chunk::GenerateMesh()
     m_VB->Bind();
     m_IB->Bind();
     m_VB->Map(m_Vertices.data(), m_Vertices.size() * sizeof(m_Vertices.at(0)));
-    // m_VB->SetLayout();
     m_IB->Map(m_Indices.data(), m_Indices.size() * sizeof(m_Indices.at(0)));
 }
 

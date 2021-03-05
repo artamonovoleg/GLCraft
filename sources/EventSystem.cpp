@@ -44,7 +44,25 @@ void EventSystem::SetupCallbacks(GLFWwindow* pWindow)
 
     glfwSetCursorPosCallback(pWindow, [](GLFWwindow*, double xpos, double ypos)
     {
-        Engine::GetEventSystem()->GetMouse().m_Position = glm::vec3(static_cast<float>(xpos), static_cast<float>(ypos), 0);
+        auto& mouse = Engine::GetEventSystem()->GetMouse();
+        static bool firstMouse = true;
+        static float lastX;
+        static float lastY;
+
+        mouse.m_Position = glm::vec3(static_cast<float>(xpos), static_cast<float>(ypos), 0);
+
+        if (firstMouse)
+        {
+            lastX = xpos;
+            lastY = ypos;
+            firstMouse = false;
+        }
+
+        mouse.m_OffsetX = xpos - lastX;
+        mouse.m_OffsetY = lastY - ypos;
+
+        lastX = xpos;
+        lastY = ypos;
     });
 
     glfwSetWindowSizeCallback(pWindow, [](GLFWwindow*, int width, int height)

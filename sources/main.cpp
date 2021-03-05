@@ -29,17 +29,32 @@ class Camera
         glm::vec3 m_Position;
         glm::vec3 m_ViewDirection = glm::vec3(0, 0, -1);
         glm::vec3 m_Up = glm::vec3(0, 1, 0);
+        glm::vec3 m_Right;
+        glm::vec3 m_WorldUp = glm::vec3(0, 1, 0);
 
         glm::mat4 m_Projection;
         glm::mat4 m_View;
 
-        const float m_Speed = 0.05f;
+        float m_Yaw = -90.0f;
+        float m_Pitch = 0.0f;
 
-        const Keyboard& keyboard = Engine::GetEventSystem()->GetKeyboard();
+        const float m_Speed = 4.5f;
 
-        void Recalculate()
+        void RecalculateViewMatrix()
         {
             m_View = glm::lookAt(m_Position, m_Position + m_ViewDirection, m_Up);
+        }
+
+        void RecalculateVectors()
+        {
+            glm::vec3 front;
+            front.x = cos(glm::radians(m_Yaw)) * cos(glm::radians(m_Pitch));
+            front.y = sin(glm::radians(m_Pitch));
+            front.z = sin(glm::radians(m_Yaw)) * cos(glm::radians(m_Pitch));
+            m_ViewDirection = glm::normalize(front);
+            // also re-calculate the Right and Up vector
+            m_Right = glm::normalize(glm::cross(m_ViewDirection, m_WorldUp));  // normalize the vectors, because their length gets closer to 0 the more you look up or down which results in slower movement.
+            m_Up    = glm::normalize(glm::cross(m_Right, m_ViewDirection));
         }
     public:
         Camera(const glm::vec3& position)
@@ -51,16 +66,39 @@ class Camera
         
         void Update(float dt)
         {
+            static auto& keyboard = Engine::GetEventSystem()->GetKeyboard();
+            static auto& mouse = Engine::GetEventSystem()->GetMouse();
+
             if (keyboard.GetKey(GLFW_KEY_W))
-                m_Position += m_Speed * m_ViewDirection;
+                m_Position += m_Speed * m_ViewDirection * dt;
             if (keyboard.GetKey(GLFW_KEY_S))
-                m_Position -= m_Speed * m_ViewDirection;
+                m_Position -= m_Speed * m_ViewDirection * dt;
             if (keyboard.GetKey(GLFW_KEY_A))
-                m_Position -= glm::normalize(glm::cross(m_ViewDirection, m_Up)) * m_Speed;
+                m_Position -= glm::normalize(glm::cross(m_ViewDirection, m_Up)) * m_Speed * dt;
             if (keyboard.GetKey(GLFW_KEY_D))
-                m_Position += glm::normalize(glm::cross(m_ViewDirection, m_Up)) * m_Speed;
+                m_Position += glm::normalize(glm::cross(m_ViewDirection, m_Up)) * m_Speed * dt;
             
-            Recalculate();
+
+            float xoffset = mouse.GetOffsetX();
+            float yoffset = mouse.GetOffsetY();
+
+            if (xoffset != 0 || yoffset != 0)
+            {
+                xoffset *= 0.1;
+                yoffset *= 0.1;
+
+                m_Yaw   += xoffset;
+                m_Pitch += yoffset;
+
+                if (m_Pitch > 89.0f)
+                    m_Pitch = 89.0f;
+                if (m_Pitch < -89.0f)
+                    m_Pitch = -89.0f;
+
+                RecalculateVectors();
+            }
+
+            RecalculateViewMatrix();
         }
 
         const glm::vec3& GetPosition() const { return m_Position; }
@@ -79,7 +117,7 @@ int main()
         auto& window = Engine::GetWindow();
         glm::mat4 proj = glm::perspective(glm::radians(45.0f), window->GetWidth() / static_cast<float>(window->GetHeight()), 0.1f, 30.0f);
 
-        Camera camera({ 0, 129, 0 });
+        Camera camera({ 8, 129, 8 });
         
         Skybox skybox({     "../assets/skybox/right.jpg",
                             "../assets/skybox/left.jpg",
@@ -91,7 +129,7 @@ int main()
         Shader mainShader("../shaders/vert.glsl", "../shaders/frag.glsl");
         Texture mainTexture("../assets/textures/atlas.png");
 
-        Chunk chunk ( { -3, 0, -5 } );
+        Chunk chunk ( { 0, 0, 0 } );
 
         mainTexture.Bind();
         mainShader.Bind();
@@ -125,14 +163,14 @@ int main()
             chunk.Draw();
 
             // w.Draw();
-            auto castres = chunk.RayCast(camera.GetPosition(), camera.GetViewDirection(), 5.0f);
-            if (castres.has_value())
-            {
-                if (mouse.GetButtonDown(GLFW_MOUSE_BUTTON_LEFT))
-                    castres->chunk->Set(castres->blockPosition, BlockType::Air);
-                if (mouse.GetButtonDown(GLFW_MOUSE_BUTTON_RIGHT))
-                    castres->chunk->Set(castres->blockPosition + castres->normal, BlockType::Grass);
-            }
+            // auto castres = chunk.RayCast(camera.GetPosition(), camera.GetViewDirection(), 5.0f);
+            // if (castres.has_value())
+            // {
+            //     if (mouse.GetButtonDown(GLFW_MOUSE_BUTTON_LEFT))
+            //         castres->chunk->Set(castres->blockPosition, BlockType::Air);
+            //     if (mouse.GetButtonDown(GLFW_MOUSE_BUTTON_RIGHT))
+            //         castres->chunk->Set(castres->blockPosition + castres->normal, BlockType::Grass);
+            // }
                 
             skybox.Draw(proj, camera.GetViewMatrix());
             Engine::GetWindow()->SwapBuffers();

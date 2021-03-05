@@ -10,7 +10,10 @@ class Mouse
         friend class EventSystem;
 
         mutable PressState  m_Buttons[3];
-        mutable glm::vec3   m_Position;
+        glm::vec3   m_Position;
+
+        float m_OffsetX;
+        float m_OffsetY;
     public:
         Mouse()
         {
@@ -42,4 +45,6 @@ class Mouse
         }
 
         const glm::vec3& GetPosition() const { return m_Position; }
+        float GetOffsetX() const { return m_OffsetX; }
+        float GetOffsetY() const { return m_OffsetY; }
 };
