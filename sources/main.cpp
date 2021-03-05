@@ -13,17 +13,11 @@
 #include "TextureCubemap.hpp"
 #include "Camera.hpp"
 #include "Skybox.hpp"
+#include "Crosshair.hpp"
 
 // timing
 float deltaTime = 0.0f;	// time between current frame and last frame
 float lastFrame = 0.0f;
-
-float vertices [] = 
-{   -0.03, 0.0, 
-    0.03, 0.0, 
-    
-    0.0, 0.05, 
-    0.0, -0.05 };
 
 int main()
 {
@@ -52,15 +46,9 @@ int main()
         mainShader.Bind();
         mainShader.SetInt("texture1", 0);
 
-        glEnable(GL_DEPTH_TEST);
         
-        VertexArray cva;
-        VertexBuffer cvb;
-        cvb.Map(vertices, sizeof(vertices));
-        VertexBuffersLayout layout;
-        layout.Push<float>(2, 2);
-        Shader cshader("../shaders/crosshair.vert", "../shaders/crosshair.frag");
-        
+        Crosshair crosshair;
+
         glm::ivec3 norm;
         glm::vec3 end;
         glm::ivec3 iend;
@@ -73,12 +61,10 @@ int main()
 
             camera.Update(deltaTime);
 
-            glClearColor(0.2, 0.3, 0.4, 1.0);
             glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-            cshader.Bind();
-            cva.Bind();
-            glDrawArrays(GL_LINES, 0, 8);
+            crosshair.Draw();
+
             mainTexture.Bind();
             mainShader.Bind();
             mainShader.SetMat4("u_Model", glm::mat4(1.0));
@@ -101,7 +87,6 @@ int main()
                     castres->chunk->Rebuild();
                 }
             }
-
                 
             skybox.Draw(proj, camera.GetViewMatrix());
             Engine::GetWindow()->SwapBuffers();

@@ -13,6 +13,7 @@ set(SOURCES ./Engine.cpp
             ./Shader.cpp
             ./Camera.cpp
             ./Skybox.cpp
+            ./Crosshair.cpp
             ./Chunk.cpp
             ./main.cpp)
 

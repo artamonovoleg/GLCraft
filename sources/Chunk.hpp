@@ -67,7 +67,6 @@ class Chunk
         
         std::optional<RaycastResult> RayCast(const glm::vec3& startPoint, const glm::vec3& direction, float range, glm::vec3& end, glm::ivec3& norm, glm::ivec3& iend)
         {
-            // Ensures passed direction is normalized
             auto nDirection = glm::normalize(direction);
             auto endPoint = startPoint + nDirection * range;
             glm::ivec3 startVoxel;
