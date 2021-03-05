@@ -11,7 +11,6 @@ set(SOURCES ./Engine.cpp
             ./Window.cpp
             ./EventSystem.cpp
             ./Shader.cpp
-            ./Camera.cpp
             ./Skybox.cpp
             ./Crosshair.cpp
             ./Chunk.cpp
