@@ -77,15 +77,9 @@ int main()
             if (castres.has_value())
             {
                 if (mouse.GetButtonDown(GLFW_MOUSE_BUTTON_LEFT))
-                {
-                    castres->chunk->GetBlock(castres->blockPosition)->type = BlockType::Air;
-                    castres->chunk->Rebuild();
-                }
+                    castres->chunk->Set(castres->blockPosition, BlockType::Air);
                 if (mouse.GetButtonDown(GLFW_MOUSE_BUTTON_RIGHT))
-                {
-                    castres->chunk->GetBlock(castres->blockPosition + castres->normal)->type = BlockType::Grass;
-                    castres->chunk->Rebuild();
-                }
+                    castres->chunk->Set(castres->blockPosition + castres->normal, BlockType::Grass);
             }
                 
             skybox.Draw(proj, camera.GetViewMatrix());

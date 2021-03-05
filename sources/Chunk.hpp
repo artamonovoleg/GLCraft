@@ -49,13 +49,6 @@ class Chunk
         void GenerateLandscape();
         /// Push all vertices and indices
         void GenerateMesh();
-    public:
-        Chunk(glm::ivec3 pos);
-
-        bool BlockInBounds(const glm::ivec3& pos)
-        {
-            return !(pos.x < 0 || pos.y < 0 || pos.z < 0 || pos.x >= 16 || pos.y >= 256 || pos.z >= 16);
-        }
 
         Block* GetBlock(const glm::ivec3& pos)
         {
@@ -65,6 +58,14 @@ class Chunk
                 return nullptr;
         }
         
+    public:
+        Chunk(glm::ivec3 pos);
+
+        bool BlockInBounds(const glm::ivec3& pos)
+        {
+            return !(pos.x < 0 || pos.y < 0 || pos.z < 0 || pos.x >= 16 || pos.y >= 256 || pos.z >= 16);
+        }
+
         std::optional<RaycastResult> RayCast(const glm::vec3& startPoint, const glm::vec3& direction, float range, glm::vec3& end, glm::ivec3& norm, glm::ivec3& iend)
         {
             auto nDirection = glm::normalize(direction);
@@ -159,8 +160,9 @@ class Chunk
             return {};
         }
 
-        void Rebuild()
+        void Set(const glm::ivec3& pos, BlockType type)
         {
+            m_ChunkData.At(pos).type = type;
             m_Vertices.clear();
             m_Indices.clear();
             GenerateMesh();
