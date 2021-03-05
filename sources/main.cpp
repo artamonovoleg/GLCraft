@@ -1,5 +1,10 @@
 #include <memory>
+#include <unordered_map>
 #include <iostream>
+#include <cmath>
+#define GLM_ENABLE_EXPERIMENTAL
+#include <glm/glm.hpp>
+#include <glm/gtx/hash.hpp>
 #include <glad/glad.h>
 #include <fstream>
 #include "Engine.hpp"
@@ -28,7 +33,7 @@ int main()
         auto& window = Engine::GetWindow();
         glm::mat4 proj = glm::perspective(glm::radians(45.0f), window->GetWidth() / static_cast<float>(window->GetHeight()), 0.1f, 30.0f);
 
-        Camera camera({ 8.0f, 129.0f, 8.0f });
+        Camera camera({ 0.0f, 129.0f, 0.0f });
         
         Skybox skybox({     "../assets/skybox/right.jpg",
                             "../assets/skybox/left.jpg",
@@ -73,7 +78,8 @@ int main()
             
             chunk.Draw();
 
-            auto castres = chunk.RayCast(camera.Position, camera.Front, 5.0f, end, norm, iend);
+            // w.Draw();
+            auto castres = chunk.RayCast(camera.Position, camera.Front, 5.0f);
             if (castres.has_value())
             {
                 if (mouse.GetButtonDown(GLFW_MOUSE_BUTTON_LEFT))

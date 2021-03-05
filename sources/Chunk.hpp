@@ -22,6 +22,10 @@ struct RaycastResult
     Chunk*     chunk;
 };
 
+static const size_t ChunkX = 16;
+static const size_t ChunkY = 256;
+static const size_t ChunkZ = 16;
+
 class Chunk
 {
     private:
@@ -66,16 +70,20 @@ class Chunk
             return !(pos.x < 0 || pos.y < 0 || pos.z < 0 || pos.x >= 16 || pos.y >= 256 || pos.z >= 16);
         }
 
-        std::optional<RaycastResult> RayCast(const glm::vec3& startPoint, const glm::vec3& direction, float range, glm::vec3& end, glm::ivec3& norm, glm::ivec3& iend)
+        std::optional<RaycastResult> RayCast(const glm::vec3& startPoint, const glm::vec3& direction, float range)
         {
             auto nDirection = glm::normalize(direction);
             auto endPoint = startPoint + nDirection * range;
+            glm::vec3 end;
+            glm::ivec3 norm;
+            glm::ivec3 iend;
+
             glm::ivec3 startVoxel;
             {
                 auto x = static_cast<int>(std::floor(startPoint.x));
                 auto y = static_cast<int>(std::floor(startPoint.y));
                 auto z = static_cast<int>(std::floor(startPoint.z));
-                startVoxel = { x, y, z};
+                startVoxel = { x, y, z };
             }
             // +1, -1, or 0
             int stepX = (nDirection.x > 0) ? 1 : ((nDirection.x < 0) ? -1 : 0);
@@ -158,6 +166,11 @@ class Chunk
             }
 
             return {};
+        }
+
+        void Debug()
+        {
+            std::cout << m_Pos.x << " " << m_Pos.y << " " << m_Pos.z << std::endl;
         }
 
         void Set(const glm::ivec3& pos, BlockType type)
