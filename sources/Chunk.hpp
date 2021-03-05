@@ -70,8 +70,9 @@ class Chunk
             return !(pos.x < 0 || pos.y < 0 || pos.z < 0 || pos.x >= 16 || pos.y >= 256 || pos.z >= 16);
         }
 
-        std::optional<RaycastResult> RayCast(const glm::vec3& startPoint, const glm::vec3& direction, float range)
+        std::optional<RaycastResult> RayCast(const glm::vec3& startP, const glm::vec3& direction, float range)
         {
+            glm::vec3 startPoint { startP.x - m_Pos.x, startP.y, startP.z - m_Pos.z };
             auto nDirection = glm::normalize(direction);
             auto endPoint = startPoint + nDirection * range;
             glm::vec3 end;

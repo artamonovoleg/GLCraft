@@ -23,6 +23,11 @@
 float deltaTime = 0.0f;	// time between current frame and last frame
 float lastFrame = 0.0f;
 
+glm::vec3 WorldToChunk(const glm::vec3& coords)
+{
+    return { coords.x / 16, coords.y, coords.z / 16 };
+}
+
 class Camera
 {
     private:
@@ -77,7 +82,6 @@ class Camera
                 m_Position -= glm::normalize(glm::cross(m_ViewDirection, m_Up)) * m_Speed * dt;
             if (keyboard.GetKey(GLFW_KEY_D))
                 m_Position += glm::normalize(glm::cross(m_ViewDirection, m_Up)) * m_Speed * dt;
-            
 
             float xoffset = mouse.GetOffsetX();
             float yoffset = mouse.GetOffsetY();
@@ -108,6 +112,41 @@ class Camera
         const glm::mat4& GetViewMatrix() const { return m_View; }
 };
 
+class World
+{
+    private:
+        const Camera& m_Camera;
+        std::unordered_map<glm::ivec2, Chunk> m_Data;
+    public:
+        World(const Camera& camera)
+            : m_Camera(camera)
+        {
+            for (int iz = camera.GetPosition().z / 16; iz < 3; iz++)
+            {
+                for (int ix = camera.GetPosition().x / 16; ix < 3; ix++)
+                    m_Data.insert({{ ix, iz }, Chunk({ ix * 16, 0, iz * 16 })});
+            }
+        }
+
+        void Draw()
+        {
+            static auto& keyboard = Engine::GetEventSystem()->GetKeyboard();
+            static auto& mouse = Engine::GetEventSystem()->GetMouse();
+            auto castres = m_Data.at({ m_Camera.GetPosition().x / 16, m_Camera.GetPosition().z / 16 }).RayCast(m_Camera.GetPosition(), m_Camera.GetViewDirection(), 5.0f);
+            if (castres.has_value())
+            {
+                if (mouse.GetButtonDown(GLFW_MOUSE_BUTTON_LEFT))
+                    castres->chunk->Set(castres->blockPosition, BlockType::Air);
+                if (mouse.GetButtonDown(GLFW_MOUSE_BUTTON_RIGHT))
+                    castres->chunk->Set(castres->blockPosition + castres->normal, BlockType::Grass);
+            }
+            for (auto& p : m_Data)
+            {
+                p.second.Draw();
+            }
+        }
+};
+
 int main()
 {
     Engine::Init({ 800, 600, "Minecraft" });
@@ -117,7 +156,7 @@ int main()
         auto& window = Engine::GetWindow();
         glm::mat4 proj = glm::perspective(glm::radians(45.0f), window->GetWidth() / static_cast<float>(window->GetHeight()), 0.1f, 30.0f);
 
-        Camera camera({ 8, 129, 8 });
+        Camera camera({ -16, 129, -16 });
         
         Skybox skybox({     "../assets/skybox/right.jpg",
                             "../assets/skybox/left.jpg",
@@ -129,7 +168,9 @@ int main()
         Shader mainShader("../shaders/vert.glsl", "../shaders/frag.glsl");
         Texture mainTexture("../assets/textures/atlas.png");
 
-        Chunk chunk ( { 0, 0, 0 } );
+        // Chunk chunk ( { -16, 0, -16 } );
+
+        World w (camera);
 
         mainTexture.Bind();
         mainShader.Bind();
@@ -160,9 +201,9 @@ int main()
             mainShader.SetMat4("u_View", camera.GetViewMatrix());
             mainShader.SetMat4("u_Projection", proj);
             
-            chunk.Draw();
+            // chunk.Draw();
 
-            // w.Draw();
+            w.Draw();
             // auto castres = chunk.RayCast(camera.GetPosition(), camera.GetViewDirection(), 5.0f);
             // if (castres.has_value())
             // {

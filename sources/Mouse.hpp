@@ -12,8 +12,8 @@ class Mouse
         mutable PressState  m_Buttons[3];
         glm::vec3   m_Position;
 
-        float m_OffsetX;
-        float m_OffsetY;
+        mutable float m_OffsetX = 0.0f;
+        mutable float m_OffsetY = 0.0f;
     public:
         Mouse()
         {
@@ -45,6 +45,17 @@ class Mouse
         }
 
         const glm::vec3& GetPosition() const { return m_Position; }
-        float GetOffsetX() const { return m_OffsetX; }
-        float GetOffsetY() const { return m_OffsetY; }
+        float GetOffsetX() const 
+        { 
+            float ret = m_OffsetX;
+            m_OffsetX = 0.0f;
+            return ret; 
+        }
+        
+        float GetOffsetY() const 
+        { 
+            float ret = m_OffsetY;
+            m_OffsetY = 0.0f;
+            return ret; 
+        }
 };
