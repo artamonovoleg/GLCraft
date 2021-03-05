@@ -1,6 +1,7 @@
 #pragma once
 
 #include <iostream>
+#include <optional>
 #include <vector>
 #include <memory>
 #include <glm/glm.hpp>
@@ -11,6 +12,15 @@ class VertexArray;
 class VertexBuffer;
 class IndexBuffer;
 class Shader;
+
+class Chunk;
+
+struct RaycastResult
+{
+    glm::ivec3 blockPosition;
+    glm::ivec3 normal;
+    Chunk*     chunk;
+};
 
 class Chunk
 {
@@ -55,7 +65,7 @@ class Chunk
                 return nullptr;
         }
         
-        void RayCast(const glm::vec3& startPoint, const glm::vec3& direction, float range, glm::vec3& end, glm::vec3& norm, glm::vec3& iend)
+        std::optional<RaycastResult> RayCast(const glm::vec3& startPoint, const glm::vec3& direction, float range, glm::vec3& end, glm::ivec3& norm, glm::ivec3& iend)
         {
             // Ensures passed direction is normalized
             auto nDirection = glm::normalize(direction);
@@ -105,17 +115,12 @@ class Chunk
                     iend.y = std::floor(startPoint.y);
                     iend.z = std::floor(startPoint.z);
         
-                    norm.x = norm.y = norm.z = 0.0f;
+                    norm.x = norm.y = norm.z = 0;
                     if (steppedIndex == 0) norm.x = -stepX;
                     if (steppedIndex == 1) norm.y = -stepY;
                     if (steppedIndex == 2) norm.z = -stepZ;
 
-                    // m_ChunkData.At(currentVoxel).type = BlockType::Air; // Break test
-                    m_ChunkData.At(currentVoxel + glm::ivec3(norm)).type = BlockType::Grass; // Build test
-                    m_Vertices.clear();
-                    m_Indices.clear();
-                    GenerateMesh();
-                    return;
+                    return RaycastResult{ currentVoxel, norm, this };
                 }
                 if (tMaxX < tMaxY) 
                 {
@@ -151,7 +156,15 @@ class Chunk
                     break;
                 r++;
             }
-            return;
+
+            return {};
+        }
+
+        void Rebuild()
+        {
+            m_Vertices.clear();
+            m_Indices.clear();
+            GenerateMesh();
         }
 
         void Draw();

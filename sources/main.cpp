@@ -61,9 +61,9 @@ int main()
         layout.Push<float>(2, 2);
         Shader cshader("../shaders/crosshair.vert", "../shaders/crosshair.frag");
         
-        glm::vec3 norm;
+        glm::ivec3 norm;
         glm::vec3 end;
-        glm::vec3 iend;
+        glm::ivec3 iend;
 
         while (!keyboard.GetKey(GLFW_KEY_ESCAPE))
         {
@@ -87,8 +87,22 @@ int main()
             
             chunk.Draw();
 
-            if (mouse.GetButtonDown(GLFW_MOUSE_BUTTON_LEFT))
-                chunk.RayCast(camera.Position, camera.Front, 5.0f, end, norm, iend);
+            auto castres = chunk.RayCast(camera.Position, camera.Front, 5.0f, end, norm, iend);
+            if (castres.has_value())
+            {
+                if (mouse.GetButtonDown(GLFW_MOUSE_BUTTON_LEFT))
+                {
+                    castres->chunk->GetBlock(castres->blockPosition)->type = BlockType::Air;
+                    castres->chunk->Rebuild();
+                }
+                if (mouse.GetButtonDown(GLFW_MOUSE_BUTTON_RIGHT))
+                {
+                    castres->chunk->GetBlock(castres->blockPosition + castres->normal)->type = BlockType::Grass;
+                    castres->chunk->Rebuild();
+                }
+            }
+
+                
             skybox.Draw(proj, camera.GetViewMatrix());
             Engine::GetWindow()->SwapBuffers();
             Engine::GetEventSystem()->Process();
