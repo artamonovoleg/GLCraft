@@ -30,7 +30,7 @@ class Texture
             else
                 std::cout << "Failed to load texture" << std::endl;
             stbi_image_free(data);
-            glBindTexture(GL_TEXTURE_2D, 0);
+            Bind();
         }
 
         void Bind(int index = 0)

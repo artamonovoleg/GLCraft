@@ -22,6 +22,7 @@ class Window
         ~Window();
 
         bool ShouldClose();
+        void Clear();
         void SwapBuffers();
         
         int GetWidth() const { return m_Width; }

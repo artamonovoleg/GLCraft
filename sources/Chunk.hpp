@@ -157,11 +157,6 @@ class Chunk
             return {};
         }
 
-        void Debug()
-        {
-            std::cout << m_Pos.x << " " << m_Pos.y << " " << m_Pos.z << std::endl;
-        }
-
         void Set(const glm::ivec3& pos, BlockType type)
         {
             m_ChunkData.At(pos).type = type;

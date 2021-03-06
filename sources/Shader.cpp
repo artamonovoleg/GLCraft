@@ -53,6 +53,8 @@ Shader::Shader(const std::string& vertexPath, const std::string& fragmentPath)
     // delete the shaders as they're linked into our program now and no longer necessery
     glDeleteShader(vertex);
     glDeleteShader(fragment);
+    
+    Bind();
 }
 
 void Shader::Bind() const

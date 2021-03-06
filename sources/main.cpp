@@ -28,12 +28,19 @@ float lastFrame = 0.0f;
 class World
 {
     private:
+        std::shared_ptr<Shader>     m_Shader;
+        std::shared_ptr<Texture>    m_Texture;
+
         const Camera& m_Camera;
         std::unordered_map<glm::ivec2, Chunk> m_Data;
     public:
         World(const Camera& camera)
             : m_Camera(camera)
         {
+            m_Shader = std::make_shared<Shader>("../shaders/vert.glsl", "../shaders/frag.glsl");
+            m_Texture = std::make_shared<Texture>("../assets/textures/atlas.png");
+            m_Shader->SetInt("texture1", 0);
+
             for (int iz = camera.GetPosition().z / 16; iz < 3; iz++)
             {
                 for (int ix = camera.GetPosition().x / 16; ix < 3; ix++)
@@ -43,15 +50,22 @@ class World
 
         void Draw()
         {
+            m_Texture->Bind();
+            m_Shader->Bind();
+            m_Shader->SetMat4("u_Model", glm::mat4(1.0));
+            m_Shader->SetMat4("u_View", m_Camera.GetViewMatrix());
+            m_Shader->SetMat4("u_Projection", m_Camera.GetProjectionMatrix());
+
             static auto& keyboard = Engine::GetEventSystem()->GetKeyboard();
             static auto& mouse = Engine::GetEventSystem()->GetMouse();
-            auto castres = m_Data.at({ m_Camera.GetPosition().x / 16, m_Camera.GetPosition().z / 16 }).RayCast(m_Camera.GetPosition(), m_Camera.GetViewDirection(), 5.0f);
+            auto castres = m_Data.at(glm::ivec2(m_Camera.GetPosition().x, m_Camera.GetPosition().z) / 16).RayCast(m_Camera.GetPosition(), m_Camera.GetViewDirection(), 5.0f);
             if (castres.has_value())
             {
                 if (mouse.GetButtonDown(GLFW_MOUSE_BUTTON_LEFT))
                     castres->chunk->Set(castres->blockPosition, BlockType::Air);
                 if (mouse.GetButtonDown(GLFW_MOUSE_BUTTON_RIGHT))
                     castres->chunk->Set(castres->blockPosition + castres->normal, BlockType::Grass);
+                std::cout << castres->blockPosition.x << " " << castres->blockPosition.y << " " << castres->blockPosition.z << std::endl;
             }
             for (auto& p : m_Data)
                 p.second.Draw();
@@ -75,41 +89,28 @@ int main()
                             "../assets/skybox/bottom.jpg",
                             "../assets/skybox/front.jpg",
                             "../assets/skybox/back.jpg" });
-                            
-        Shader mainShader("../shaders/vert.glsl", "../shaders/frag.glsl");
-        Texture mainTexture("../assets/textures/atlas.png");
 
         World w (camera);
 
-        mainTexture.Bind();
-        mainShader.Bind();
-        mainShader.SetInt("texture1", 0);
-        
         Crosshair crosshair;
 
         while (!keyboard.GetKey(GLFW_KEY_ESCAPE))
         {
+            Engine::GetEventSystem()->Process();
+
             float currentFrame = glfwGetTime();
             deltaTime = currentFrame - lastFrame;
             lastFrame = currentFrame;
 
             camera.Update(deltaTime);
 
-            glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+            Engine::GetWindow()->Clear();
 
             crosshair.Draw();
-
-            mainTexture.Bind();
-            mainShader.Bind();
-            mainShader.SetMat4("u_Model", glm::mat4(1.0));
-            mainShader.SetMat4("u_View", camera.GetViewMatrix());
-            mainShader.SetMat4("u_Projection", proj);
-            
             w.Draw();
+            skybox.Draw(camera.GetProjectionMatrix(), camera.GetViewMatrix());
 
-            skybox.Draw(proj, camera.GetViewMatrix());
             Engine::GetWindow()->SwapBuffers();
-            Engine::GetEventSystem()->Process();
         }
     }
     Engine::Shutdown();

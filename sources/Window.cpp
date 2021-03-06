@@ -1,3 +1,4 @@
+#include <glad/glad.h>
 #include "Window.hpp"
 
 Window::Window(const WindowProps& props)
@@ -15,6 +16,11 @@ Window::~Window()
 bool Window::ShouldClose()
 {
     return glfwWindowShouldClose(m_Window);
+}
+
+void Window::Clear()
+{
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 }
 
 void Window::SwapBuffers()
