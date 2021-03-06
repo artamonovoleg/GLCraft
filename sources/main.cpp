@@ -19,7 +19,7 @@
 #include "TextureCubemap.hpp"
 #include "Skybox.hpp"
 #include "Crosshair.hpp"
-#include "WorldTransform.hpp"
+#include "Coordinates.hpp"
 
 // timing
 float deltaTime = 0.0f;	// time between current frame and last frame
@@ -32,7 +32,7 @@ class World
         std::shared_ptr<Texture>    m_Texture;
 
         const Camera& m_Camera;
-        std::unordered_map<glm::ivec2, Chunk> m_Data;
+        std::unordered_map<glm::ivec3, Chunk> m_Data;
     public:
         World(const Camera& camera)
             : m_Camera(camera)
@@ -41,13 +41,19 @@ class World
             m_Texture = std::make_shared<Texture>("../assets/textures/atlas.png");
             m_Shader->SetInt("texture1", 0);
 
-            for (int iz = camera.GetPosition().z / 16; iz < 3; iz++)
+            for (int iz = camera.GetPosition().z; iz < 3; iz++)
             {
-                for (int ix = camera.GetPosition().x / 16; ix < 3; ix++)
-                    m_Data.insert({{ ix, iz }, Chunk({ ix * 16, 0, iz * 16 })});
+                for (int ix = camera.GetPosition().x; ix < 3; ix++)
+                    m_Data.insert({{ ix, 0, iz }, Chunk({ ix * 16, 0, iz * 16 })});
             }
         }
 
+        // Some test functions
+        Chunk* GetChunk(const glm::vec3& position)
+        {
+            return &m_Data.at(GlobalToChunkPosition(position));
+        }
+        
         void Draw()
         {
             m_Texture->Bind();
@@ -56,17 +62,6 @@ class World
             m_Shader->SetMat4("u_View", m_Camera.GetViewMatrix());
             m_Shader->SetMat4("u_Projection", m_Camera.GetProjectionMatrix());
 
-            static auto& keyboard = Engine::GetEventSystem()->GetKeyboard();
-            static auto& mouse = Engine::GetEventSystem()->GetMouse();
-            auto castres = m_Data.at(glm::ivec2(m_Camera.GetPosition().x, m_Camera.GetPosition().z) / 16).RayCast(m_Camera.GetPosition(), m_Camera.GetViewDirection(), 5.0f);
-            if (castres.has_value())
-            {
-                if (mouse.GetButtonDown(GLFW_MOUSE_BUTTON_LEFT))
-                    castres->chunk->Set(castres->blockPosition, BlockType::Air);
-                if (mouse.GetButtonDown(GLFW_MOUSE_BUTTON_RIGHT))
-                    castres->chunk->Set(castres->blockPosition + castres->normal, BlockType::Grass);
-                std::cout << castres->blockPosition.x << " " << castres->blockPosition.y << " " << castres->blockPosition.z << std::endl;
-            }
             for (auto& p : m_Data)
                 p.second.Draw();
         }
@@ -108,6 +103,17 @@ int main()
 
             crosshair.Draw();
             w.Draw();
+
+            if (keyboard.GetKeyDown(GLFW_KEY_X))
+            {
+                auto* ch = w.GetChunk(camera.GetPosition());
+                auto breakPos = GlobalVoxelToLocal(GlobalToVoxel(camera.GetPosition()));
+                breakPos.y = 127;
+                ch->m_ChunkData.At(breakPos).type = BlockType::Air;
+                ch->m_Vertices.clear();
+                ch->m_Indices.clear();
+                ch->GenerateMesh();
+            }
             skybox.Draw(camera.GetProjectionMatrix(), camera.GetViewMatrix());
 
             Engine::GetWindow()->SwapBuffers();
