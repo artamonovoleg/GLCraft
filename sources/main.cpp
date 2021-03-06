@@ -216,7 +216,7 @@ int main()
                 // ch->m_ChunkData.At(breakPos).id = VoxelID::Air;
                 if (voxel != nullptr)
                     voxel->id = VoxelID::Air;
-                auto* ch = w.GetChunk(camera.GetPosition());
+                auto* ch = w.GetChunk(iend);
                 ch->m_Vertices.clear();
                 ch->m_Indices.clear();
                 ch->GenerateMesh();
