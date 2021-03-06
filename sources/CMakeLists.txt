@@ -10,6 +10,7 @@ include_directories(../third_party/glfw/include
 set(SOURCES ./Engine.cpp
             ./Window.cpp
             ./EventSystem.cpp
+            ./Camera.cpp
             ./Shader.cpp
             ./Skybox.cpp
             ./Crosshair.cpp

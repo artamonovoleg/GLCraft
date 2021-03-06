@@ -7,6 +7,7 @@
 #include <glm/glm.hpp>
 #include "ChunkData.hpp"
 #include "Vertex.hpp"
+#include "WorldTransform.hpp"
 
 class VertexArray;
 class VertexBuffer;
@@ -21,10 +22,6 @@ struct RaycastResult
     glm::ivec3 normal;
     Chunk*     chunk;
 };
-
-static const size_t ChunkX = 16;
-static const size_t ChunkY = 256;
-static const size_t ChunkZ = 16;
 
 class Chunk
 {
@@ -75,17 +72,12 @@ class Chunk
             glm::vec3 startPoint { startP.x - m_Pos.x, startP.y, startP.z - m_Pos.z };
             auto nDirection = glm::normalize(direction);
             auto endPoint = startPoint + nDirection * range;
-            glm::vec3 end;
+
             glm::ivec3 norm;
             glm::ivec3 iend;
 
-            glm::ivec3 startVoxel;
-            {
-                auto x = static_cast<int>(std::floor(startPoint.x));
-                auto y = static_cast<int>(std::floor(startPoint.y));
-                auto z = static_cast<int>(std::floor(startPoint.z));
-                startVoxel = { x, y, z };
-            }
+            glm::ivec3 startVoxel /* = GlobalToVoxel(startPoint); */ = ToLocalVoxelPosition(GlobalToVoxel(startP));
+
             // +1, -1, or 0
             int stepX = (nDirection.x > 0) ? 1 : ((nDirection.x < 0) ? -1 : 0);
             int stepY = (nDirection.y > 0) ? 1 : ((nDirection.y < 0) ? -1 : 0);
@@ -116,10 +108,6 @@ class Chunk
                 Block* block = GetBlock({ currentVoxel.x, currentVoxel.y, currentVoxel.z });
                 if (block != nullptr && block->type != BlockType::Air)
                 {
-                    end.x = startPoint.x + r * startPoint.x;
-                    end.y = startPoint.y + r * startPoint.y;
-                    end.z = startPoint.z + r * startPoint.z;
-        
                     iend.x = std::floor(startPoint.x);
                     iend.y = std::floor(startPoint.y);
                     iend.z = std::floor(startPoint.z);
