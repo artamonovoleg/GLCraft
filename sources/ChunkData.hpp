@@ -1,13 +1,13 @@
 #pragma once
 
 #include <array>
-#include "Block.hpp"
+#include "Voxel.hpp"
 
 template<size_t x, size_t y, size_t z>
 class ChunkData
 {
     private:
-        std::array<Block, x * y * z> m_Data;
+        std::array<Voxel, x * y * z> m_Data;
     public:
         ChunkData() = default;
         ~ChunkData() = default;
@@ -16,61 +16,61 @@ class ChunkData
         const size_t Y() const { return y; }
         const size_t Z() const { return z; }
 
-        const Block& At(const glm::ivec3& pos) const
+        const Voxel& At(const glm::ivec3& pos) const
         {
             return m_Data.at((pos.x * y * z) + (pos.y * x) + pos.z);
         }
 
-        Block& At(const glm::ivec3& pos)
+        Voxel& At(const glm::ivec3& pos)
         {
             return m_Data.at((pos.x * y * z) + (pos.y * x) + pos.z);
         }
 
-        const BlockType LeftType(const glm::ivec3& pos) const
+        const voxelID LeftType(const glm::ivec3& pos) const
         {
             if (pos.x == 0)
-                return BlockType::Air;
+                return VoxelID::Air;
             else
-                return At({ pos.x - 1, pos.y, pos.z }).type;
+                return At({ pos.x - 1, pos.y, pos.z }).id;
         };
 
-        const BlockType RightType(const glm::ivec3& pos) const
+        const voxelID RightType(const glm::ivec3& pos) const
         {
             if (pos.x == x - 1)
-                return BlockType::Air;
+                return VoxelID::Air;
             else
-                return At({ pos.x + 1, pos.y, pos.z }).type;
+                return At({ pos.x + 1, pos.y, pos.z }).id;
         }
 
-        const BlockType BottomType(const glm::ivec3& pos) const
+        const voxelID BottomType(const glm::ivec3& pos) const
         {
             if (pos.y == 0)
-                return BlockType::Air;
+                return VoxelID::Air;
             else
-                return At({ pos.x, pos.y - 1, pos.z }).type;
+                return At({ pos.x, pos.y - 1, pos.z }).id;
         }
 
-        const BlockType TopType(const glm::ivec3& pos) const
+        const voxelID TopType(const glm::ivec3& pos) const
         {
             if (pos.y == y - 1)
-                return BlockType::Air;
+                return VoxelID::Air;
             else
-                return At({ pos.x, pos.y + 1, pos.z }).type;
+                return At({ pos.x, pos.y + 1, pos.z }).id;
         }
 
-        const BlockType BackType(const glm::ivec3& pos) const
+        const voxelID BackType(const glm::ivec3& pos) const
         {
             if (pos.z == 0)
-                return BlockType::Air;
+                return VoxelID::Air;
             else
-                return At({ pos.x, pos.y, pos.z - 1 }).type;
+                return At({ pos.x, pos.y, pos.z - 1 }).id;
         }
 
-        const BlockType FrontType(const glm::ivec3& pos) const
+        const voxelID FrontType(const glm::ivec3& pos) const
         {
             if (pos.z == z - 1)
-                return BlockType::Air;
+                return VoxelID::Air;
             else
-                return At({ pos.x, pos.y, pos.z + 1 }).type;
+                return At({ pos.x, pos.y, pos.z + 1 }).id;
         }
 };

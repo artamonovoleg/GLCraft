@@ -1,5 +1,5 @@
 #include "Chunk.hpp"
-#include "Block.hpp"
+#include "Voxel.hpp"
 #include "VertexArray.hpp"
 #include "VertexBuffer.hpp"
 #include "VertexBuffersLayout.hpp"
@@ -98,9 +98,9 @@ void Chunk::GenerateLandscape()
             for (size_t x = 0; x < m_ChunkData.X(); x++)
             {
                 if (y < 128)
-                    m_ChunkData.At({ x, y, z }).type = BlockType::Grass;
+                    m_ChunkData.At({ x, y, z }).id = VoxelID::Grass;
                 else
-                    m_ChunkData.At({ x, y, z }).type = BlockType::Air;
+                    m_ChunkData.At({ x, y, z }).id = VoxelID::Air;
             }
         }
     }
@@ -114,19 +114,19 @@ void Chunk::GenerateMesh()
         {
             for (int x = 0; x < m_ChunkData.X(); x++)
             {
-                if (m_ChunkData.At({x, y, z}).type != BlockType::Air)
+                if (m_ChunkData.At({x, y, z}).id != VoxelID::Air)
                 {
-                    if (m_ChunkData.LeftType({ x, y, z }) == BlockType::Air)
+                    if (m_ChunkData.LeftType({ x, y, z }) == VoxelID::Air)
                         PushLeft({ x, y, z });
-                    if (m_ChunkData.RightType({ x, y, z }) == BlockType::Air)
+                    if (m_ChunkData.RightType({ x, y, z }) == VoxelID::Air)
                         PushRight({ x, y, z });
-                    if (m_ChunkData.BackType({ x, y, z }) == BlockType::Air)
+                    if (m_ChunkData.BackType({ x, y, z }) == VoxelID::Air)
                         PushBack({ x, y, z });
-                    if (m_ChunkData.FrontType({ x, y, z }) == BlockType::Air)
+                    if (m_ChunkData.FrontType({ x, y, z }) == VoxelID::Air)
                         PushFront({x, y, z });
-                    if (m_ChunkData.BottomType({ x, y, z }) == BlockType::Air)
+                    if (m_ChunkData.BottomType({ x, y, z }) == VoxelID::Air)
                         PushBottom({ x, y, z });
-                    if (m_ChunkData.TopType({ x, y, z }) == BlockType::Air)
+                    if (m_ChunkData.TopType({ x, y, z }) == VoxelID::Air)
                         PushTop({ x, y, z });
                 }
             }
