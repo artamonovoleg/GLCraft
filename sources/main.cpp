@@ -1,7 +1,9 @@
 #include <memory>
 #include <unordered_map>
+#include <array>
 #include <iostream>
 #include <cmath>
+#include <initializer_list>
 #define GLM_ENABLE_EXPERIMENTAL
 #include <glm/glm.hpp>
 #include <glm/gtx/hash.hpp>
@@ -14,18 +16,61 @@
 #include "VertexBuffer.hpp"
 #include "VertexBuffersLayout.hpp"
 #include "IndexBuffer.hpp"
-#include "Chunk.hpp"
 #include "Texture.hpp"
 #include "TextureCubemap.hpp"
 #include "Skybox.hpp"
 #include "Crosshair.hpp"
-#include "Coordinates.hpp"
-#include "World.hpp"
 
 // timing
 float deltaTime = 0.0f;	// time between current frame and last frame
 float lastFrame = 0.0f;
 
+using voxelID = uint8_t;
+
+struct Vertex
+{
+    glm::vec3 pos;
+    glm::vec2 tex;
+};
+
+namespace VoxelID
+{
+    enum : voxelID
+    {
+        Air     = 0,
+        Grass   = 1,
+        Ground  = 2,
+        Sand    = 3,
+        Glass   = 4
+    };
+};
+
+class SpriteLibrary
+{
+    private:
+        float m_SpritesInSide;
+        std::unordered_map<voxelID, glm::ivec2> m_Sprites;
+
+        /// return left up sprite corner
+        glm::vec2 GetSprite(const glm::ivec2& pos)
+        {
+            return { pos.x / m_SpritesInSide, pos.y / m_SpritesInSide };
+        }
+    public:
+        SpriteLibrary()
+            : m_SpritesInSide(16.0f)
+        {
+            m_Sprites[VoxelID::Grass]   = { 0, 0 };
+            m_Sprites[VoxelID::Ground]  = { 1, 0 };
+            m_Sprites[VoxelID::Sand]    = { 2, 0 };
+            m_Sprites[VoxelID::Glass]   = { 3, 0 };
+        }
+
+        glm::vec2 GetSprite(voxelID id)
+        {
+            return GetSprite(m_Sprites.at(id));
+        }
+};
 
 int main()
 {
@@ -45,8 +90,6 @@ int main()
                             "../assets/skybox/front.jpg",
                             "../assets/skybox/back.jpg" });
 
-        World w (camera);
-
         Crosshair crosshair;
 
         while (!keyboard.GetKey(GLFW_KEY_ESCAPE))
@@ -62,36 +105,6 @@ int main()
             Engine::GetWindow()->Clear();
 
             crosshair.Draw();
-            w.Draw();
-
-            glm::vec3 norm;
-            glm::vec3 iend;
-            auto* voxel = w.Raycast(camera.GetPosition(), camera.GetViewDirection(), 5.0f, norm, iend);
-
-            if (voxel != nullptr)
-            {
-                bool hasUpdate = false;
-                if (mouse.GetButtonDown(GLFW_MOUSE_BUTTON_LEFT))
-                {
-                    voxel->id = VoxelID::Air;
-                    hasUpdate = true;
-                }
-                if (mouse.GetButtonDown(GLFW_MOUSE_BUTTON_RIGHT))
-                {
-                    auto pos = iend + norm;
-                    w.Get(pos.x, pos.y, pos.z)->id = VoxelID::Grass;
-                    hasUpdate = true;
-                }
-
-                if (hasUpdate)
-                {
-                    auto* ch = w.GetChunk(iend);
-                    ch->m_Vertices.clear();
-                    ch->m_Indices.clear();
-                    ch->GenerateMesh();
-                }
-            }
-
             skybox.Draw(camera.GetProjectionMatrix(), camera.GetViewMatrix());
 
             Engine::GetWindow()->SwapBuffers();

@@ -14,8 +14,6 @@ set(SOURCES ./Engine.cpp
             ./Shader.cpp
             ./Skybox.cpp
             ./Crosshair.cpp
-            ./Chunk.cpp
-            ./World.cpp
             ./main.cpp)
 
 add_executable(GLCraft ${SOURCES})
