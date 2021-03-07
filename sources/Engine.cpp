@@ -20,6 +20,8 @@ void Engine::Init(const WindowProps& props)
     m_EventSystem   = std::make_unique<EventSystem>();
     glfwSetInputMode(*m_Window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
     glEnable(GL_DEPTH_TEST);
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 }
 
 void Engine::Shutdown()

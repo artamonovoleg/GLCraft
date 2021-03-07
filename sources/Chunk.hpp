@@ -23,6 +23,8 @@ struct RaycastResult
     Chunk*     chunk;
 };
 
+class World;
+
 class Chunk
 {
     public:

@@ -5,6 +5,7 @@
 #include "VertexBuffersLayout.hpp"
 #include "IndexBuffer.hpp"
 #include "Shader.hpp"
+#include "World.hpp"
 
 Chunk::Chunk(glm::ivec3 pos)
     : m_Pos(std::move(pos))
@@ -21,20 +22,20 @@ Chunk::Chunk(glm::ivec3 pos)
 
 void Chunk::PushLeft(const glm::ivec3& pos)
 {
-    m_Vertices.push_back({ .pos = glm::ivec3(0.0, 0.0, 0.0)      + m_Pos + pos, .tex = glm::vec2(3.0f / 16.0f, 1.0f / 16.0f) });
-    m_Vertices.push_back({ .pos = glm::ivec3(0.0, 0.0, 1.0)      + m_Pos + pos, .tex = glm::vec2(4.0f / 16.0f, 1.0f / 16.0f) });
-    m_Vertices.push_back({ .pos = glm::ivec3(0.0, 1.0, 0.0)      + m_Pos + pos, .tex = glm::vec2(3.0f / 16.0f, 0.0f) });
-    m_Vertices.push_back({ .pos = glm::ivec3(0.0, 1.0, 1.0)      + m_Pos + pos, .tex = glm::vec2(4.0f / 16.0f, 0.0f) });
+    m_Vertices.push_back({ .pos = glm::ivec3(0.0, 0.0, 0.0)      + m_Pos + pos, .tex = glm::vec2(0.0f, 1.0f / 16.0f) });
+    m_Vertices.push_back({ .pos = glm::ivec3(0.0, 0.0, 1.0)      + m_Pos + pos, .tex = glm::vec2(1.0f / 16.0f, 1.0f / 16.0f) });
+    m_Vertices.push_back({ .pos = glm::ivec3(0.0, 1.0, 0.0)      + m_Pos + pos, .tex = glm::vec2(0.0f, 0.0f) });
+    m_Vertices.push_back({ .pos = glm::ivec3(0.0, 1.0, 1.0)      + m_Pos + pos, .tex = glm::vec2(1.0f / 16.0f, 0.0f) });
 
     PushIndices();
 }
 
 void Chunk::PushRight(const glm::ivec3& pos)
 {
-    m_Vertices.push_back({ .pos = glm::ivec3(1.0, 0.0, 1.0)     + m_Pos + pos, .tex = glm::vec2(3.0f / 16.0f, 1.0f / 16.0f) });
-    m_Vertices.push_back({ .pos = glm::ivec3(1.0, 0.0, 0.0)     + m_Pos + pos, .tex = glm::vec2(4.0f / 16.0f, 1.0f / 16.0f) });
-    m_Vertices.push_back({ .pos = glm::ivec3(1.0, 1.0, 1.0)     + m_Pos + pos, .tex = glm::vec2(3.0f / 16.0f, 0.0f) });
-    m_Vertices.push_back({ .pos = glm::ivec3(1.0, 1.0, 0.0)     + m_Pos + pos, .tex = glm::vec2(4.0f / 16.0f, 0.0f) });
+    m_Vertices.push_back({ .pos = glm::ivec3(1.0, 0.0, 1.0)     + m_Pos + pos, .tex = glm::vec2(0.0f, 1.0f / 16.0f) });
+    m_Vertices.push_back({ .pos = glm::ivec3(1.0, 0.0, 0.0)     + m_Pos + pos, .tex = glm::vec2(1.0f / 16.0f, 1.0f / 16.0f) });
+    m_Vertices.push_back({ .pos = glm::ivec3(1.0, 1.0, 1.0)     + m_Pos + pos, .tex = glm::vec2(0.0f, 0.0f) });
+    m_Vertices.push_back({ .pos = glm::ivec3(1.0, 1.0, 0.0)     + m_Pos + pos, .tex = glm::vec2(1.0f / 16.0f, 0.0f) });
 
     PushIndices();
 }
@@ -61,20 +62,20 @@ void Chunk::PushTop(const glm::ivec3& pos)
 
 void Chunk::PushBack(const glm::ivec3& pos)
 {
-    m_Vertices.push_back({ .pos = glm::ivec3(1.0, 0.0, 0.0)    + m_Pos + pos, .tex = glm::vec2(3.0f / 16.0f, 1.0f / 16.0f) });
-    m_Vertices.push_back({ .pos = glm::ivec3(0.0, 0.0, 0.0)   + m_Pos + pos, .tex = glm::vec2(4.0f / 16.0f, 1.0f / 16.0f) });
-    m_Vertices.push_back({ .pos = glm::ivec3(1.0, 1.0, 0.0)     + m_Pos + pos, .tex = glm::vec2(3.0f / 16.0f, 0.0f) });
-    m_Vertices.push_back({ .pos = glm::ivec3(0.0, 1.0, 0.0)    + m_Pos + pos, .tex = glm::vec2(4.0f / 16.0f, 0.0f) });
+    m_Vertices.push_back({ .pos = glm::ivec3(1.0, 0.0, 0.0)    + m_Pos + pos, .tex = glm::vec2(0.0f, 1.0f / 16.0f) });
+    m_Vertices.push_back({ .pos = glm::ivec3(0.0, 0.0, 0.0)   + m_Pos + pos, .tex = glm::vec2(1.0 / 16.0f, 1.0f / 16.0f) });
+    m_Vertices.push_back({ .pos = glm::ivec3(1.0, 1.0, 0.0)     + m_Pos + pos, .tex = glm::vec2(0.0f, 0.0f) });
+    m_Vertices.push_back({ .pos = glm::ivec3(0.0, 1.0, 0.0)    + m_Pos + pos, .tex = glm::vec2(1.0f / 16.0f, 0.0f) });
 
     PushIndices();
 }
 
 void Chunk::PushFront(const glm::ivec3& pos)
 {
-    m_Vertices.push_back({ .pos = glm::ivec3(0.0, 0.0, 1.0)     + m_Pos + pos, .tex = glm::vec2(3.0f / 16.0f, 1.0f / 16.0f) });
-    m_Vertices.push_back({ .pos = glm::ivec3(1.0, 0.0, 1.0)     + m_Pos + pos, .tex = glm::vec2(4.0f / 16.0f, 1.0f / 16.0f) });
-    m_Vertices.push_back({ .pos = glm::ivec3(0.0, 1.0, 1.0)     + m_Pos + pos, .tex = glm::vec2(3.0f / 16.0f, 0.0f) });
-    m_Vertices.push_back({ .pos = glm::ivec3(1.0, 1.0, 1.0)     + m_Pos + pos, .tex = glm::vec2(4.0f / 16.0f, 0.0f) });
+    m_Vertices.push_back({ .pos = glm::ivec3(0.0, 0.0, 1.0)     + m_Pos + pos, .tex = glm::vec2(0.0f, 1.0f / 16.0f) });
+    m_Vertices.push_back({ .pos = glm::ivec3(1.0, 0.0, 1.0)     + m_Pos + pos, .tex = glm::vec2(1.0f / 16.0f, 1.0f / 16.0f) });
+    m_Vertices.push_back({ .pos = glm::ivec3(0.0, 1.0, 1.0)     + m_Pos + pos, .tex = glm::vec2(0.0f, 0.0f) });
+    m_Vertices.push_back({ .pos = glm::ivec3(1.0, 1.0, 1.0)     + m_Pos + pos, .tex = glm::vec2(1.0f / 16.0f, 0.0f) });
 
     PushIndices();
 }
