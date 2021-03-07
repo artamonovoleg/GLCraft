@@ -51,12 +51,14 @@ class World
         // Some test functions
         Chunk* GetChunk(const glm::vec3& position)
         {
+            if (m_Data.find(GlobalToChunkPosition(position)) == m_Data.end()) return nullptr;
             return &m_Data.at(GlobalToChunkPosition(position));
         }
         
         Voxel* Get(int ix, int iy, int iz)
         {
             auto* ch = GetChunk({ix, iy, iz});
+            if (ch == nullptr) return nullptr;
             return &ch->m_ChunkData.At(GlobalVoxelToLocal({ ix, iy, iz }));
         }
 
@@ -204,22 +206,48 @@ int main()
             crosshair.Draw();
             w.Draw();
 
-            if (keyboard.GetKeyDown(GLFW_KEY_X))
+            // if (keyboard.GetKeyDown(GLFW_KEY_X))
+            // {
+            //     // auto* ch = w.GetChunk(camera.GetPosition());
+            //     // auto breakPos = GlobalVoxelToLocal(GlobalToVoxel(camera.GetPosition()));
+            //     // breakPos.y = 127;
+
+            //     // ch->m_ChunkData.At(breakPos).id = VoxelID::Air;
+            //     if (voxel != nullptr)
+            //         voxel->id = VoxelID::Air;
+            //     auto* ch = w.GetChunk(iend);
+            //     ch->m_Vertices.clear();
+            //     ch->m_Indices.clear();
+            //     ch->GenerateMesh();
+            // }
+
+            glm::vec3 end;
+            glm::vec3 norm;
+            glm::vec3 iend;
+            auto* voxel = w.Raycast(camera.GetPosition(), camera.GetViewDirection(), 5.0f, end, norm, iend);
+
+            if (voxel != nullptr)
             {
-                // auto* ch = w.GetChunk(camera.GetPosition());
-                // auto breakPos = GlobalVoxelToLocal(GlobalToVoxel(camera.GetPosition()));
-                // breakPos.y = 127;
-                glm::vec3 end;
-                glm::vec3 norm;
-                glm::vec3 iend;
-                auto* voxel = w.Raycast(camera.GetPosition(), camera.GetViewDirection(), 5.0f, end, norm, iend);
-                // ch->m_ChunkData.At(breakPos).id = VoxelID::Air;
-                if (voxel != nullptr)
+                bool hasUpdate = false;
+                if (mouse.GetButtonDown(GLFW_MOUSE_BUTTON_LEFT))
+                {
                     voxel->id = VoxelID::Air;
-                auto* ch = w.GetChunk(iend);
-                ch->m_Vertices.clear();
-                ch->m_Indices.clear();
-                ch->GenerateMesh();
+                    hasUpdate = true;
+                }
+                if (mouse.GetButtonDown(GLFW_MOUSE_BUTTON_RIGHT))
+                {
+                    auto pos = iend + norm;
+                    w.Get(pos.x, pos.y, pos.z)->id = VoxelID::Grass;
+                    hasUpdate = true;
+                }
+
+                if (hasUpdate)
+                {
+                    auto* ch = w.GetChunk(iend);
+                    ch->m_Vertices.clear();
+                    ch->m_Indices.clear();
+                    ch->GenerateMesh();
+                }
             }
 
             skybox.Draw(camera.GetProjectionMatrix(), camera.GetViewMatrix());
