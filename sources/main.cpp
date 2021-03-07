@@ -74,11 +74,11 @@ class World
                 p.second.Draw();
         }
 
-        Voxel* Raycast(glm::vec3 a, glm::vec3 dir, float maxDist, glm::vec3& end, glm::vec3& norm, glm::vec3& iend)
+        Voxel* Raycast(const glm::vec3& orig, const glm::vec3& dir, float maxDist,  glm::vec3& norm, glm::vec3& iend)
         {
-            float px = a.x;
-            float py = a.y;
-            float pz = a.z;
+            float px = orig.x;
+            float py = orig.y;
+            float pz = orig.z;
         
             float dx = dir.x;
             float dy = dir.y;
@@ -88,7 +88,7 @@ class World
             int ix = floor(px);
             int iy = floor(py);
             int iz = floor(pz);
-        
+
             float stepx = (dx > 0.0f) ? 1.0f : -1.0f;
             float stepy = (dy > 0.0f) ? 1.0f : -1.0f;
             float stepz = (dz > 0.0f) ? 1.0f : -1.0f;
@@ -116,10 +116,6 @@ class World
 
                 if (voxel == nullptr || voxel->id)
                 {
-                    end.x = px + t * dx;
-                    end.y = py + t * dy;
-                    end.z = pz + t * dz;
-        
                     iend.x = ix;
                     iend.y = iy;
                     iend.z = iz;
@@ -130,25 +126,35 @@ class World
                     if (steppedIndex == 2) norm.z = -stepz;
                     return voxel;
                 }
-                if (txMax < tyMax) {
-                    if (txMax < tzMax) {
+
+                if (txMax < tyMax) 
+                {
+                    if (txMax < tzMax) 
+                    {
                         ix += stepx;
                         t = txMax;
                         txMax += txDelta;
                         steppedIndex = 0;
-                    } else {
+                    } 
+                    else 
+                    {
                         iz += stepz;
                         t = tzMax;
                         tzMax += tzDelta;
                         steppedIndex = 2;
                     }
-                } else {
-                    if (tyMax < tzMax) {
+                } 
+                else 
+                {
+                    if (tyMax < tzMax) 
+                    {
                         iy += stepy;
                         t = tyMax;
                         tyMax += tyDelta;
                         steppedIndex = 1;
-                    } else {
+                    } 
+                    else 
+                    {
                         iz += stepz;
                         t = tzMax;
                         tzMax += tzDelta;
@@ -160,9 +166,6 @@ class World
             iend.y = iy;
             iend.z = iz;
         
-            end.x = px + t * dx;
-            end.y = py + t * dy;
-            end.z = pz + t * dz;
             norm.x = norm.y = norm.z = 0.0f;
 
             return nullptr;
@@ -206,25 +209,9 @@ int main()
             crosshair.Draw();
             w.Draw();
 
-            // if (keyboard.GetKeyDown(GLFW_KEY_X))
-            // {
-            //     // auto* ch = w.GetChunk(camera.GetPosition());
-            //     // auto breakPos = GlobalVoxelToLocal(GlobalToVoxel(camera.GetPosition()));
-            //     // breakPos.y = 127;
-
-            //     // ch->m_ChunkData.At(breakPos).id = VoxelID::Air;
-            //     if (voxel != nullptr)
-            //         voxel->id = VoxelID::Air;
-            //     auto* ch = w.GetChunk(iend);
-            //     ch->m_Vertices.clear();
-            //     ch->m_Indices.clear();
-            //     ch->GenerateMesh();
-            // }
-
-            glm::vec3 end;
             glm::vec3 norm;
             glm::vec3 iend;
-            auto* voxel = w.Raycast(camera.GetPosition(), camera.GetViewDirection(), 5.0f, end, norm, iend);
+            auto* voxel = w.Raycast(camera.GetPosition(), camera.GetViewDirection(), 5.0f, norm, iend);
 
             if (voxel != nullptr)
             {
