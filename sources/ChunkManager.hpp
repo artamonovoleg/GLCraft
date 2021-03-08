@@ -11,13 +11,37 @@ class ChunkManager
     private:
         std::unordered_map<VoxelPosition, Chunk> m_Chunks;
     public:
-        const Chunk& GetChunk(const VoxelPosition& position) const
+        ChunkManager()
         {
-            return m_Chunks.at(position);
+            m_Chunks.emplace(std::make_pair(VoxelPosition{ 0, 0, 0 }, Chunk(*this, { 0, 0, 0 })));
         }
 
-        const Voxel& GetVoxel(const VoxelPosition& position) const
+        const Chunk& GetChunk(const VoxelPosition& position)
         {
-            return GetChunk(position).QuickGetVoxel(position);
+            auto chunkPos = ToChunkPosition(position);
+            if (m_Chunks.find(chunkPos) == m_Chunks.end())
+            {
+                static Chunk error(*this, { 0, 0, 0 });
+                return error;
+            }
+            return m_Chunks.at(chunkPos);
+        }
+
+        Chunk& AddChunk(const VoxelPosition& position)
+        {
+            auto it = m_Chunks.find(position);
+            if (it != m_Chunks.end())
+                return m_Chunks.emplace(std::make_pair(position, Chunk(*this, position))).first->second;
+            return it->second;
+        }
+
+        Voxel GetVoxel(const VoxelPosition& position)
+        {
+            return GetChunk(position).QuickGetVoxel(GlobalToLocalVoxel(position));
+        }
+
+        void SetVoxel(const VoxelPosition& position, VoxelType type)
+        {
+            AddChunk(position).QuickSetVoxel(GlobalToLocalVoxel(position), type);
         }
 };

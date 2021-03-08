@@ -2,22 +2,16 @@
 
 #include <cstdint>
 
-using voxelType = uint8_t;
-
-namespace VoxelType
+enum class VoxelType : uint8_t
 {
-    enum : voxelType
-    {
-        Air     = 0,
-        Grass   = 1,
-        Ground  = 2,
-        Sand    = 3,
-        Glass   = 4
-    };
+    Air     = 0,
+    Grass   = 1,
+    Ground  = 2,
+    Sand    = 3,
+    Glass   = 4
 };
 
-class Voxel
+struct Voxel
 {
-    voxelType   id              = VoxelType::Air;
-    bool        isTransparent   = true;
+    VoxelType type = VoxelType::Air;
 };
