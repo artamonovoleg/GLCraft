@@ -10,7 +10,6 @@
 #include <glad/glad.h>
 #include <fstream>
 #include "Engine.hpp"
-#include "Camera.hpp"
 #include "Shader.hpp"
 #include "VertexArray.hpp"
 #include "VertexBuffer.hpp"
@@ -18,14 +17,22 @@
 #include "IndexBuffer.hpp"
 #include "Texture.hpp"
 #include "TextureCubemap.hpp"
+#include "Camera.hpp"
 #include "Skybox.hpp"
 #include "Crosshair.hpp"
+#include "Voxel.hpp"
+#include "Constants.hpp"
+#include "Coordinates.hpp"
+
+std::ostream& operator<< (std::ostream& os, const glm::vec3& v)
+{
+    os << "(" << v.x << ", " << v.y << ", " << v.z << ")";
+    return os;
+}
 
 // timing
 float deltaTime = 0.0f;	// time between current frame and last frame
 float lastFrame = 0.0f;
-
-using voxelID = uint8_t;
 
 struct Vertex
 {
@@ -33,42 +40,45 @@ struct Vertex
     glm::vec2 tex;
 };
 
-namespace VoxelID
-{
-    enum : voxelID
-    {
-        Air     = 0,
-        Grass   = 1,
-        Ground  = 2,
-        Sand    = 3,
-        Glass   = 4
-    };
-};
-
-class SpriteLibrary
+class ChunkManager
 {
     private:
-        float m_SpritesInSide;
-        std::unordered_map<voxelID, glm::ivec2> m_Sprites;
-
-        /// return left up sprite corner
-        glm::vec2 GetSprite(const glm::ivec2& pos)
-        {
-            return { pos.x / m_SpritesInSide, pos.y / m_SpritesInSide };
-        }
     public:
-        SpriteLibrary()
-            : m_SpritesInSide(16.0f)
+        const Voxel& GetVoxel(const VoxelPosition& position) const
         {
-            m_Sprites[VoxelID::Grass]   = { 0, 0 };
-            m_Sprites[VoxelID::Ground]  = { 1, 0 };
-            m_Sprites[VoxelID::Sand]    = { 2, 0 };
-            m_Sprites[VoxelID::Glass]   = { 3, 0 };
+            // return GetChunk(position).QuickGetVoxel(position);
+        }
+};
+
+class Chunk
+{
+    private:
+        const ChunkManager& m_ChunkManager;
+
+        std::array<Voxel, ChunkSide * ChunkSide * ChunkHeight> m_Data;
+
+        VoxelPosition m_Position;
+    public:
+        Chunk(const ChunkManager& chunkManager)
+            : m_ChunkManager(chunkManager) {}
+
+        bool PositionInBounds(const VoxelPosition& position) const
+        {
+            return (position.x >= 0 && position.z >= 0 && position.y >= 0 && position.x < ChunkSide && position.y < ChunkHeight && position.z < ChunkSide);
         }
 
-        glm::vec2 GetSprite(voxelID id)
+        /// Unsafe function without check is position in bounds. Returns voxel by local chunk coords
+        const Voxel& QuickGetVoxel(const VoxelPosition& position) const
         {
-            return GetSprite(m_Sprites.at(id));
+            return m_Data.at(position.x + ChunkSide * ChunkSide * position.y + ChunkSide * position.z);
+        }
+        
+        /// Safe function. If chunk not in bounds return from neighbour chunk
+        const Voxel& GetVoxel(const VoxelPosition& position) const
+        {
+            if (PositionInBounds(position)) return QuickGetVoxel(position);
+
+            return m_ChunkManager.GetVoxel(LocalToGlobalVoxel(m_Position, position));
         }
 };
 
