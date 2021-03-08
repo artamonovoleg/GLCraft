@@ -16,6 +16,9 @@ class ChunkManager
             m_Chunks.emplace(std::make_pair(VoxelPosition{ 0, 0, 0 }, Chunk(*this, { 0, 0, 0 })));
         }
 
+        Chunk* begin() { return &m_Chunks.begin()->second; }
+        Chunk* end() { return &m_Chunks.end()->second; }
+
         const Chunk& GetChunk(const VoxelPosition& position)
         {
             auto chunkPos = ToChunkPosition(position);
