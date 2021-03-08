@@ -2,7 +2,7 @@
 
 VoxelData::VoxelData()
 {
-    m_Transparents.insert(VoxelType::Air);
+    m_Transparents.insert(VoxelType::Glass);
 }
 
 bool VoxelData::IsTransparent(const Voxel& voxel)

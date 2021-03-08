@@ -19,6 +19,7 @@ set(SOURCES ./Engine.cpp
             ./Mesh.cpp
             ./Chunk.cpp
             ./ChunkManager.cpp
+            ./VoxelData.cpp
             ./MeshBuilder.cpp
             ./main.cpp)
 
