@@ -34,54 +34,6 @@ std::ostream& operator<< (std::ostream& os, const glm::vec3& v)
 float deltaTime = 0.0f;	// time between current frame and last frame
 float lastFrame = 0.0f;
 
-struct Vertex
-{
-    glm::vec3 pos;
-    glm::vec2 tex;
-};
-
-class ChunkManager
-{
-    private:
-    public:
-        const Voxel& GetVoxel(const VoxelPosition& position) const
-        {
-            // return GetChunk(position).QuickGetVoxel(position);
-        }
-};
-
-class Chunk
-{
-    private:
-        const ChunkManager& m_ChunkManager;
-
-        std::array<Voxel, ChunkSide * ChunkSide * ChunkHeight> m_Data;
-
-        VoxelPosition m_Position;
-    public:
-        Chunk(const ChunkManager& chunkManager)
-            : m_ChunkManager(chunkManager) {}
-
-        bool PositionInBounds(const VoxelPosition& position) const
-        {
-            return (position.x >= 0 && position.z >= 0 && position.y >= 0 && position.x < ChunkSide && position.y < ChunkHeight && position.z < ChunkSide);
-        }
-
-        /// Unsafe function without check is position in bounds. Returns voxel by local chunk coords
-        const Voxel& QuickGetVoxel(const VoxelPosition& position) const
-        {
-            return m_Data.at(position.x + ChunkSide * ChunkSide * position.y + ChunkSide * position.z);
-        }
-        
-        /// Safe function. If chunk not in bounds return from neighbour chunk
-        const Voxel& GetVoxel(const VoxelPosition& position) const
-        {
-            if (PositionInBounds(position)) return QuickGetVoxel(position);
-
-            return m_ChunkManager.GetVoxel(LocalToGlobalVoxel(m_Position, position));
-        }
-};
-
 int main()
 {
     Engine::Init({ 800, 600, "Minecraft" });
