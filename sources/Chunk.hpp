@@ -12,7 +12,7 @@ class Chunk
     private:
         const ChunkManager& m_ChunkManager;
 
-        std::array<Voxel, ChunkSide * ChunkSide * ChunkHeight> m_Data;
+        std::array<Voxel, ChunkVolume> m_Data;
 
         VoxelPosition m_Position;
     public:

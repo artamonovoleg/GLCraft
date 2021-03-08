@@ -21,7 +21,7 @@ class Skybox
         
         unsigned int m_VAO = 0, m_VBO = 0;
     public:
-        Skybox(const std::vector<std::string>& faces);
+        Skybox(const std::string& folder, const std::string& ext);
 
         void Draw(const glm::mat4& proj, const glm::mat4& view);
 };

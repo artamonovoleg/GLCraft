@@ -30,10 +30,6 @@ std::ostream& operator<< (std::ostream& os, const glm::vec3& v)
     return os;
 }
 
-// timing
-float deltaTime = 0.0f;	// time between current frame and last frame
-float lastFrame = 0.0f;
-
 int main()
 {
     Engine::Init({ 800, 600, "Minecraft" });
@@ -45,12 +41,7 @@ int main()
 
         Camera camera({ 0, 129, 0 });
         
-        Skybox skybox({     "../assets/skybox/right.jpg",
-                            "../assets/skybox/left.jpg",
-                            "../assets/skybox/top.jpg",
-                            "../assets/skybox/bottom.jpg",
-                            "../assets/skybox/front.jpg",
-                            "../assets/skybox/back.jpg" });
+        Skybox skybox("../assets/skybox/", "jpg");
 
         Crosshair crosshair;
 
@@ -58,6 +49,9 @@ int main()
         {
             Engine::GetEventSystem()->Process();
 
+            // timing
+            static float deltaTime = 0.0f;
+            static float lastFrame = 0.0f;
             float currentFrame = glfwGetTime();
             deltaTime = currentFrame - lastFrame;
             lastFrame = currentFrame;

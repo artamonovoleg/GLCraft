@@ -51,8 +51,16 @@ float skyboxVertices[] = {
     1.0f, -1.0f,  1.0f
 };
 
-Skybox::Skybox(const std::vector<std::string>& faces)
+Skybox::Skybox(const std::string& folder, const std::string& ext)
 {
+    std::vector<std::string> faces { 
+                                        folder + "right." + ext,
+                                        folder + "left." + ext,
+                                        folder + "top." + ext,
+                                        folder + "bottom." + ext,
+                                        folder + "front." + ext,
+                                        folder + "back." + ext
+                                    };
     m_VA = std::make_shared<VertexArray>();
     m_VB = std::make_shared<VertexBuffer>();
     m_VB->Map(skyboxVertices, sizeof(skyboxVertices));
