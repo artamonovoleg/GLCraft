@@ -27,10 +27,12 @@
 #include "Vertex.hpp"
 #include "Mesh.hpp"
 
-std::vector<glm::ivec3> leftFace    = { glm::vec3(0.0, 0.0, 0.0), glm::vec3(0.0, 0.0, 1.0), glm::ivec3(0.0, 1.0, 0.0), glm::ivec3(0.0, 1.0, 1.0) };
-std::vector<glm::vec3>  rightFace   = { glm::ivec3(1.0, 0.0, 1.0), glm::ivec3(1.0, 0.0, 0.0), glm::ivec3(1.0, 1.0, 1.0), glm::ivec3(1.0, 1.0, 0.0) };
-std::vector<glm::ivec3> bottomFace  = { glm::ivec3(1.0, 0.0, 0.0), glm::ivec3(1.0, 0.0, 1.0), glm::ivec3(0.0, 0.0, 0.0),  glm::ivec3(0.0, 0.0, 1.0) };
+std::vector<glm::ivec3> leftFace    = { glm::vec3(0.0, 0.0, 0.0),  glm::vec3(0.0, 0.0, 1.0),  glm::ivec3(0.0, 1.0, 0.0), glm::ivec3(0.0, 1.0, 1.0) };
+std::vector<glm::ivec3> rightFace   = { glm::ivec3(1.0, 0.0, 1.0), glm::ivec3(1.0, 0.0, 0.0), glm::ivec3(1.0, 1.0, 1.0), glm::ivec3(1.0, 1.0, 0.0) };
+std::vector<glm::ivec3> bottomFace  = { glm::ivec3(1.0, 0.0, 0.0), glm::ivec3(1.0, 0.0, 1.0), glm::ivec3(0.0, 0.0, 0.0), glm::ivec3(0.0, 0.0, 1.0) };
 std::vector<glm::ivec3> topFace     = { glm::ivec3(0.0, 1.0, 0.0), glm::ivec3(0.0, 1.0, 1.0), glm::ivec3(1.0, 1.0, 0.0), glm::ivec3(1.0, 1.0, 1.0) };
+std::vector<glm::ivec3> frontFace   = { glm::ivec3(0.0, 0.0, 1.0), glm::ivec3(1.0, 0.0, 1.0), glm::ivec3(0.0, 1.0, 1.0), glm::ivec3(1.0, 1.0, 1.0) };
+std::vector<glm::ivec3> backFace    = { glm::ivec3(1.0, 0.0, 0.0), glm::ivec3(0.0, 0.0, 0.0), glm::ivec3(1.0, 1.0, 0.0), glm::ivec3(0.0, 1.0, 0.0) };
 
 enum class FaceType
 {
@@ -65,6 +67,67 @@ void PushFace(const VoxelPosition& position, Mesh& mesh, VoxelType type, const s
     PushIndices(mesh.indices);
 }
 
+class MeshBuilder
+{
+    private:
+        std::unordered_map<VoxelPosition, Mesh> m_Meshes;
+
+        void GenerateChunkMesh(const Chunk& chunk, Mesh& mesh)
+        {
+            for (int z = 0; z < ChunkSize; z++)
+            {
+                for (int y = 0; y < ChunkSize; y++)
+                {
+                    for (int x = 0; x < ChunkSize; x++)
+                    {
+                        if (chunk.QuickGetVoxel({ x, y, z }).type != VoxelType::Air)
+                        {
+                            auto position = glm::ivec3(x, y, z) + chunk.GetPosition() * 16;
+                            // if (chunk.GetVoxel({ x, y + 1, z }).type == VoxelType::Air)
+                                PushFace(position, mesh, chunk.QuickGetVoxel({ x, y, z }).type, topFace);
+                            // if (chunk.GetVoxel({ x, y - 1, z }).type == VoxelType::Air)
+                                PushFace(position, mesh, chunk.QuickGetVoxel({ x, y, z }).type, bottomFace);
+                            // if (chunk.GetVoxel({ x, y, z - 1 }).type == VoxelType::Air)
+                                PushFace(position, mesh, chunk.QuickGetVoxel({ x, y, z }).type, backFace);
+                            // if (chunk.GetVoxel({ x, y, z + 1 }).type == VoxelType::Air)
+                                PushFace(position, mesh, chunk.QuickGetVoxel({ x, y, z }).type, frontFace);
+                            // if (chunk.GetVoxel({ x - 1, y, z }).type == VoxelType::Air)
+                                PushFace(position, mesh, chunk.QuickGetVoxel({ x, y, z }).type, leftFace);
+                            // if (chunk.GetVoxel({ x + 1, y, z }).type == VoxelType::Air)
+                                PushFace(position, mesh, chunk.QuickGetVoxel({ x, y, z }).type, rightFace);
+                        }
+                    }
+                }
+            }
+            mesh.Upload();
+        }
+    public:
+        MeshBuilder(ChunkManager& manager)
+        {
+            for (auto& postochunk : manager.GetChunkMap())
+            {
+                auto& pos = postochunk.first;
+                auto& chunk = postochunk.second;
+                m_Meshes.emplace(std::make_pair(pos, Mesh{}));
+                GenerateChunkMesh(chunk, m_Meshes.at(pos));
+            }
+        }
+
+        void UpdateChunk(const Chunk& chunk)
+        {
+            auto& updateMesh = m_Meshes.at(chunk.GetPosition());
+            updateMesh.vertices.clear();
+            updateMesh.indices.clear();
+            GenerateChunkMesh(chunk, updateMesh);
+            updateMesh.Upload();
+        }
+
+        const std::unordered_map<VoxelPosition, Mesh>& GetMeshes() const
+        {
+            return m_Meshes;
+        }
+};
+
 int main()
 {
     Engine::Init({ 800, 600, "Minecraft" });
@@ -88,25 +151,11 @@ int main()
 
         ChunkManager m;
         m.AddChunk({ 0, 0, 0 });
-        auto& ch = m.GetChunk({ 0, 0, 0 });
+        m.AddChunk({ 1, 0, 0 });
+        m.GetChunkMap().at({ 0, 0, 0 }).QuickSetVoxel({ 1, 15, 1 }, VoxelType::Sand);
 
-        for (int z = 0; z < 16; z++)
-        {
-            for (int y = 0; y < 16; y++)
-            {
-                for (int x = 0; x < 16; x++)
-                {
-                    if (ch.QuickGetVoxel({ x, y, z }).type != VoxelType::Air)
-                    {
-                        if (ch.GetVoxel({ x, y + 1, z }).type == VoxelType::Air)
-                            PushFace({ x, y, z }, mesh, ch.QuickGetVoxel({ x, y, z }).type, topFace);
-                    }
-                }
-            }
-        }
-
-        mesh.Upload();
-
+        MeshBuilder mb(m);
+        
         while (!keyboard.GetKey(GLFW_KEY_ESCAPE))
         {
             Engine::GetEventSystem()->Process();
@@ -122,12 +171,22 @@ int main()
 
             window->Clear();
 
-            mesh.va->Bind();
             shader.Bind();
             shader.SetMat4("u_Projection", camera.GetProjectionMatrix());
             shader.SetMat4("u_View", camera.GetViewMatrix());
             shader.SetMat4("u_Model", glm::mat4(1.0f));
-            glDrawElements(GL_TRIANGLES, mesh.ib->GetCount(), GL_UNSIGNED_INT, 0);
+            
+            for (const auto& mesh : mb.GetMeshes())
+            {
+                mesh.second.va->Bind();
+                glDrawElements(GL_TRIANGLES, mesh.second.ib->GetCount(), GL_UNSIGNED_INT, 0);
+            }
+
+            if (keyboard.GetKeyDown(GLFW_KEY_F))
+            {
+                m.GetChunkMap().at({ 0, 0, 0 }).QuickSetVoxel({ 1, 15, 1 }, VoxelType::Air);
+                mb.UpdateChunk(m.GetChunk({ 0, 0, 0 }));
+            }
 
             crosshair.Draw();
             skybox.Draw(camera.GetProjectionMatrix(), camera.GetViewMatrix());

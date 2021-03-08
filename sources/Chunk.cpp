@@ -10,9 +10,7 @@
 Chunk::Chunk(ChunkManager& chunkManager, const VoxelPosition& position)
     : m_ChunkManager(chunkManager), m_Position(position) 
 {
-    m_Data.fill({ VoxelType::Air });
-    for (int i = 0; i < ChunkVolume / 2; ++i)
-        m_Data.at(i).type = VoxelType::Ground;
+    m_Data.fill({ VoxelType::Ground });
 }
 
 bool Chunk::PositionInBounds(const VoxelPosition& position) const

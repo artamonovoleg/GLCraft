@@ -6,35 +6,34 @@
 #include <glm/gtx/hash.hpp>
 #include "Chunk.hpp"
 
+using ChunkMap = std::unordered_map<VoxelPosition, Chunk>;
+
 class ChunkManager
 {
     private:
-        std::unordered_map<VoxelPosition, Chunk> m_Chunks;
+        ChunkMap m_ChunkMap;
     public:
         ChunkManager()
         {
-            m_Chunks.emplace(std::make_pair(VoxelPosition{ 0, 0, 0 }, Chunk(*this, { 0, 0, 0 })));
         }
 
-        Chunk* begin() { return &m_Chunks.begin()->second; }
-        Chunk* end() { return &m_Chunks.end()->second; }
+        ChunkMap& GetChunkMap() { return m_ChunkMap;}
 
         const Chunk& GetChunk(const VoxelPosition& position)
         {
             auto chunkPos = ToChunkPosition(position);
-            if (m_Chunks.find(chunkPos) == m_Chunks.end())
+            if (m_ChunkMap.find(chunkPos) == m_ChunkMap.end())
             {
-                static Chunk error(*this, { 0, 0, 0 });
-                return error;
+                return m_ChunkMap.begin()->second;
             }
-            return m_Chunks.at(chunkPos);
+            return m_ChunkMap.at(chunkPos);
         }
 
         Chunk& AddChunk(const VoxelPosition& position)
         {
-            auto it = m_Chunks.find(position);
-            if (it != m_Chunks.end())
-                return m_Chunks.emplace(std::make_pair(position, Chunk(*this, position))).first->second;
+            auto it = m_ChunkMap.find(position);
+            if (it == m_ChunkMap.end())
+                return m_ChunkMap.emplace(std::make_pair(position, Chunk(*this, position))).first->second;
             return it->second;
         }
 

@@ -13,5 +13,5 @@ enum class VoxelType : uint8_t
 
 struct Voxel
 {
-    VoxelType type = VoxelType::Air;
+    VoxelType type = VoxelType::Ground;
 };
