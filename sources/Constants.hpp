@@ -2,5 +2,5 @@
 
 #include <cstdint>
 
-static const size_t ChunkSize = 16;
-static const size_t ChunkVolume = ChunkSize * ChunkSize * ChunkSize;
+static const int ChunkSize = 16;
+static const int ChunkVolume = ChunkSize * ChunkSize * ChunkSize;

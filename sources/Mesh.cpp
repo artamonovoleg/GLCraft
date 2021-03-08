@@ -10,6 +10,9 @@ void Mesh::Upload()
     vb = std::make_shared<VertexBuffer> ();
     ib = std::make_shared<IndexBuffer>  ();
     
+    va->Bind();
+    vb->Bind();
+    ib->Bind();
     vb->Map(vertices.data(), vertices.size() * sizeof(Vertex));
     VertexBuffersLayout la;
     la.Push<float>(3, 5);

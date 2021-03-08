@@ -10,7 +10,18 @@
 Chunk::Chunk(ChunkManager& chunkManager, const VoxelPosition& position)
     : m_ChunkManager(chunkManager), m_Position(position) 
 {
-    m_Data.fill({ VoxelType::Ground });
+    m_Data.fill({ VoxelType::Glass });
+    for (int z = 0; z < ChunkSize; ++z)
+    {
+        for (int y = 0; y < ChunkSize; ++y)
+        {
+            for (int x = 0; x < ChunkSize; ++x)
+            {
+                if (y >= ChunkSize / 2)
+                    QuickSetVoxel({ x, y, z }, VoxelType::Air);
+            }
+        }
+    }
 }
 
 bool Chunk::PositionInBounds(const VoxelPosition& position) const
@@ -33,6 +44,7 @@ Voxel Chunk::GetVoxel(const VoxelPosition& position) const
 void Chunk::QuickSetVoxel(const VoxelPosition& position, VoxelType type)
 {
     m_Data.at(position.x + ChunkSize * ChunkSize * position.y + ChunkSize * position.z).type = type;
+    m_OutDate = true;
 }
 
 void Chunk::SetVoxel(const VoxelPosition& position, VoxelType type)

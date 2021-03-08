@@ -14,8 +14,8 @@ struct Mesh
     std::shared_ptr<VertexBuffer>   vb;
     std::shared_ptr<IndexBuffer>    ib;
 
-    std::vector<Vertex>         vertices{};
-    std::vector<unsigned int>   indices{};
+    std::vector<Vertex>         vertices;
+    std::vector<unsigned int>   indices;
 
     void Upload();
 };

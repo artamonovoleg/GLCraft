@@ -1,21 +1,29 @@
 #include "Coordinates.hpp"
 #include "Constants.hpp"
 
-glm::ivec3 LocalToGlobalVoxel(const VoxelPosition& chunkPosition, const VoxelPosition& position)
+VoxelPosition GlobalToVoxel(const GlobalPosition& position)
+{
+    auto x = static_cast<int>(std::floor(position.x));
+    auto y = static_cast<int>(std::floor(position.y));
+    auto z = static_cast<int>(std::floor(position.z));
+    return { x, y, z };
+}
+
+VoxelPosition LocalToGlobalVoxel(const VoxelPosition& chunkPosition, const VoxelPosition& position)
 {
     return {chunkPosition.x * ChunkSize + position.x,
             chunkPosition.y * ChunkSize + position.y,
             chunkPosition.z * ChunkSize + position.z};
 }
 
-glm::ivec3 GlobalToLocalVoxel(const VoxelPosition& position)
+VoxelPosition GlobalToLocalVoxel(const VoxelPosition& position)
 {
     return {(ChunkSize + (position.x % ChunkSize)) % ChunkSize,
             (ChunkSize + (position.y % ChunkSize)) % ChunkSize,
             (ChunkSize + (position.z % ChunkSize)) % ChunkSize};
 }
 
-glm::ivec3 ToChunkPosition(const VoxelPosition& position)
+VoxelPosition ToChunkPosition(const VoxelPosition& position)
 {
     int x = position.x;
     int y = position.y;

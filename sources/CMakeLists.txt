@@ -19,6 +19,7 @@ set(SOURCES ./Engine.cpp
             ./Mesh.cpp
             ./Chunk.cpp
             ./ChunkManager.cpp
+            ./MeshBuilder.cpp
             ./main.cpp)
 
 add_executable(GLCraft ${SOURCES})

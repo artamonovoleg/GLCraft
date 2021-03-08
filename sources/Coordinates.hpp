@@ -2,8 +2,10 @@
 
 #include <glm/glm.hpp>
 
+using GlobalPosition = glm::vec3;
 using VoxelPosition = glm::ivec3;
 
-glm::ivec3 LocalToGlobalVoxel(const VoxelPosition& chunkPos, const VoxelPosition& position);
-glm::ivec3 GlobalToLocalVoxel(const VoxelPosition& position);
-glm::ivec3 ToChunkPosition(const VoxelPosition& position);
+VoxelPosition GlobalToVoxel(const GlobalPosition& position);
+VoxelPosition LocalToGlobalVoxel(const VoxelPosition& chunkPos, const VoxelPosition& position);
+VoxelPosition GlobalToLocalVoxel(const VoxelPosition& position);
+VoxelPosition ToChunkPosition(const VoxelPosition& position);

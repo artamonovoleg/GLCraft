@@ -15,3 +15,11 @@ struct Voxel
 {
     VoxelType type = VoxelType::Ground;
 };
+
+enum class FaceType
+{
+    Left,
+    Right,
+    Bottom,
+    Top
+};

@@ -26,107 +26,80 @@
 #include "ChunkManager.hpp"
 #include "Vertex.hpp"
 #include "Mesh.hpp"
+#include "MeshBuilder.hpp"
 
-std::vector<glm::ivec3> leftFace    = { glm::vec3(0.0, 0.0, 0.0),  glm::vec3(0.0, 0.0, 1.0),  glm::ivec3(0.0, 1.0, 0.0), glm::ivec3(0.0, 1.0, 1.0) };
-std::vector<glm::ivec3> rightFace   = { glm::ivec3(1.0, 0.0, 1.0), glm::ivec3(1.0, 0.0, 0.0), glm::ivec3(1.0, 1.0, 1.0), glm::ivec3(1.0, 1.0, 0.0) };
-std::vector<glm::ivec3> bottomFace  = { glm::ivec3(1.0, 0.0, 0.0), glm::ivec3(1.0, 0.0, 1.0), glm::ivec3(0.0, 0.0, 0.0), glm::ivec3(0.0, 0.0, 1.0) };
-std::vector<glm::ivec3> topFace     = { glm::ivec3(0.0, 1.0, 0.0), glm::ivec3(0.0, 1.0, 1.0), glm::ivec3(1.0, 1.0, 0.0), glm::ivec3(1.0, 1.0, 1.0) };
-std::vector<glm::ivec3> frontFace   = { glm::ivec3(0.0, 0.0, 1.0), glm::ivec3(1.0, 0.0, 1.0), glm::ivec3(0.0, 1.0, 1.0), glm::ivec3(1.0, 1.0, 1.0) };
-std::vector<glm::ivec3> backFace    = { glm::ivec3(1.0, 0.0, 0.0), glm::ivec3(0.0, 0.0, 0.0), glm::ivec3(1.0, 1.0, 0.0), glm::ivec3(0.0, 1.0, 0.0) };
-
-enum class FaceType
+struct RaycastResult
 {
-    Left,
-    Right,
-    Bottom,
-    Top
+    VoxelPosition end;
+    VoxelPosition norm;
 };
 
-void PushIndices(std::vector<unsigned int>& indices)
+std::optional<RaycastResult> Raycast(ChunkManager& chm, const glm::vec3& startPoint, const glm::vec3& direction, float range)
 {
-    uint32_t m;
-    if (!indices.empty())
-        m = indices.back() + 1;
-    else
-        m = 0;
-    indices.insert(indices.end(), { 0 + m, 1 + m, 2 + m, 2 + m, 1 + m, 3 + m } );
-}
+      // Ensures passed direction is normalized
+    auto nDirection = glm::normalize(direction);
+    auto endPoint = startPoint + nDirection * range;
+    auto startVoxel = GlobalToVoxel(startPoint);
 
-void PushFace(const VoxelPosition& position, Mesh& mesh, VoxelType type, const std::vector<glm::ivec3>& face)
-{
-    static float spriteSize = 1.0f / 16.0f;
-    float u = ((int)type % 16) * spriteSize;
-    float v = ((int)type / 16) * spriteSize;
-    mesh.vertices.insert(mesh.vertices.end(), 
+    // +1, -1, or 0
+    int stepX = (nDirection.x > 0) ? 1 : ((nDirection.x < 0) ? -1 : 0);
+    int stepY = (nDirection.y > 0) ? 1 : ((nDirection.y < 0) ? -1 : 0);
+    int stepZ = (nDirection.z > 0) ? 1 : ((nDirection.z < 0) ? -1 : 0);
+
+    float tDeltaX =
+        (stepX != 0) ? fmin(stepX / (endPoint.x - startPoint.x), FLT_MAX) : FLT_MAX;
+    float tDeltaY =
+        (stepY != 0) ? fmin(stepY / (endPoint.y - startPoint.y), FLT_MAX) : FLT_MAX;
+    float tDeltaZ =
+        (stepZ != 0) ? fmin(stepZ / (endPoint.z - startPoint.z), FLT_MAX) : FLT_MAX;
+
+    float tMaxX = (stepX > 0.0f) ? tDeltaX * (1.0f - startPoint.x + startVoxel.x)
+                                 : tDeltaX * (startPoint.x - startVoxel.x);
+    float tMaxY = (stepY > 0.0f) ? tDeltaY * (1.0f - startPoint.y + startVoxel.y)
+                                 : tDeltaY * (startPoint.y - startVoxel.y);
+    float tMaxZ = (stepZ > 0.0f) ? tDeltaZ * (1.0f - startPoint.z + startVoxel.z)
+                                 : tDeltaZ * (startPoint.z - startVoxel.z);
+
+
+    int t = 0;
+    while (++t < range * 3) 
     {
-        { face.at(0) + position, { u, v + spriteSize } },
-        { face.at(1) + position, { u + spriteSize, v + spriteSize } },
-        { face.at(2) + position, { u, v } },
-        { face.at(3) + position, { u + spriteSize, v } }
-    });
-    PushIndices(mesh.indices);
+        if (chm.GetVoxel(startVoxel).type != VoxelType::Air)
+        {
+            return RaycastResult{ startVoxel, { 0, 0, 0 } };
+        }
+
+        if (tMaxX < tMaxY) 
+        {
+            if (tMaxX < tMaxZ) 
+            {
+                startVoxel.x += stepX;
+                tMaxX += tDeltaX;
+            }
+            else 
+            {
+                startVoxel.z += stepZ;
+                tMaxZ += tDeltaZ;
+            }
+        }
+        else 
+        {
+            if (tMaxY < tMaxZ) 
+            {
+                startVoxel.y += stepY;
+                tMaxY += tDeltaY;
+            }
+            else 
+            {
+                startVoxel.z += stepZ;
+                tMaxZ += tDeltaZ;
+            }
+        }
+        if (tMaxX > 1 && tMaxY > 1 && tMaxZ > 1)
+            break;
+    }
+    return {};
 }
-
-class MeshBuilder
-{
-    private:
-        std::unordered_map<VoxelPosition, Mesh> m_Meshes;
-
-        void GenerateChunkMesh(const Chunk& chunk, Mesh& mesh)
-        {
-            for (int z = 0; z < ChunkSize; z++)
-            {
-                for (int y = 0; y < ChunkSize; y++)
-                {
-                    for (int x = 0; x < ChunkSize; x++)
-                    {
-                        if (chunk.QuickGetVoxel({ x, y, z }).type != VoxelType::Air)
-                        {
-                            auto position = glm::ivec3(x, y, z) + chunk.GetPosition() * 16;
-                            // if (chunk.GetVoxel({ x, y + 1, z }).type == VoxelType::Air)
-                                PushFace(position, mesh, chunk.QuickGetVoxel({ x, y, z }).type, topFace);
-                            // if (chunk.GetVoxel({ x, y - 1, z }).type == VoxelType::Air)
-                                PushFace(position, mesh, chunk.QuickGetVoxel({ x, y, z }).type, bottomFace);
-                            // if (chunk.GetVoxel({ x, y, z - 1 }).type == VoxelType::Air)
-                                PushFace(position, mesh, chunk.QuickGetVoxel({ x, y, z }).type, backFace);
-                            // if (chunk.GetVoxel({ x, y, z + 1 }).type == VoxelType::Air)
-                                PushFace(position, mesh, chunk.QuickGetVoxel({ x, y, z }).type, frontFace);
-                            // if (chunk.GetVoxel({ x - 1, y, z }).type == VoxelType::Air)
-                                PushFace(position, mesh, chunk.QuickGetVoxel({ x, y, z }).type, leftFace);
-                            // if (chunk.GetVoxel({ x + 1, y, z }).type == VoxelType::Air)
-                                PushFace(position, mesh, chunk.QuickGetVoxel({ x, y, z }).type, rightFace);
-                        }
-                    }
-                }
-            }
-            mesh.Upload();
-        }
-    public:
-        MeshBuilder(ChunkManager& manager)
-        {
-            for (auto& postochunk : manager.GetChunkMap())
-            {
-                auto& pos = postochunk.first;
-                auto& chunk = postochunk.second;
-                m_Meshes.emplace(std::make_pair(pos, Mesh{}));
-                GenerateChunkMesh(chunk, m_Meshes.at(pos));
-            }
-        }
-
-        void UpdateChunk(const Chunk& chunk)
-        {
-            auto& updateMesh = m_Meshes.at(chunk.GetPosition());
-            updateMesh.vertices.clear();
-            updateMesh.indices.clear();
-            GenerateChunkMesh(chunk, updateMesh);
-            updateMesh.Upload();
-        }
-
-        const std::unordered_map<VoxelPosition, Mesh>& GetMeshes() const
-        {
-            return m_Meshes;
-        }
-};
 
 int main()
 {
@@ -149,11 +122,7 @@ int main()
 
         Mesh mesh;
 
-        ChunkManager m;
-        m.AddChunk({ 0, 0, 0 });
-        m.AddChunk({ 1, 0, 0 });
-        m.GetChunkMap().at({ 0, 0, 0 }).QuickSetVoxel({ 1, 15, 1 }, VoxelType::Sand);
-
+        ChunkManager m(camera);
         MeshBuilder mb(m);
         
         while (!keyboard.GetKey(GLFW_KEY_ESCAPE))
@@ -182,11 +151,14 @@ int main()
                 glDrawElements(GL_TRIANGLES, mesh.second.ib->GetCount(), GL_UNSIGNED_INT, 0);
             }
 
-            if (keyboard.GetKeyDown(GLFW_KEY_F))
+            auto res = Raycast(m, camera.GetPosition(), camera.GetViewDirection(), 5.0f);
+
+            if (res.has_value() && mouse.GetButtonDown(GLFW_MOUSE_BUTTON_LEFT))
             {
-                m.GetChunkMap().at({ 0, 0, 0 }).QuickSetVoxel({ 1, 15, 1 }, VoxelType::Air);
-                mb.UpdateChunk(m.GetChunk({ 0, 0, 0 }));
+                m.SetVoxel(res->end, VoxelType::Air);
             }
+
+            mb.Update();
 
             crosshair.Draw();
             skybox.Draw(camera.GetProjectionMatrix(), camera.GetViewMatrix());

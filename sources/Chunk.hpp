@@ -17,11 +17,15 @@ class IndexBuffer;
 class Chunk
 {
     private:
+        friend class ChunkManager;
+        
         ChunkManager& m_ChunkManager;
 
         std::array<Voxel, ChunkVolume> m_Data;
 
         VoxelPosition m_Position;
+
+        mutable bool m_OutDate = false;
     public:
         Chunk(ChunkManager& chunkManager, const VoxelPosition& position);
         const VoxelPosition& GetPosition() const { return m_Position; }
@@ -39,4 +43,7 @@ class Chunk
 
         /// Safe function. If position not in bounds return from neighbour chunk
         void SetVoxel(const VoxelPosition& position, VoxelType type);
+
+        bool Outdate() const { return m_OutDate; }
+        void Updated() const { m_OutDate = false; }
 };
