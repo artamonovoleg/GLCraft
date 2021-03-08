@@ -1,4 +1,5 @@
 #include "Chunk.hpp"
+#include "ChunkManager.hpp"
 
 bool Chunk::PositionInBounds(const VoxelPosition& position) const
 {

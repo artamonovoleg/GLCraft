@@ -1,6 +1,9 @@
 #pragma once
 
 #include <unordered_map>
+#define GLM_ENABLE_EXPERIMENTAL
+#include <glm/glm.hpp>
+#include <glm/gtx/hash.hpp>
 #include "Chunk.hpp"
 
 class ChunkManager
