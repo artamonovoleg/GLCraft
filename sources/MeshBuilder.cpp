@@ -88,7 +88,7 @@ void MeshBuilder::GenerateChunkMesh(const Chunk& chunk, Mesh& mesh)
                 if (chunk.QuickGetVoxel({ x, y, z }).type != VoxelType::Air)
                 {
                     auto position = glm::ivec3(x, y, z) + chunk.GetPosition() * 16;
-                    if (chunk.GetVoxel({ x, y + 1, z }).type == VoxelType::Air || m_VoxelData.IsTransparent(chunk.GetVoxel({ x, y + 1, z })))
+                    if (chunk.GetVoxel({ x, y + 1, z }).type == VoxelType::Air)
                         PushFace(position, mesh, chunk.QuickGetVoxel({ x, y, z }).type, topFace);
                     if (chunk.GetVoxel({ x, y - 1, z }).type == VoxelType::Air)
                         PushFace(position, mesh, chunk.QuickGetVoxel({ x, y, z }).type, bottomFace);

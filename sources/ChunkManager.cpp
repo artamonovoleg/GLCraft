@@ -5,7 +5,7 @@ ChunkManager::ChunkManager(const Camera& camera)
 {
     auto startPoint = ToChunkPosition(GlobalToVoxel(camera.GetPosition()) - glm::ivec3(0, 1, 0));
 
-    for (int z = startPoint.z - 1; z < 1; ++z)
+    for (int z = startPoint.z ; z < 1; ++z)
     {
         for (int x = startPoint.x - 1; x < 1; ++x)
             AddChunk({ x, startPoint.y, z });
