@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.16)
 project(GLCraft CXX)
-set (CMAKE_CXX_STANDARD 20)
+set (CMAKE_CXX_STANDARD 17)
 add_compile_options(-g)
 
 include_directories(../third_party/glfw/include
@@ -15,12 +15,8 @@ set(SOURCES ./Engine.cpp
             ./Shader.cpp
             ./Skybox.cpp
             ./Crosshair.cpp
-            ./Coordinates.cpp
             ./Mesh.cpp
-            ./Chunk.cpp
-            ./ChunkManager.cpp
-            ./VoxelData.cpp
-            ./MeshBuilder.cpp
+            ./Voxel.cpp
             ./main.cpp)
 
 add_executable(GLCraft ${SOURCES})

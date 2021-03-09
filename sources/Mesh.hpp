@@ -17,5 +17,7 @@ struct Mesh
     std::vector<Vertex>         vertices;
     std::vector<unsigned int>   indices;
 
-    void Upload();
+    Mesh();
+    void Load();
+    void Draw();
 };

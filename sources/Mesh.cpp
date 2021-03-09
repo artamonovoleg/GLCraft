@@ -1,21 +1,28 @@
 #include "Mesh.hpp"
 #include "VertexArray.hpp"
 #include "VertexBuffer.hpp"
-#include "IndexBuffer.hpp"
 #include "VertexBuffersLayout.hpp"
+#include "IndexBuffer.hpp"
 
-void Mesh::Upload()
+Mesh::Mesh()
 {
-    va = std::make_shared<VertexArray>  ();
-    vb = std::make_shared<VertexBuffer> ();
-    ib = std::make_shared<IndexBuffer>  ();
-    
+    va = std::make_shared<VertexArray>();
+    vb = std::make_shared<VertexBuffer>();
+    VertexBuffersLayout layout;
+    layout.Push<float>(3, 5);
+    layout.Push<float>(2, 5);
+    ib = std::make_shared<IndexBuffer>();
+}
+
+void Mesh::Load()
+{
     va->Bind();
-    vb->Bind();
-    ib->Bind();
-    vb->Map(vertices.data(), vertices.size() * sizeof(Vertex));
-    VertexBuffersLayout la;
-    la.Push<float>(3, 5);
-    la.Push<float>(2, 5);
-    ib->Map(indices.data(), indices.size() * sizeof(unsigned int));
+    vb->Map(vertices.data(), vertices.size() * sizeof(vertices.at(0)));
+    ib->Map(indices.data(), indices.size() * sizeof(indices.at(0)));
+}
+
+void Mesh::Draw()
+{
+    va->Bind();
+    glDrawElements(GL_TRIANGLES, ib->GetCount(), GL_UNSIGNED_INT, nullptr);
 }

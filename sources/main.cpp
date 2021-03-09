@@ -1,7 +1,8 @@
 #include <memory>
 #include <unordered_map>
-#include <array>
+#include <vector>
 #include <iostream>
+#include <bitset>
 #include <cmath>
 #include <initializer_list>
 #define GLM_ENABLE_EXPERIMENTAL
@@ -22,83 +23,35 @@
 #include "Crosshair.hpp"
 #include "Voxel.hpp"
 #include "Constants.hpp"
-#include "Coordinates.hpp"
-#include "ChunkManager.hpp"
-#include "Vertex.hpp"
 #include "Mesh.hpp"
-#include "MeshBuilder.hpp"
 
-struct RaycastResult
+using VoxelPosition = glm::ivec3;
+VoxelDataManager voxDM;
+
+void PushIndices(std::vector<unsigned int>& indices)
 {
-    VoxelPosition end;
-    VoxelPosition norm;
-};
+    uint32_t m;
+    if (!indices.empty())
+        m = indices.back() + 1;
+    else
+        m = 0;
+    indices.insert(indices.end(), { 0 + m, 1 + m, 2 + m, 2 + m, 1 + m, 3 + m } );
+}
 
-std::optional<RaycastResult> Raycast(ChunkManager& chm, const glm::vec3& startPoint, const glm::vec3& direction, float range)
+void PushFace(Mesh& mesh, const VoxelPosition& position, Voxel voxel, Face face)
 {
-      // Ensures passed direction is normalized
-    auto nDirection = glm::normalize(direction);
-    auto endPoint = startPoint + nDirection * range;
-    auto startVoxel = GlobalToVoxel(startPoint);
+    auto& vertices  = voxDM.GetVertices(face);
+    auto [u, v]     = voxDM.GetUV(voxel, face);
 
-    // +1, -1, or 0
-    int stepX = (nDirection.x > 0) ? 1 : ((nDirection.x < 0) ? -1 : 0);
-    int stepY = (nDirection.y > 0) ? 1 : ((nDirection.y < 0) ? -1 : 0);
-    int stepZ = (nDirection.z > 0) ? 1 : ((nDirection.z < 0) ? -1 : 0);
-
-    float tDeltaX =
-        (stepX != 0) ? fmin(stepX / (endPoint.x - startPoint.x), FLT_MAX) : FLT_MAX;
-    float tDeltaY =
-        (stepY != 0) ? fmin(stepY / (endPoint.y - startPoint.y), FLT_MAX) : FLT_MAX;
-    float tDeltaZ =
-        (stepZ != 0) ? fmin(stepZ / (endPoint.z - startPoint.z), FLT_MAX) : FLT_MAX;
-
-    float tMaxX = (stepX > 0.0f) ? tDeltaX * (1.0f - startPoint.x + startVoxel.x)
-                                 : tDeltaX * (startPoint.x - startVoxel.x);
-    float tMaxY = (stepY > 0.0f) ? tDeltaY * (1.0f - startPoint.y + startVoxel.y)
-                                 : tDeltaY * (startPoint.y - startVoxel.y);
-    float tMaxZ = (stepZ > 0.0f) ? tDeltaZ * (1.0f - startPoint.z + startVoxel.z)
-                                 : tDeltaZ * (startPoint.z - startVoxel.z);
-
-
-    int t = 0;
-    while (t++ < range * 3) 
+    mesh.vertices.insert(mesh.vertices.end(),
     {
-        if (chm.GetVoxel(startVoxel).type != VoxelType::Air)
-        {
-            return RaycastResult{ startVoxel, { 0, 0, 0 } };
-        }
+        { vertices.at(0) + position, { u, v + UVSize } },
+        { vertices.at(1) + position, { u + UVSize, v + UVSize } },
+        { vertices.at(2) + position, { u, v } },
+        { vertices.at(3) + position, { u + UVSize, v } }
+    });
 
-        if (tMaxX < tMaxY) 
-        {
-            if (tMaxX < tMaxZ) 
-            {
-                startVoxel.x += stepX;
-                tMaxX += tDeltaX;
-            }
-            else 
-            {
-                startVoxel.z += stepZ;
-                tMaxZ += tDeltaZ;
-            }
-        }
-        else 
-        {
-            if (tMaxY < tMaxZ) 
-            {
-                startVoxel.y += stepY;
-                tMaxY += tDeltaY;
-            }
-            else 
-            {
-                startVoxel.z += stepZ;
-                tMaxZ += tDeltaZ;
-            }
-        }
-        if (tMaxX > 1 && tMaxY > 1 && tMaxZ > 1)
-            break;
-    }
-    return {};
+    PushIndices(mesh.indices);
 }
 
 int main()
@@ -110,7 +63,7 @@ int main()
         auto& window = Engine::GetWindow();
         glm::mat4 proj = glm::perspective(glm::radians(45.0f), window->GetWidth() / static_cast<float>(window->GetHeight()), 0.1f, 30.0f);
 
-        Camera camera({ 0, 16, 0 });
+        Camera camera({ 0, 0, 0 });
         
         Skybox skybox("../assets/skybox/", "jpg");
 
@@ -121,10 +74,14 @@ int main()
         shader.SetInt("texture", 0);
 
         Mesh mesh;
+        VoxelPosition position(0, 1, 0);
 
-        ChunkManager m(camera);
-        MeshBuilder mb(m);
-        
+        PushFace(mesh, position, Voxel::Glass, Face::Back);
+        PushFace(mesh, position, Voxel::Glass, Face::Front);
+        PushFace(mesh, position, Voxel::Glass, Face::Left);
+
+        mesh.Load();
+
         while (!keyboard.GetKey(GLFW_KEY_ESCAPE))
         {
             Engine::GetEventSystem()->Process();
@@ -144,23 +101,7 @@ int main()
             shader.SetMat4("u_Projection", camera.GetProjectionMatrix());
             shader.SetMat4("u_View", camera.GetViewMatrix());
             shader.SetMat4("u_Model", glm::mat4(1.0f));
-            
-            for (const auto& mesh : mb.GetMeshes())
-            {
-                mesh.second.va->Bind();
-                glDrawElements(GL_TRIANGLES, mesh.second.ib->GetCount(), GL_UNSIGNED_INT, 0);
-            }
-
-            auto res = Raycast(m, camera.GetPosition(), camera.GetViewDirection(), 5.0f);
-
-            if (mouse.GetButtonDown(GLFW_MOUSE_BUTTON_LEFT))
-            {
-                std::cout << res->end.x << " " << res->end.y << " " << res->end.z << std::endl;
-                m.SetVoxel(res->end, VoxelType::Air);
-                // m.SetVoxel({ -16, 7, 1 }, VoxelType::Sand);
-            }
-
-            mb.Update();
+            mesh.Draw();
 
             crosshair.Draw();
             skybox.Draw(camera.GetProjectionMatrix(), camera.GetViewMatrix());
