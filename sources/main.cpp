@@ -71,7 +71,6 @@ int main()
         PushFace(mesh, position, Voxel::Glass, Face::Front);
         PushFace(mesh, position, Voxel::Glass, Face::Back);
         PushFace(mesh, position, Voxel::Glass, Face::Bottom);
-        PushFace(mesh, position, Voxel::Glass, Face::Top);
         
         mesh.Load();
 
