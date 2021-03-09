@@ -153,9 +153,11 @@ int main()
 
             auto res = Raycast(m, camera.GetPosition(), camera.GetViewDirection(), 5.0f);
 
-            if (res.has_value() && mouse.GetButtonDown(GLFW_MOUSE_BUTTON_LEFT))
+            if (mouse.GetButtonDown(GLFW_MOUSE_BUTTON_LEFT))
             {
+                std::cout << res->end.x << " " << res->end.y << " " << res->end.z << std::endl;
                 m.SetVoxel(res->end, VoxelType::Air);
+                // m.SetVoxel({ -16, 7, 1 }, VoxelType::Sand);
             }
 
             mb.Update();
