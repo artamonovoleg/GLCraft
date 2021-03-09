@@ -66,10 +66,13 @@ int main()
         Mesh mesh;
         VoxelPosition position(0, 1, 0);
 
-        PushFace(mesh, position, Voxel::Glass, Face::Back);
-        PushFace(mesh, position, Voxel::Glass, Face::Front);
         PushFace(mesh, position, Voxel::Glass, Face::Left);
-
+        PushFace(mesh, position, Voxel::Glass, Face::Right);
+        PushFace(mesh, position, Voxel::Glass, Face::Front);
+        PushFace(mesh, position, Voxel::Glass, Face::Back);
+        PushFace(mesh, position, Voxel::Glass, Face::Bottom);
+        PushFace(mesh, position, Voxel::Glass, Face::Top);
+        
         mesh.Load();
 
         while (!keyboard.GetKey(GLFW_KEY_ESCAPE))
