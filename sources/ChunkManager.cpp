@@ -18,7 +18,6 @@ const Chunk& ChunkManager::GetChunk(const VoxelPosition& position)
     if (m_ChunkMap.find(chunkPos) == m_ChunkMap.cend())
     {
         static Chunk errorChunk(*this, { 0, 0, 0 });
-        // errorChunk.m_Data.fill({ VoxelType::Ground });
         return errorChunk;
     }
 
