@@ -62,7 +62,7 @@ std::optional<RaycastResult> Raycast(ChunkManager& chm, const glm::vec3& startPo
 
 
     int t = 0;
-    while (++t < range * 3) 
+    while (t++ < range * 3) 
     {
         if (chm.GetVoxel(startVoxel).type != VoxelType::Air)
         {
