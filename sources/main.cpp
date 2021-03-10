@@ -56,12 +56,15 @@ void BuildMesh(Mesh& mesh, const ChunkManager& chunkManager)
                 for (int x = 0; x < ChunkSize; ++x)
                 {
                     auto voxel = chunk.QGetVoxel({ x, y, z });
-                    PushFace(mesh, VoxelPosition(x, y, z) + position * ChunkSize, voxel, Face::Left);
-                    PushFace(mesh, VoxelPosition(x, y, z) + position * ChunkSize, voxel, Face::Right);
-                    PushFace(mesh, VoxelPosition(x, y, z) + position * ChunkSize, voxel, Face::Front);
-                    PushFace(mesh, VoxelPosition(x, y, z) + position * ChunkSize, voxel, Face::Back);
-                    PushFace(mesh, VoxelPosition(x, y, z) + position * ChunkSize, voxel, Face::Bottom);
-                    PushFace(mesh, VoxelPosition(x, y, z) + position * ChunkSize, voxel, Face::Top);
+                    if (voxel != Voxel::Air)
+                    {
+                        PushFace(mesh, VoxelPosition(x, y, z) + position * ChunkSize, voxel, Face::Left);
+                        PushFace(mesh, VoxelPosition(x, y, z) + position * ChunkSize, voxel, Face::Right);
+                        PushFace(mesh, VoxelPosition(x, y, z) + position * ChunkSize, voxel, Face::Front);
+                        PushFace(mesh, VoxelPosition(x, y, z) + position * ChunkSize, voxel, Face::Back);
+                        PushFace(mesh, VoxelPosition(x, y, z) + position * ChunkSize, voxel, Face::Bottom);
+                        PushFace(mesh, VoxelPosition(x, y, z) + position * ChunkSize, voxel, Face::Top);
+                    }
                 }
             }
         }
@@ -89,6 +92,8 @@ int main()
 
         Mesh mesh;
         ChunkManager manager(camera);
+        auto& chunk = manager.AddChunk({ -1, 0, -1 });
+        chunk.QSetVoxel({ 2, 2, 2 }, Voxel::Grass);
         BuildMesh(mesh, manager);
         mesh.Load();
 

@@ -5,15 +5,18 @@
 #include "Coordinates.hpp"
 #include "Voxel.hpp"
 
+class ChunkManager;
+
 class Chunk
 {
     private:
+        const ChunkManager& m_ChunkManager;
         VoxelPosition m_Position;
         std::array<Voxel, ChunkVolume> m_Data;
 
         static size_t PositionToIndex(const VoxelPosition& position);
     public:
-        Chunk(const VoxelPosition& position);
+        Chunk(const ChunkManager& chunkManager, const VoxelPosition& position);
 
         const VoxelPosition& GetPosition() const;
 

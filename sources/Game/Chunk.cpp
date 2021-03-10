@@ -1,7 +1,8 @@
 #include "Chunk.hpp"
+#include "ChunkManager.hpp"
 
-Chunk::Chunk(const VoxelPosition& position)
-    : m_Position(position)
+Chunk::Chunk(const ChunkManager& chunkManager, const VoxelPosition& position)
+    : m_ChunkManager(chunkManager), m_Position(position)
 {
     for (int z = 0; z < ChunkSize; ++z)
     {

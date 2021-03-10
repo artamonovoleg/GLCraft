@@ -19,6 +19,7 @@ set(SOURCES ./Engine/Engine.cpp
             ./Game/Crosshair.cpp
             ./Game/Mesh.cpp
             ./Game/Voxel.cpp
+            ./Game/Coordinates.cpp
             ./Game/Chunk.cpp
             ./Game/ChunkManager.cpp
             ./main.cpp)
