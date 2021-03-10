@@ -1,6 +1,8 @@
 #include <vector>
 #include <iostream>
+#define GLM_ENABLE_EXPERIMENTAL
 #include <glm/glm.hpp>
+#include <glm/gtx/hash.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glad/glad.h>
 #include <fstream>
@@ -15,6 +17,7 @@
 #include "Constants.hpp"
 #include "Chunk.hpp"
 #include "Mesh.hpp"
+#include "ChunkManager.hpp"
 
 VoxelDataManager voxDM;
 
@@ -44,11 +47,10 @@ void PushFace(Mesh& mesh, const VoxelPosition& position, Voxel voxel, Face face)
     PushIndices(mesh.indices);
 }
 
-void BuildMesh(Mesh& mesh, const std::vector<Chunk>& chunks)
+void BuildMesh(Mesh& mesh, const ChunkManager& chunkManager)
 {
-    for (const auto& chunk : chunks)
+    for (const auto& [position, chunk] : chunkManager.GetChunkMap())
     {
-        const auto& position = chunk.GetPosition();
         for (int z = 0; z < ChunkSize; ++z)
         {
             for (int y = 0; y < ChunkSize; ++y)
@@ -88,7 +90,8 @@ int main()
         shader.SetInt("texture", 0);
 
         Mesh mesh;
-        BuildMesh(mesh, { Chunk({ 1, 0, 0 }), Chunk({ 0, 0, 0 }) });
+        ChunkManager manager(camera);
+        BuildMesh(mesh, manager);
         mesh.Load();
 
         while (!keyboard.GetKey(GLFW_KEY_ESCAPE))
