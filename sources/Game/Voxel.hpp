@@ -11,7 +11,8 @@ enum class Voxel : uint8_t
     Air     = 0,
     Grass   = 1,
     Ground  = 2,
-    Glass   = 3
+    Sand    = 3,
+    Glass   = 4
 };
 
 using SpriteID = uint8_t;

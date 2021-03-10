@@ -13,9 +13,9 @@
 #include "Crosshair.hpp"
 #include "Voxel.hpp"
 #include "Constants.hpp"
+#include "Chunk.hpp"
 #include "Mesh.hpp"
 
-using VoxelPosition = glm::ivec3;
 VoxelDataManager voxDM;
 
 void PushIndices(std::vector<unsigned int>& indices)
@@ -44,6 +44,30 @@ void PushFace(Mesh& mesh, const VoxelPosition& position, Voxel voxel, Face face)
     PushIndices(mesh.indices);
 }
 
+void BuildMesh(Mesh& mesh, const std::vector<Chunk>& chunks)
+{
+    for (const auto& chunk : chunks)
+    {
+        const auto& position = chunk.GetPosition();
+        for (int z = 0; z < ChunkSize; ++z)
+        {
+            for (int y = 0; y < ChunkSize; ++y)
+            {
+                for (int x = 0; x < ChunkSize; ++x)
+                {
+                    auto voxel = chunk.QGetVoxel({ x, y, z });
+                    PushFace(mesh, VoxelPosition(x, y, z) + position * ChunkSize, voxel, Face::Left);
+                    PushFace(mesh, VoxelPosition(x, y, z) + position * ChunkSize, voxel, Face::Right);
+                    PushFace(mesh, VoxelPosition(x, y, z) + position * ChunkSize, voxel, Face::Front);
+                    PushFace(mesh, VoxelPosition(x, y, z) + position * ChunkSize, voxel, Face::Back);
+                    PushFace(mesh, VoxelPosition(x, y, z) + position * ChunkSize, voxel, Face::Bottom);
+                    PushFace(mesh, VoxelPosition(x, y, z) + position * ChunkSize, voxel, Face::Top);
+                }
+            }
+        }
+    }
+}
+
 int main()
 {
     Engine::Init({ 800, 600, "Minecraft" });
@@ -64,15 +88,7 @@ int main()
         shader.SetInt("texture", 0);
 
         Mesh mesh;
-        VoxelPosition position(0, 1, 0);
-
-        PushFace(mesh, position, Voxel::Glass, Face::Left);
-        PushFace(mesh, position, Voxel::Glass, Face::Right);
-        PushFace(mesh, position, Voxel::Glass, Face::Front);
-        PushFace(mesh, position, Voxel::Glass, Face::Back);
-        PushFace(mesh, position, Voxel::Glass, Face::Bottom);
-        PushFace(mesh, position, Voxel::Glass, Face::Top);
-        
+        BuildMesh(mesh, { Chunk({ 1, 0, 0 }), Chunk({ 0, 0, 0 }) });
         mesh.Load();
 
         while (!keyboard.GetKey(GLFW_KEY_ESCAPE))
