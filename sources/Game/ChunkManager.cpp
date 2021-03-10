@@ -4,19 +4,14 @@
 ChunkManager::ChunkManager(const Camera& camera)
     : m_Camera(camera)
 {
-    // for (int z = 0; z < 2; ++z)
-    // {
-    //     for (int y = 0; y < 2; ++y)
-    //     {
-    //         for (int x = 0; x < 2; ++x)
-                m_Chunks.emplace(std::make_pair(VoxelPosition(0, 0, 0), Chunk(*this, { 0, 0, 0 })));
-    //     }
-    // }
-}
-
-bool ChunkManager::HasChunk(const VoxelPosition& position) const
-{
-    return (m_Chunks.find(ToChunkPosition(position)) != m_Chunks.cend());
+    for (int z = 0; z < 2; ++z)
+    {
+        for (int y = 0; y < 2; ++y)
+        {
+            for (int x = 0; x < 2; ++x)
+                m_Chunks.emplace(std::make_pair(VoxelPosition(x, y, z), Chunk(*this, { x, y, z })));
+        }
+    }
 }
 
 Chunk& ChunkManager::AddChunk(const VoxelPosition& position)
@@ -35,4 +30,18 @@ const Chunk& ChunkManager::GetChunk(const VoxelPosition& position) const
     }
 
     return m_Chunks.at(chunkPosition);
+}
+
+Voxel ChunkManager::GetVoxel(const VoxelPosition& position) const
+{
+    auto it = m_Chunks.find(ToChunkPosition(position));
+    if (it == m_Chunks.cend())
+        return Voxel::Air;
+    else
+        return it->second.QGetVoxel(GlobalVoxelToLocal(position));
+}
+
+void ChunkManager::SetVoxel(const VoxelPosition& position, Voxel voxel)
+{
+    AddChunk(ToChunkPosition(position)).QSetVoxel(GlobalVoxelToLocal(position), voxel);        
 }

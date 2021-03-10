@@ -3,9 +3,9 @@
 #include <unordered_map>
 #include "Coordinates.hpp"
 #include "Voxel.hpp"
+#include "Chunk.hpp"
 
 class Camera;
-class Chunk;
 
 using ChunkMap = std::unordered_map<VoxelPosition, Chunk>;
 
@@ -18,10 +18,11 @@ class ChunkManager
     public:
         ChunkManager(const Camera& camera);
 
-        bool HasChunk(const VoxelPosition& position) const;
-
         Chunk& AddChunk(const VoxelPosition& position);
         const Chunk& GetChunk(const VoxelPosition& position) const;
         
+        Voxel GetVoxel(const VoxelPosition& position) const;
+        void SetVoxel(const VoxelPosition& position, Voxel voxel);
+
         const ChunkMap& GetChunkMap() const { return m_Chunks; }
 };

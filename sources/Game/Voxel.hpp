@@ -3,6 +3,7 @@
 #include <cstdint>
 #include <array>
 #include <unordered_map>
+#include <unordered_set>
 #include <vector>
 #include <glm/glm.hpp>
 
@@ -38,9 +39,11 @@ class VoxelDataManager
     private:
         std::unordered_map<Voxel, VoxelData>    m_SpriteData;
         std::array<std::vector<glm::ivec3>, 6>  m_VerticesData;
+        std::unordered_set<Voxel>               m_Transparent;
     public:
         VoxelDataManager();
 
         const std::vector<glm::ivec3>& GetVertices(Face face) const;
         std::pair<float, float> GetUV(Voxel voxel, Face face) const;
+        bool IsTransparent(Voxel voxel) const;
 };

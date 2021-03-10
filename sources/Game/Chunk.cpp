@@ -20,6 +20,11 @@ size_t Chunk::PositionToIndex(const VoxelPosition& position)
     return (position.x + ChunkSize * ChunkSize * position.y + ChunkSize * position.z);
 }
 
+bool Chunk::PositionInBounds(const VoxelPosition& position)
+{
+    return (position.x >= 0 && position.y >= 0 && position.z >= 0 && position.x < ChunkSize && position.y < ChunkSize && position.z < ChunkSize);
+}
+
 const VoxelPosition& Chunk::GetPosition() const { return m_Position; }
 
 Voxel Chunk::QGetVoxel(const VoxelPosition& position) const
@@ -30,4 +35,10 @@ Voxel Chunk::QGetVoxel(const VoxelPosition& position) const
 void Chunk::QSetVoxel(const VoxelPosition& position, Voxel voxel)
 {
     m_Data.at(PositionToIndex(position)) = voxel;
+}
+
+Voxel Chunk::GetVoxel(const VoxelPosition& position) const
+{
+    if (PositionInBounds(position)) return QGetVoxel(position);
+    return m_ChunkManager.GetVoxel(LocalVoxelToGlobal(m_Position, position));
 }

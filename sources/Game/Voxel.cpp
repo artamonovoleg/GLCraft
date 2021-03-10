@@ -15,6 +15,8 @@ VoxelDataManager::VoxelDataManager()
     m_SpriteData[Voxel::Ground].sprites = { 2, 2, 2, 2, 2, 2 };
     m_SpriteData[Voxel::Sand].sprites   = { 3, 3, 3, 3, 3, 3 };
     m_SpriteData[Voxel::Glass].sprites  = { 4, 4, 4, 4, 4, 4 };
+
+    m_Transparent.insert(Voxel::Glass);
 }
 
 const std::vector<glm::ivec3>& VoxelDataManager::GetVertices(Face face) const
@@ -28,4 +30,9 @@ std::pair<float, float> VoxelDataManager::GetUV(Voxel voxel, Face face) const
     float u = (sprite % SpritesInSide) * UVSize;
     float v = (sprite / SpritesInSide) * UVSize;
     return { u, v };
+}
+
+bool VoxelDataManager::IsTransparent(Voxel voxel) const
+{
+    return (m_Transparent.find(voxel) != m_Transparent.cend());
 }

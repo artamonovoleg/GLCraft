@@ -19,5 +19,5 @@ struct Mesh
 
     Mesh();
     void Load();
-    void Draw();
+    void Draw() const;
 };

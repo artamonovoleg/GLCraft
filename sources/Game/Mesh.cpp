@@ -21,7 +21,7 @@ void Mesh::Load()
     ib->Map(indices.data(), indices.size() * sizeof(indices.at(0)));
 }
 
-void Mesh::Draw()
+void Mesh::Draw() const
 {
     va->Bind();
     glDrawElements(GL_TRIANGLES, ib->GetCount(), GL_UNSIGNED_INT, nullptr);

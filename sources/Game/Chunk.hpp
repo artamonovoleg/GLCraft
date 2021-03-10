@@ -15,6 +15,7 @@ class Chunk
         std::array<Voxel, ChunkVolume> m_Data;
 
         static size_t PositionToIndex(const VoxelPosition& position);
+        static bool PositionInBounds(const VoxelPosition& position);
     public:
         Chunk(const ChunkManager& chunkManager, const VoxelPosition& position);
 
@@ -22,4 +23,6 @@ class Chunk
 
         Voxel QGetVoxel(const VoxelPosition& position) const;
         void QSetVoxel(const VoxelPosition& position, Voxel voxel);
+
+        Voxel GetVoxel(const VoxelPosition& position) const;
 };
