@@ -20,6 +20,7 @@ set(SOURCES ./Engine/Engine.cpp
             ./Game/Mesh.cpp
             ./Game/Voxel.cpp
             ./Game/Chunk.cpp
+            ./Game/ChunkManager.cpp
             ./main.cpp)
 
 add_executable(GLCraft ${SOURCES})

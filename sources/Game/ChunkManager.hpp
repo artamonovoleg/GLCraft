@@ -18,5 +18,7 @@ class ChunkManager
     public:
         ChunkManager(const Camera& camera);
 
+        const Chunk& GetChunk(const VoxelPosition& position) const;
+        
         const ChunkMap& GetChunkMap() const { return m_Chunks; }
 };

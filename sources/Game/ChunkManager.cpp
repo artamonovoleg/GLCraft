@@ -13,3 +13,8 @@ ChunkManager::ChunkManager(const Camera& camera)
         }
     }
 }
+
+const Chunk& ChunkManager::GetChunk(const VoxelPosition& position) const
+{
+    
+}
