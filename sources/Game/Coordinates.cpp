@@ -9,11 +9,12 @@ VoxelPosition ToVoxelPosition(const glm::vec3& position)
     return { static_cast<int>(std::floor(x)), static_cast<int>(std::floor(y)), static_cast<int>(std::floor(z)) };
 }
 
-VoxelPosition ToChunkPosition(const VoxelPosition& position)
+ChunkPosition ToChunkPosition(const VoxelPosition& position)
 {
-    return {(position.x < 0) ? (position.x - ChunkSize) / ChunkSize : position.x / ChunkSize,
-            (position.y < 0) ? (position.y - ChunkSize) / ChunkSize : position.y / ChunkSize,
-            (position.z < 0) ? (position.z - ChunkSize) / ChunkSize : position.z / ChunkSize };
+    // (1, 1, -3) -> (0, 0, -2) wrong
+    return {(position.x < 0) ? ((position.x - ChunkSize) / ChunkSize) : (position.x / ChunkSize),
+            (position.y < 0) ? ((position.y - ChunkSize) / ChunkSize) : (position.y / ChunkSize),
+            (position.z < 0) ? ((position.z - ChunkSize) / ChunkSize) : (position.z / ChunkSize) };
 }
 
 VoxelPosition GlobalVoxelToLocal(const VoxelPosition& position)
@@ -23,7 +24,7 @@ VoxelPosition GlobalVoxelToLocal(const VoxelPosition& position)
             (ChunkSize + (position.z % ChunkSize)) % ChunkSize };
 }
 
-VoxelPosition LocalVoxelToGlobal(const VoxelPosition& chunkPosition, const VoxelPosition& voxelPosition)
+VoxelPosition LocalVoxelToGlobal(const ChunkPosition& chunkPosition, const VoxelPosition& voxelPosition)
 {
     return {chunkPosition.x * ChunkSize + voxelPosition.x,
             chunkPosition.y * ChunkSize + voxelPosition.y,

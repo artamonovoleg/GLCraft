@@ -7,7 +7,7 @@
 
 class Camera;
 
-using ChunkMap = std::unordered_map<VoxelPosition, Chunk>;
+using ChunkMap = std::unordered_map<ChunkPosition, Chunk>;
 
 class ChunkManager
 {
@@ -18,14 +18,14 @@ class ChunkManager
     public:
         ChunkManager(const Camera& camera);
 
-        Chunk& AddChunk(const VoxelPosition& position);
-        const Chunk& GetChunk(const VoxelPosition& position) const;
+        Chunk& AddChunk(const ChunkPosition& position);
+        const Chunk& GetChunk(const ChunkPosition& position) const;
         
         Voxel GetVoxel(const VoxelPosition& position) const;
         void SetVoxel(const VoxelPosition& position, Voxel voxel);
 
         /// Take global voxel position and check is chunk exist on position
-        bool HasChunk(const VoxelPosition& position) const;
+        bool HasChunk(const ChunkPosition& position) const;
 
         void Process();
 

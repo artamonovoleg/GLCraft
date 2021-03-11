@@ -17,6 +17,7 @@
 #include "ChunkManager.hpp"
 #include "Mesh.hpp"
 #include "MeshBuilder.hpp"
+#include "Tests.hpp"
 
 int main()
 {
@@ -37,11 +38,13 @@ int main()
         Shader shader("../shaders/vert.glsl", "../shaders/frag.glsl");
         shader.SetInt("texture", 0);
 
+        RunTest();
+        
         Mesh mesh;
         ChunkManager manager(camera);
-        manager.AddChunk({ 0, 0, -1 });
-        manager.AddChunk({ 0, 0, -2 });
-
+        // manager.AddChunk({ 0, 0, -1 });
+        manager.AddChunk(ToChunkPosition({ 0, 0, -1 })).QSetVoxel({ 1, 1, 0 }, Voxel::Grass);
+        manager.SetVoxel(LocalVoxelToGlobal({ 0, 0, -1 }, { 0, 0, 0 }), Voxel::Air);
         MeshBuilder meshBuilder(manager);
 
         while (!keyboard.GetKey(GLFW_KEY_ESCAPE))
@@ -57,7 +60,7 @@ int main()
 
             camera.Update(deltaTime);
             // manager.Process();
-            meshBuilder.Process();
+            // meshBuilder.Process();
 
             window->Clear();
 
@@ -71,8 +74,7 @@ int main()
             
             if (keyboard.GetKeyDown(GLFW_KEY_F))
             {
-                manager.SetVoxel({ 2, 2, 2 }, Voxel::Air);
-                manager.SetVoxel({ 0, 0, 0 }, Voxel::Air);
+                manager.SetVoxel(LocalVoxelToGlobal({ 0, 0, -1 }, { 0, 0, 0 }), Voxel::Air);
             }
             
             crosshair.Draw();

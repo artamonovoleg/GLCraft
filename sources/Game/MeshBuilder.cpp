@@ -47,22 +47,22 @@ void MeshBuilder::BuildMesh(Mesh& mesh, const Chunk& chunk)
         {
             for (int x = 0; x < ChunkSize; ++x)
             {
-                auto& position = chunk.GetPosition();
+                auto position = LocalVoxelToGlobal(chunk.GetPosition(), VoxelPosition(x, y, z));
                 auto voxel = chunk.QGetVoxel({ x, y, z });
                 if (voxel != Voxel::Air)
                 {
                     if (m_ChunkManager.GetVoxel(LocalVoxelToGlobal(chunk.GetPosition(), VoxelPosition(x - 1, y, z))) == Voxel::Air)
-                        PushFace(mesh, VoxelPosition(x, y, z) + position * ChunkSize, voxel, Face::Left);
+                        PushFace(mesh, position, voxel, Face::Left);
                     if (m_ChunkManager.GetVoxel(LocalVoxelToGlobal(chunk.GetPosition(), VoxelPosition(x + 1, y, z))) == Voxel::Air)
-                        PushFace(mesh, VoxelPosition(x, y, z) + position * ChunkSize, voxel, Face::Right);
+                        PushFace(mesh, position, voxel, Face::Right);
                     if (m_ChunkManager.GetVoxel(LocalVoxelToGlobal(chunk.GetPosition(), VoxelPosition(x, y, z + 1))) == Voxel::Air)
-                        PushFace(mesh, VoxelPosition(x, y, z) + position * ChunkSize, voxel, Face::Front);
+                        PushFace(mesh, position, voxel, Face::Front);
                     if (m_ChunkManager.GetVoxel(LocalVoxelToGlobal(chunk.GetPosition(), VoxelPosition(x, y, z - 1))) == Voxel::Air)
-                        PushFace(mesh, VoxelPosition(x, y, z) + position * ChunkSize, voxel, Face::Back);
+                        PushFace(mesh, position, voxel, Face::Back);
                     if (m_ChunkManager.GetVoxel(LocalVoxelToGlobal(chunk.GetPosition(), VoxelPosition(x, y - 1, z))) == Voxel::Air)
-                        PushFace(mesh, VoxelPosition(x, y, z) + position * ChunkSize, voxel, Face::Bottom);
+                        PushFace(mesh, position, voxel, Face::Bottom);
                     if (m_ChunkManager.GetVoxel(LocalVoxelToGlobal(chunk.GetPosition(), VoxelPosition(x, y + 1, z))) == Voxel::Air)
-                        PushFace(mesh, VoxelPosition(x, y, z) + position * ChunkSize, voxel, Face::Top);
+                        PushFace(mesh, position, voxel, Face::Top);
                 }
             }
         }
