@@ -6,6 +6,9 @@
 
 using VoxelPosition = glm::ivec3;
 
+/// Convert world coordinates to voxel coordinates
+VoxelPosition ToVoxelPosition(const glm::vec3& position);
+
 /// Convert world voxel position to chunk position
 VoxelPosition ToChunkPosition(const VoxelPosition& position);
 

@@ -73,18 +73,18 @@ void MeshBuilder::Process()
 {
     for (const auto& [position, chunk] : m_ChunkManager.GetChunkMap())
     {
+        if (m_Meshes.find(chunk.GetPosition()) == m_Meshes.end())
+        {
+            auto& mesh = m_Meshes.emplace(std::make_pair(position, Mesh{})).first->second;
+            BuildMesh(mesh, chunk);
+            mesh.Load();
+        }
+        else
         if (chunk.Modified())
         {
             auto& mesh = m_Meshes.find(chunk.GetPosition())->second;
             mesh.vertices.clear();
             mesh.indices.clear();
-            BuildMesh(mesh, chunk);
-            mesh.Load();
-        }
-        else
-        if (m_Meshes.find(position) == m_Meshes.end())
-        {
-            auto& mesh = m_Meshes.emplace(std::make_pair(position, Mesh{})).first->second;
             BuildMesh(mesh, chunk);
             mesh.Load();
         }

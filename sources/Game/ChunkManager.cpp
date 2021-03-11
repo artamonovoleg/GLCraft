@@ -1,5 +1,6 @@
 #include "ChunkManager.hpp"
 #include "Chunk.hpp"
+#include "Camera.hpp"
 
 ChunkManager::ChunkManager(const Camera& camera)
     : m_Camera(camera)
@@ -44,4 +45,18 @@ Voxel ChunkManager::GetVoxel(const VoxelPosition& position) const
 void ChunkManager::SetVoxel(const VoxelPosition& position, Voxel voxel)
 {
     AddChunk(ToChunkPosition(position)).QSetVoxel(GlobalVoxelToLocal(position), voxel);        
+}
+
+bool ChunkManager::HasChunk(const VoxelPosition& position) const
+{
+    return m_Chunks.find(ToChunkPosition(position)) != m_Chunks.cend();
+}
+
+void ChunkManager::Process()
+{
+    if (!HasChunk(ToVoxelPosition(m_Camera.GetPosition())))
+    {
+        auto position = ToVoxelPosition(m_Camera.GetPosition());
+        AddChunk(ToChunkPosition(position) - VoxelPosition(0, 1, 0));
+    }
 }

@@ -1,6 +1,5 @@
 #include <vector>
 #include <iostream>
-
 #include <glm/gtc/matrix_transform.hpp>
 #include <glad/glad.h>
 #include <fstream>
@@ -40,6 +39,9 @@ int main()
 
         Mesh mesh;
         ChunkManager manager(camera);
+        manager.AddChunk({ 0, 0, -1 });
+        manager.AddChunk({ 0, 0, -2 });
+
         MeshBuilder meshBuilder(manager);
 
         while (!keyboard.GetKey(GLFW_KEY_ESCAPE))
@@ -54,6 +56,7 @@ int main()
             lastFrame = currentFrame;
 
             camera.Update(deltaTime);
+            // manager.Process();
             meshBuilder.Process();
 
             window->Clear();

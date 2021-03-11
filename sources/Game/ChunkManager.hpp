@@ -24,5 +24,10 @@ class ChunkManager
         Voxel GetVoxel(const VoxelPosition& position) const;
         void SetVoxel(const VoxelPosition& position, Voxel voxel);
 
+        /// Take global voxel position and check is chunk exist on position
+        bool HasChunk(const VoxelPosition& position) const;
+
+        void Process();
+
         const ChunkMap& GetChunkMap() const { return m_Chunks; }
 };
