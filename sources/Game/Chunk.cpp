@@ -9,10 +9,9 @@ Chunk::Chunk(const ChunkManager& chunkManager, const VoxelPosition& position)
         for (int y = 0; y < ChunkSize; ++y)
         {
             for (int x = 0; x < ChunkSize; ++x)
-                QSetVoxel({ x, y, z }, Voxel::Glass);
+                QSetVoxel({ x, y, z }, Voxel::Grass);
         }
     }
-    QSetVoxel({ 1, 1, 1 }, Voxel::Sand);
 }
 
 size_t Chunk::PositionToIndex(const VoxelPosition& position)

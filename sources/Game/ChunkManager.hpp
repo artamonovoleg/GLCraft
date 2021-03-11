@@ -15,6 +15,9 @@ class ChunkManager
         const Camera& m_Camera;
 
         ChunkMap m_Chunks;
+
+        void AddAroundCamera();
+        void RemoveOld();
     public:
         ChunkManager(const Camera& camera);
 

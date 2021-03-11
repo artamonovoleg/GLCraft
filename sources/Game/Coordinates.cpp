@@ -11,10 +11,14 @@ VoxelPosition ToVoxelPosition(const glm::vec3& position)
 
 ChunkPosition ToChunkPosition(const VoxelPosition& position)
 {
-    // (1, 1, -3) -> (0, 0, -2) wrong
-    return {(position.x < 0) ? ((position.x - ChunkSize) / ChunkSize) : (position.x / ChunkSize),
-            (position.y < 0) ? ((position.y - ChunkSize) / ChunkSize) : (position.y / ChunkSize),
-            (position.z < 0) ? ((position.z - ChunkSize) / ChunkSize) : (position.z / ChunkSize) };
+    int x = position.x;
+    int y = position.y;
+    int z = position.z;
+    return {
+        x < 0 ? ((++x - ChunkSize) / ChunkSize) : (x / ChunkSize),
+        y < 0 ? ((++y - ChunkSize) / ChunkSize) : (y / ChunkSize),
+        z < 0 ? ((++z - ChunkSize) / ChunkSize) : (z / ChunkSize),
+    };
 }
 
 VoxelPosition GlobalVoxelToLocal(const VoxelPosition& position)

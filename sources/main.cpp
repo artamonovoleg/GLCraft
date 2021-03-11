@@ -17,7 +17,6 @@
 #include "ChunkManager.hpp"
 #include "Mesh.hpp"
 #include "MeshBuilder.hpp"
-#include "Tests.hpp"
 
 int main()
 {
@@ -28,9 +27,9 @@ int main()
         auto& window = Engine::GetWindow();
         glm::mat4 proj = glm::perspective(glm::radians(45.0f), window->GetWidth() / static_cast<float>(window->GetHeight()), 0.1f, 30.0f);
 
-        Camera camera({ 0, 0, 0 });
+        Camera camera({ 0, 1, 0 });
         
-        Skybox skybox("../assets/skybox/", "jpg");
+        Skybox skybox("../assets/skybox_sun/", "bmp");
 
         Crosshair crosshair;
 
@@ -38,13 +37,8 @@ int main()
         Shader shader("../shaders/vert.glsl", "../shaders/frag.glsl");
         shader.SetInt("texture", 0);
 
-        RunTest();
-        
         Mesh mesh;
         ChunkManager manager(camera);
-        // manager.AddChunk({ 0, 0, -1 });
-        manager.AddChunk(ToChunkPosition({ 0, 0, -1 })).QSetVoxel({ 1, 1, 0 }, Voxel::Grass);
-        manager.SetVoxel(LocalVoxelToGlobal({ 0, 0, -1 }, { 0, 0, 0 }), Voxel::Air);
         MeshBuilder meshBuilder(manager);
 
         while (!keyboard.GetKey(GLFW_KEY_ESCAPE))
@@ -59,8 +53,8 @@ int main()
             lastFrame = currentFrame;
 
             camera.Update(deltaTime);
-            // manager.Process();
-            // meshBuilder.Process();
+            meshBuilder.Process();
+            manager.Process();
 
             window->Clear();
 
@@ -71,11 +65,6 @@ int main()
 
             for (const auto& mesh : meshBuilder.GetMeshes())
                 mesh.second.Draw();
-            
-            if (keyboard.GetKeyDown(GLFW_KEY_F))
-            {
-                manager.SetVoxel(LocalVoxelToGlobal({ 0, 0, -1 }, { 0, 0, 0 }), Voxel::Air);
-            }
             
             crosshair.Draw();
             skybox.Draw(camera.GetProjectionMatrix(), camera.GetViewMatrix());
