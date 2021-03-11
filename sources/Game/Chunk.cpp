@@ -35,6 +35,7 @@ Voxel Chunk::QGetVoxel(const VoxelPosition& position) const
 void Chunk::QSetVoxel(const VoxelPosition& position, Voxel voxel)
 {
     m_Data.at(PositionToIndex(position)) = voxel;
+    m_WasModified = true;
 }
 
 Voxel Chunk::GetVoxel(const VoxelPosition& position) const

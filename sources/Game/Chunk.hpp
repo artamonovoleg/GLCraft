@@ -14,10 +14,14 @@ class Chunk
         VoxelPosition m_Position;
         std::array<Voxel, ChunkVolume> m_Data;
 
+        bool m_WasModified = false;
+
         static size_t PositionToIndex(const VoxelPosition& position);
         static bool PositionInBounds(const VoxelPosition& position);
     public:
         Chunk(const ChunkManager& chunkManager, const VoxelPosition& position);
+
+        bool Modified() const { return m_WasModified; }
 
         const VoxelPosition& GetPosition() const;
 
