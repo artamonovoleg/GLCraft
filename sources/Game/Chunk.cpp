@@ -4,12 +4,16 @@
 Chunk::Chunk(const ChunkManager& chunkManager, const VoxelPosition& position)
     : m_ChunkManager(chunkManager), m_Position(position)
 {
-    for (int z = 0; z < ChunkSize; ++z)
+    m_Data.fill(Voxel::Air);
+    if (m_Position.y < 0)
     {
-        for (int y = 0; y < ChunkSize; ++y)
+        for (int z = 0; z < ChunkSize; ++z)
         {
-            for (int x = 0; x < ChunkSize; ++x)
-                QSetVoxel({ x, y, z }, Voxel::Grass);
+            for (int y = 0; y < ChunkSize; ++y)
+            {
+                for (int x = 0; x < ChunkSize; ++x)
+                    QSetVoxel({ x, y, z }, Voxel::Grass);
+            }
         }
     }
 }
