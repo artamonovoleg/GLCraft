@@ -67,7 +67,7 @@ bool ChunkManager::HasChunk(const ChunkPosition& position) const
 
 void ChunkManager::RemoveOld()
 {
-    auto it = std::erase_if(m_Chunks, [&](const auto& p) 
+    std::erase_if(m_Chunks, [&](const auto& p) 
     {
         auto position = ToChunkPosition(ToVoxelPosition(m_Camera.GetPosition()));
         bool res = (std::abs(position.x - p.second.GetPosition().x) > 3) || (std::abs(position.z - p.second.GetPosition().z) > 3);
