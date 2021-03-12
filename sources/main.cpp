@@ -109,7 +109,6 @@ int main()
         auto& keyboard = Engine::GetEventSystem()->GetKeyboard();
         auto& mouse = Engine::GetEventSystem()->GetMouse();
         auto& window = Engine::GetWindow();
-        glm::mat4 proj = glm::perspective(glm::radians(45.0f), window->GetWidth() / static_cast<float>(window->GetHeight()), 0.1f, 30.0f);
 
         Camera camera({ 0, 1, 0 });
         

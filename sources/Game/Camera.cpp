@@ -5,7 +5,7 @@
 Camera::Camera(const glm::vec3& position)
     : m_Position(position)
 {
-    m_Projection = glm::perspective(glm::radians(45.0f), Engine::GetWindow()->GetWidth() / static_cast<float>(Engine::GetWindow()->GetHeight()), 0.1f, 30.0f);
+    m_Projection = glm::perspective(glm::radians(45.0f), Engine::GetWindow()->GetWidth() / static_cast<float>(Engine::GetWindow()->GetHeight()), 0.1f, 90.0f);
     m_View = glm::lookAt(m_Position, m_Position - m_ViewDirection, m_Up);
 }
 

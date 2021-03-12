@@ -80,7 +80,7 @@ void MeshBuilder::Process()
             mesh.Load();
         }
         else
-        if (chunk.Modified())
+        if (chunk.Modified(false))
         {
             auto& mesh = m_Meshes.find(chunk.GetPosition())->second;
             mesh.vertices.clear();

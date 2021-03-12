@@ -21,11 +21,11 @@ class Chunk
     public:
         Chunk(const ChunkManager& chunkManager, const VoxelPosition& position);
 
-        bool Modified() const
+        bool Modified(bool status) const
         { 
-            auto res = m_WasModified;
-            m_WasModified = false;
-            return res; 
+            bool old = m_WasModified;
+            m_WasModified = status;
+            return old;
         }
 
         const VoxelPosition& GetPosition() const;

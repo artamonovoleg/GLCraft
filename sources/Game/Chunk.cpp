@@ -37,8 +37,24 @@ Voxel Chunk::QGetVoxel(const VoxelPosition& position) const
 
 void Chunk::QSetVoxel(const VoxelPosition& position, Voxel voxel)
 {
+    if (voxel == Voxel::Air)
+    {
+        if (position.x == 0)
+            m_ChunkManager.GetChunk(m_Position - ChunkPosition(1, 0, 0)).Modified(true);
+        if (position.x == ChunkSize - 1)
+            m_ChunkManager.GetChunk(m_Position - ChunkPosition(-1, 0, 0)).Modified(true);
+        if (position.z == 0)
+            m_ChunkManager.GetChunk(m_Position - ChunkPosition(0, 0, 1)).Modified(true);
+        if (position.z == ChunkSize - 1)
+            m_ChunkManager.GetChunk(m_Position - ChunkPosition(0, 0, -1)).Modified(true);
+        if (position.y == 0)
+            m_ChunkManager.GetChunk(m_Position - ChunkPosition(0, 0, 1)).Modified(true);
+        if (position.y == ChunkSize - 1)
+            m_ChunkManager.GetChunk(m_Position - ChunkPosition(0, 0, -1)).Modified(true);
+    }
+
     m_Data.at(PositionToIndex(position)) = voxel;
-    m_WasModified = true;
+    Modified(true);
 }
 
 Voxel Chunk::GetVoxel(const VoxelPosition& position) const

@@ -17,7 +17,7 @@ class Camera
         float m_Yaw = -90.0f;
         float m_Pitch = 0.0f;
 
-        const float m_Speed = 4.5f;
+        const float m_Speed = 10.5f;
 
         void RecalculateViewMatrix();
         void RecalculateVectors();
