@@ -104,7 +104,7 @@ std::optional<RaycastResult> Raycast(const ChunkManager& manager, const glm::vec
 
 int main()
 {
-    Engine::Init({ 1000, 900, "Minecraft" });
+    Engine::Init({ 800, 600, "Minecraft" });
     {
         auto& keyboard = Engine::GetEventSystem()->GetKeyboard();
         auto& mouse = Engine::GetEventSystem()->GetMouse();
@@ -123,6 +123,8 @@ int main()
         Mesh mesh;
         ChunkManager manager(camera);
         MeshBuilder meshBuilder(manager);
+
+        static Voxel currentBuildVoxel = Voxel::Glass;
 
         while (!keyboard.GetKey(GLFW_KEY_ESCAPE))
         {
@@ -147,14 +149,25 @@ int main()
 
             for (const auto& mesh : meshBuilder.GetMeshes())
                 mesh.second.Draw();
+            
             auto res = Raycast(manager, camera.GetPosition(), camera.GetViewDirection(), 10.0f);
+
             if (res.has_value())
             {
                 if (mouse.GetButtonDown(GLFW_MOUSE_BUTTON_LEFT))
                     manager.SetVoxel(res->end, Voxel::Air);
                 if (mouse.GetButtonDown(GLFW_MOUSE_BUTTON_RIGHT))
-                    manager.SetVoxel(res->end + res->norm, Voxel::Glass);
+                    manager.SetVoxel(res->end + res->norm, currentBuildVoxel);
             }
+
+            if (keyboard.GetKeyDown(GLFW_KEY_E))
+            {
+                int next = (static_cast<int>(currentBuildVoxel) + 1) % 6;
+                if (next == 0) next++;
+                currentBuildVoxel = static_cast<Voxel>(next);
+                std::cout << (int) currentBuildVoxel << std::endl;
+            }
+
             crosshair.Draw();
             skybox.Draw(camera.GetProjectionMatrix(), camera.GetViewMatrix());
 

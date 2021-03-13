@@ -15,6 +15,7 @@ VoxelDataManager::VoxelDataManager()
     m_SpriteData[Voxel::Ground].sprites = { 3, 3, 3, 3, 3, 3 };
     m_SpriteData[Voxel::Sand].sprites   = { 4, 4, 4, 4, 4, 4 };
     m_SpriteData[Voxel::Glass].sprites  = { 5, 5, 5, 5, 5, 5 };
+    m_SpriteData[Voxel::Wood].sprites   = { 6, 6, 7, 7, 6, 6 };
 
     m_Transparent.insert(Voxel::Glass);
 }

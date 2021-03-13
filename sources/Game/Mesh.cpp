@@ -9,8 +9,9 @@ Mesh::Mesh()
     va = std::make_shared<VertexArray>();
     vb = std::make_shared<VertexBuffer>();
     VertexBuffersLayout layout;
-    layout.Push<float>(3, 5);
-    layout.Push<float>(2, 5);
+    layout.Push<float>(3, 6);
+    layout.Push<float>(2, 6);
+    layout.Push<float>(1, 6);
     ib = std::make_shared<IndexBuffer>();
 }
 
