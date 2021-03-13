@@ -12,59 +12,6 @@ EventSystem::EventSystem()
 
 void EventSystem::SetupCallbacks(GLFWwindow* pWindow)
 {
-    glfwSetKeyCallback(pWindow, [](GLFWwindow*, int key, int scancode, int action, int mods)
-    {
-        switch (action)
-        {
-            case GLFW_PRESS:
-                Engine::GetEventSystem()->GetKeyboard().m_Keys[key] = PressState::Press;
-                break;
-            case GLFW_RELEASE:
-                Engine::GetEventSystem()->GetKeyboard().m_Keys[key] = PressState::Release;
-                break;
-            default:
-                break;
-        }
-    });
-
-    glfwSetMouseButtonCallback(pWindow, [](GLFWwindow*, int button, int action, int mods)
-    {
-        switch (action)
-        {
-            case GLFW_PRESS:
-                Engine::GetEventSystem()->GetMouse().m_Buttons[button] = PressState::Press;
-                break;
-            case GLFW_RELEASE:
-                Engine::GetEventSystem()->GetMouse().m_Buttons[button] = PressState::Release;
-                break;
-            default:
-                break;
-        }
-    });
-
-    glfwSetCursorPosCallback(pWindow, [](GLFWwindow*, double xpos, double ypos)
-    {
-        auto& mouse = Engine::GetEventSystem()->GetMouse();
-        static bool firstMouse = true;
-        static float lastX;
-        static float lastY;
-
-        mouse.m_Position = glm::vec3(static_cast<float>(xpos), static_cast<float>(ypos), 0);
-
-        if (firstMouse)
-        {
-            lastX = xpos;
-            lastY = ypos;
-            firstMouse = false;
-        }
-
-        mouse.m_OffsetX = xpos - lastX;
-        mouse.m_OffsetY = lastY - ypos;
-
-        lastX = xpos;
-        lastY = ypos;
-    });
-
     glfwSetWindowSizeCallback(pWindow, [](GLFWwindow*, int width, int height)
     {
         Engine::GetWindow()->m_Width = width;

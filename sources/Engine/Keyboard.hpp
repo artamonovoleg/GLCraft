@@ -7,13 +7,9 @@
 class Keyboard
 {
     private:
-        friend class EventSystem;
         mutable PressState m_Keys[GLFW_KEY_LAST];
     public:
-        Keyboard()
-        {
-            std::fill(m_Keys, m_Keys + GLFW_KEY_LAST, PressState::None);
-        }
+        Keyboard();
 
         bool GetKeyDown(int key) const
         {

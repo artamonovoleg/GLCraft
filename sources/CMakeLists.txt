@@ -13,6 +13,8 @@ include_directories(../third_party/glfw/include
 set(SOURCES ./Engine/Engine.cpp
             ./Engine/Window.cpp
             ./Engine/EventSystem.cpp
+            ./Engine/Keyboard.cpp
+            ./Engine/Mouse.cpp
             ./Engine/Shader.cpp
             ./Game/Camera.cpp
             ./Game/Skybox.cpp

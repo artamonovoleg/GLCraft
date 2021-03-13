@@ -43,21 +43,18 @@ void Camera::Update(float dt)
     float xoffset = mouse.GetOffsetX();
     float yoffset = mouse.GetOffsetY();
 
-    if (xoffset != 0 || yoffset != 0)
-    {
-        xoffset *= 0.1;
-        yoffset *= 0.1;
+    xoffset *= 0.1;
+    yoffset *= 0.1;
 
-        m_Yaw   += xoffset;
-        m_Pitch += yoffset;
+    m_Yaw   += xoffset;
+    m_Pitch += yoffset;
 
-        if (m_Pitch > 89.0f)
-            m_Pitch = 89.0f;
-        if (m_Pitch < -89.0f)
-            m_Pitch = -89.0f;
+    if (m_Pitch > 89.0f)
+        m_Pitch = 89.0f;
+    if (m_Pitch < -89.0f)
+        m_Pitch = -89.0f;
 
-        RecalculateVectors();
-    }
+    RecalculateVectors();
 
     RecalculateViewMatrix();
 }

@@ -7,19 +7,14 @@
 class Mouse
 {
     private:
-        friend class EventSystem;
-
         mutable PressState  m_Buttons[3];
         glm::vec3   m_Position;
 
         mutable float m_OffsetX = 0.0f;
         mutable float m_OffsetY = 0.0f;
     public:
-        Mouse()
-        {
-            std::fill(m_Buttons, m_Buttons + 3, PressState::None);
-        }
-        
+        Mouse();
+                
         bool GetButton(int button) const { return m_Buttons[button] == PressState::Press; }
 
         bool GetButtonDown(int button) const 
