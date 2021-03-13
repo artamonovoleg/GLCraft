@@ -17,6 +17,8 @@ class MeshBuilder
         void BuildMesh(Mesh& mesh, const Chunk& chunk);
         void PushIndices(std::vector<unsigned int>& indices);
         void PushFace(Mesh& mesh, const VoxelPosition& position, Voxel voxel, Face face);
+        
+        std::array<Voxel, 6> GetNeighbourVoxels(const Chunk& chunk, const VoxelPosition& position);
     public:
         MeshBuilder(const ChunkManager& chunkManager);
         

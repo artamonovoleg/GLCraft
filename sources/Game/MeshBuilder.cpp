@@ -49,19 +49,32 @@ void MeshBuilder::BuildMesh(Mesh& mesh, const Chunk& chunk)
             {
                 auto position = LocalVoxelToGlobal(chunk.GetPosition(), VoxelPosition(x, y, z));
                 auto voxel = chunk.QGetVoxel({ x, y, z });
+                auto neighbours = GetNeighbourVoxels(chunk, { x, y, z });
                 if (voxel != Voxel::Air)
                 {
-                    if (m_ChunkManager.GetVoxel(LocalVoxelToGlobal(chunk.GetPosition(), VoxelPosition(x - 1, y, z))) == Voxel::Air)
+                    if (neighbours.at(static_cast<int>(Face::Left)) == Voxel::Air
+                    || m_VoxelDataManager.IsTransparent(neighbours.at(static_cast<int>(Face::Left)))
+                    && !m_VoxelDataManager.IsTransparent(voxel))
                         PushFace(mesh, position, voxel, Face::Left);
-                    if (m_ChunkManager.GetVoxel(LocalVoxelToGlobal(chunk.GetPosition(), VoxelPosition(x + 1, y, z))) == Voxel::Air)
+                    if (neighbours.at(static_cast<int>(Face::Right)) == Voxel::Air
+                    || m_VoxelDataManager.IsTransparent(neighbours.at(static_cast<int>(Face::Right)))
+                    && !m_VoxelDataManager.IsTransparent(voxel))
                         PushFace(mesh, position, voxel, Face::Right);
-                    if (m_ChunkManager.GetVoxel(LocalVoxelToGlobal(chunk.GetPosition(), VoxelPosition(x, y, z + 1))) == Voxel::Air)
+                    if (neighbours.at(static_cast<int>(Face::Front)) == Voxel::Air
+                    || m_VoxelDataManager.IsTransparent(neighbours.at(static_cast<int>(Face::Front)))
+                    && !m_VoxelDataManager.IsTransparent(voxel))
                         PushFace(mesh, position, voxel, Face::Front);
-                    if (m_ChunkManager.GetVoxel(LocalVoxelToGlobal(chunk.GetPosition(), VoxelPosition(x, y, z - 1))) == Voxel::Air)
+                    if (neighbours.at(static_cast<int>(Face::Back)) == Voxel::Air
+                    || m_VoxelDataManager.IsTransparent(neighbours.at(static_cast<int>(Face::Back)))
+                    && !m_VoxelDataManager.IsTransparent(voxel))
                         PushFace(mesh, position, voxel, Face::Back);
-                    if (m_ChunkManager.GetVoxel(LocalVoxelToGlobal(chunk.GetPosition(), VoxelPosition(x, y - 1, z))) == Voxel::Air)
+                    if (neighbours.at(static_cast<int>(Face::Bottom)) == Voxel::Air
+                    || m_VoxelDataManager.IsTransparent(neighbours.at(static_cast<int>(Face::Bottom)))
+                    && !m_VoxelDataManager.IsTransparent(voxel))
                         PushFace(mesh, position, voxel, Face::Bottom);
-                    if (m_ChunkManager.GetVoxel(LocalVoxelToGlobal(chunk.GetPosition(), VoxelPosition(x, y + 1, z))) == Voxel::Air)
+                    if (neighbours.at(static_cast<int>(Face::Top)) == Voxel::Air
+                    || m_VoxelDataManager.IsTransparent(neighbours.at(static_cast<int>(Face::Top)))
+                    && !m_VoxelDataManager.IsTransparent(voxel))
                         PushFace(mesh, position, voxel, Face::Top);
                 }
             }
@@ -89,4 +102,17 @@ void MeshBuilder::Process()
             mesh.Load();
         }
     }
+}
+
+std::array<Voxel, 6> MeshBuilder::GetNeighbourVoxels(const Chunk& chunk, const VoxelPosition& position)
+{
+    return std::array<Voxel, 6>
+    {
+        m_ChunkManager.GetVoxel(LocalVoxelToGlobal(chunk.GetPosition(), VoxelPosition(position.x - 1, position.y, position.z))),
+        m_ChunkManager.GetVoxel(LocalVoxelToGlobal(chunk.GetPosition(), VoxelPosition(position.x + 1, position.y, position.z))),
+        m_ChunkManager.GetVoxel(LocalVoxelToGlobal(chunk.GetPosition(), VoxelPosition(position.x, position.y - 1, position.z))),
+        m_ChunkManager.GetVoxel(LocalVoxelToGlobal(chunk.GetPosition(), VoxelPosition(position.x, position.y + 1, position.z))),
+        m_ChunkManager.GetVoxel(LocalVoxelToGlobal(chunk.GetPosition(), VoxelPosition(position.x, position.y, position.z + 1))),
+        m_ChunkManager.GetVoxel(LocalVoxelToGlobal(chunk.GetPosition(), VoxelPosition(position.x, position.y, position.z - 1)))
+    };
 }

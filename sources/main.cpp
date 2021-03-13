@@ -104,7 +104,7 @@ std::optional<RaycastResult> Raycast(const ChunkManager& manager, const glm::vec
 
 int main()
 {
-    Engine::Init({ 800, 600, "Minecraft" });
+    Engine::Init({ 1000, 900, "Minecraft" });
     {
         auto& keyboard = Engine::GetEventSystem()->GetKeyboard();
         auto& mouse = Engine::GetEventSystem()->GetMouse();

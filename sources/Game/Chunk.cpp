@@ -12,7 +12,12 @@ Chunk::Chunk(const ChunkManager& chunkManager, const VoxelPosition& position)
             for (int y = 0; y < ChunkSize; ++y)
             {
                 for (int x = 0; x < ChunkSize; ++x)
-                    QSetVoxel({ x, y, z }, Voxel::Grass);
+                {
+                    if (y == ChunkSize - 1)
+                        QSetVoxel({ x, y, z }, Voxel::Grass);
+                    else
+                        QSetVoxel({ x, y, z }, Voxel::Ground);
+                }
             }
         }
     }

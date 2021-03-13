@@ -12,7 +12,7 @@ VoxelDataManager::VoxelDataManager()
 
     m_SpriteData[Voxel::Air].sprites    = { 0, 0, 0, 0, 0, 0 };
     m_SpriteData[Voxel::Grass].sprites  = { 2, 2, 3, 1, 2, 2 };
-    m_SpriteData[Voxel::Ground].sprites = { 2, 2, 2, 2, 2, 2 };
+    m_SpriteData[Voxel::Ground].sprites = { 3, 3, 3, 3, 3, 3 };
     m_SpriteData[Voxel::Sand].sprites   = { 4, 4, 4, 4, 4, 4 };
     m_SpriteData[Voxel::Glass].sprites  = { 5, 5, 5, 5, 5, 5 };
 
