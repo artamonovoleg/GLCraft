@@ -92,7 +92,7 @@ void MeshBuilder::Process()
     }
 }
 
-std::array<Voxel, 6> MeshBuilder::GetNeighbourVoxels(const Chunk& chunk, const VoxelPosition& position)
+std::array<Voxel, 6> MeshBuilder::GetNeighbourVoxels(const Chunk& chunk, const VoxelPosition& position) const
 {
     return std::array<Voxel, 6>
     {
@@ -105,7 +105,7 @@ std::array<Voxel, 6> MeshBuilder::GetNeighbourVoxels(const Chunk& chunk, const V
     };
 }
 
-bool MeshBuilder::ShouldPushFace(const std::array<Voxel, 6>& neighbours, Voxel voxel, Face face)
+bool MeshBuilder::ShouldPushFace(const std::array<Voxel, 6>& neighbours, Voxel voxel, Face face) const
 {
     return neighbours.at(static_cast<int>(face)) == Voxel::Air
             || m_VoxelDataManager.IsTransparent(neighbours.at(static_cast<int>(face)));

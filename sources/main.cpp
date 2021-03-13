@@ -137,7 +137,6 @@ int main()
 
             camera.Update(deltaTime);
             meshBuilder.Process();
-            manager.Process();
 
             window->Clear();
 

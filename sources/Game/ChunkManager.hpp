@@ -15,9 +15,6 @@ class ChunkManager
         const Camera& m_Camera;
 
         ChunkMap m_Chunks;
-
-        void AddAroundCamera();
-        void RemoveOld();
     public:
         ChunkManager(const Camera& camera);
 
@@ -29,8 +26,6 @@ class ChunkManager
 
         /// Take global voxel position and check is chunk exist on position
         bool HasChunk(const ChunkPosition& position) const;
-
-        void Process();
 
         const ChunkMap& GetChunkMap() const { return m_Chunks; }
 };

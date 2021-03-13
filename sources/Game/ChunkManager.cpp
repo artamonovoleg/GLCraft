@@ -7,19 +7,12 @@
 ChunkManager::ChunkManager(const Camera& camera)
     : m_Camera(camera)
 {
-    AddAroundCamera();
-}
-
-void ChunkManager::AddAroundCamera()
-{
-    auto start = ToChunkPosition(ToVoxelPosition(m_Camera.GetPosition()));
-    for (int z = start.z - DrawDistance; z < start.z + DrawDistance; ++z)
+    // for test spawn 5 x 5 around camera
+    auto spawnPoint = ToChunkPosition(ToVoxelPosition(m_Camera.GetPosition())) - ChunkPosition(0, 1, 0);
+    for (int z = spawnPoint.z - 5; z < spawnPoint.z + 5; ++z)
     {
-        for (int y = start.y - 1; y < start.y; ++y)
-        {
-            for (int x = start.x - DrawDistance; x < start.x + DrawDistance; ++x)
-                m_Chunks.emplace(std::make_pair(VoxelPosition(x, y, z), Chunk(*this, { x, y, z })));
-        }
+        for (int x = spawnPoint.x - 5; x < spawnPoint.x + 5; ++x)
+            AddChunk({ x, spawnPoint.y, z });
     }
 }
 
@@ -56,31 +49,11 @@ void ChunkManager::SetVoxel(const VoxelPosition& position, Voxel voxel)
     auto local = GlobalVoxelToLocal(position);
     if (it != m_Chunks.cend()) 
         it->second.QSetVoxel(local, voxel);
-    else 
+    else
         AddChunk(chunkPosition).QSetVoxel(local, voxel);
 }
 
 bool ChunkManager::HasChunk(const ChunkPosition& position) const
 {
     return m_Chunks.find(position) != m_Chunks.cend();
-}
-
-void ChunkManager::RemoveOld()
-{
-    std::erase_if(m_Chunks, [&](const auto& p) 
-    {
-        auto position = ToChunkPosition(ToVoxelPosition(m_Camera.GetPosition()));
-        bool res = (std::abs(position.x - p.second.GetPosition().x) > DrawDistance) || (std::abs(position.z - p.second.GetPosition().z) > DrawDistance);
-        return res;
-    });
-}
-
-void ChunkManager::Process()
-{
-    auto position = ToChunkPosition(ToVoxelPosition(m_Camera.GetPosition()));
-    if (!HasChunk(position * DrawDistance) || !HasChunk(position * -DrawDistance))
-    {
-        AddAroundCamera();
-        RemoveOld();
-    }
 }
