@@ -19,7 +19,7 @@ class MeshBuilder
         void PushFace(Mesh& mesh, const VoxelPosition& position, Voxel voxel, Face face);
         
         bool ShouldPushFace(const std::array<Voxel, 6>& neighbours, Voxel voxel, Face face) const;
-        std::array<Voxel, 6> GetNeighbourVoxels(const Chunk& chunk, const VoxelPosition& position) const;
+        const std::array<Voxel, 6> GetNeighbourVoxels(const Chunk& chunk, const VoxelPosition& position) const;
     public:
         MeshBuilder(const ChunkManager& chunkManager);
         

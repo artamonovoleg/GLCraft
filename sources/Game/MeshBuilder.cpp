@@ -72,6 +72,11 @@ void MeshBuilder::BuildMesh(Mesh& mesh, const Chunk& chunk)
 
 void MeshBuilder::OnUpdate()
 {
+    std::erase_if(m_Meshes, [&](const auto& p)
+    {
+        return m_ChunkManager.InRenderDistance(p.first);
+    });
+
     for (const auto& [position, chunk] : m_ChunkManager.GetChunkMap())
     {
         if (m_Meshes.find(chunk.GetPosition()) == m_Meshes.end())
@@ -92,16 +97,16 @@ void MeshBuilder::OnUpdate()
     }
 }
 
-std::array<Voxel, 6> MeshBuilder::GetNeighbourVoxels(const Chunk& chunk, const VoxelPosition& position) const
+const std::array<Voxel, 6> MeshBuilder::GetNeighbourVoxels(const Chunk& chunk, const VoxelPosition& position) const
 {
     return std::array<Voxel, 6>
     {
-        m_ChunkManager.GetVoxel(LocalVoxelToGlobal(chunk.GetPosition(), VoxelPosition(position.x - 1, position.y, position.z))),
-        m_ChunkManager.GetVoxel(LocalVoxelToGlobal(chunk.GetPosition(), VoxelPosition(position.x + 1, position.y, position.z))),
-        m_ChunkManager.GetVoxel(LocalVoxelToGlobal(chunk.GetPosition(), VoxelPosition(position.x, position.y - 1, position.z))),
-        m_ChunkManager.GetVoxel(LocalVoxelToGlobal(chunk.GetPosition(), VoxelPosition(position.x, position.y + 1, position.z))),
-        m_ChunkManager.GetVoxel(LocalVoxelToGlobal(chunk.GetPosition(), VoxelPosition(position.x, position.y, position.z + 1))),
-        m_ChunkManager.GetVoxel(LocalVoxelToGlobal(chunk.GetPosition(), VoxelPosition(position.x, position.y, position.z - 1)))
+        chunk.GetVoxel(VoxelPosition(position.x - 1, position.y, position.z)),
+        chunk.GetVoxel(VoxelPosition(position.x + 1, position.y, position.z)),
+        chunk.GetVoxel(VoxelPosition(position.x, position.y - 1, position.z)),
+        chunk.GetVoxel(VoxelPosition(position.x, position.y + 1, position.z)),
+        chunk.GetVoxel(VoxelPosition(position.x, position.y, position.z + 1)),
+        chunk.GetVoxel(VoxelPosition(position.x, position.y, position.z - 1))
     };
 }
 

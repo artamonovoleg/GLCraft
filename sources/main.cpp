@@ -166,7 +166,6 @@ int main()
                 int next = (static_cast<int>(currentBuildVoxel) + 1) % 6;
                 if (next == 0) next++;
                 currentBuildVoxel = static_cast<Voxel>(next);
-                std::cout << (int) currentBuildVoxel << std::endl;
             }
 
             if (keyboard.GetKeyDown(GLFW_KEY_P))

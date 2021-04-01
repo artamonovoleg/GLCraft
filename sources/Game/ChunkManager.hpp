@@ -29,5 +29,7 @@ class ChunkManager
 
         const ChunkMap& GetChunkMap() const { return m_Chunks; }
 
+        bool InRenderDistance(const ChunkPosition& position) const;
+        
         void OnUpdate();
 };

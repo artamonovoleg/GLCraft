@@ -67,14 +67,14 @@ void ChunkManager::OnUpdate()
         for (int y = chunkPos.y - RenderDistance; y < chunkPos.y + RenderDistance; ++y)
         {
             for (int x = chunkPos.x - RenderDistance; x < chunkPos.x + RenderDistance; ++x)
-            {
                 AddChunk({ x, y, z });
-            }
         }
     }
+}
 
-    std::erase_if(m_Chunks, [chunkPos](auto& p)
-    {
-        return (std::abs(p.first.x - chunkPos.x) > RenderDistance || std::abs(p.first.z - chunkPos.z) > RenderDistance || std::abs(p.first.y - chunkPos.y) > RenderDistance);
-    });
+bool ChunkManager::InRenderDistance(const ChunkPosition& position) const
+{
+    auto ppos = ToChunkPosition(ToVoxelPosition(m_Camera.GetPosition()));
+    auto length = glm::length(glm::vec3(ppos - position));
+    return (length <= RenderDistance);
 }

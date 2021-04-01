@@ -1,24 +1,40 @@
+#include <glm/gtc/noise.hpp>
+#include <iostream>
 #include "Chunk.hpp"
 #include "ChunkManager.hpp"
 
 Chunk::Chunk(const ChunkManager& chunkManager, const VoxelPosition& position)
     : m_ChunkManager(chunkManager), m_Position(position)
 {
+    glm::vec3 worldGlobal = LocalVoxelToGlobal(m_Position, VoxelPosition(0, 0, 0));
+
     m_Data.fill(Voxel::Air);
     if (m_Position.y < 0)
     {
-        for (int z = 0; z < ChunkSize; ++z)
+        if (m_Position.y == -1)
         {
-            for (int y = 0; y < ChunkSize; ++y)
+            for (int z = 0; z < ChunkSize; ++z)
             {
                 for (int x = 0; x < ChunkSize; ++x)
                 {
-                    if (y == ChunkSize - 1)
-                        QSetVoxel({ x, y, z }, Voxel::Grass);
-                    else
-                        QSetVoxel({ x, y, z }, Voxel::Ground);
+                    int height = (glm::perlin(glm::vec3((worldGlobal.x + x) * 0.05f, (worldGlobal.z + z) * 0.05f, 0.0f)) + 1) * ChunkSize;
+                    
+                    if (height > ChunkSize)
+                        height = ChunkSize;
+
+                    for (int y = 0; y < height; ++y)
+                    {
+                        if (y == height - 1)
+                            m_Data.at(PositionToIndex(VoxelPosition(x, y, z))) = Voxel::Grass;
+                        else
+                            m_Data.at(PositionToIndex(VoxelPosition(x, y, z))) = Voxel::Ground;
+                    }
                 }
             }
+        }
+        else
+        {
+            m_Data.fill(Voxel::Ground);
         }
     }
 }
