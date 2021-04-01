@@ -4,14 +4,15 @@
 #include "Chunk.hpp"
 #include "Camera.hpp"
 
+
 ChunkManager::ChunkManager(const Camera& camera)
     : m_Camera(camera)
 {
     // for test spawn 5 x 5 around camera
     auto spawnPoint = ToChunkPosition(ToVoxelPosition(m_Camera.GetPosition())) - ChunkPosition(0, 1, 0);
-    for (int z = spawnPoint.z - 5; z < spawnPoint.z + 5; ++z)
+    for (int z = spawnPoint.z - RenderDistance; z < spawnPoint.z + RenderDistance; ++z)
     {
-        for (int x = spawnPoint.x - 5; x < spawnPoint.x + 5; ++x)
+        for (int x = spawnPoint.x - RenderDistance; x < spawnPoint.x + RenderDistance; ++x)
             AddChunk({ x, spawnPoint.y, z });
     }
 }
@@ -58,23 +59,19 @@ bool ChunkManager::HasChunk(const ChunkPosition& position) const
     return m_Chunks.find(position) != m_Chunks.cend();
 }
 
+bool ChunkManager::ChunkOutOfBounds(const ChunkPosition& playerPosition, const ChunkPosition& chunkPosition)
+{
+    return  std::abs(chunkPosition.x - playerPosition.x) > RenderDistance ||
+            std::abs(chunkPosition.y - playerPosition.y) > RenderDistance ||
+            std::abs(chunkPosition.z - playerPosition.z) > RenderDistance;
+}
+
 void ChunkManager::OnUpdate()
 {
-    auto chunkPos = ToChunkPosition(ToVoxelPosition(m_Camera.GetPosition()));
+    auto playerPos = ToChunkPosition(ToVoxelPosition(m_Camera.GetPosition()));
 
-    for (int z = chunkPos.z - RenderDistance; z < chunkPos.z + RenderDistance; ++z)
+    std::erase_if(m_Chunks, [&](const auto& p)
     {
-        for (int y = chunkPos.y - RenderDistance; y < chunkPos.y + RenderDistance; ++y)
-        {
-            for (int x = chunkPos.x - RenderDistance; x < chunkPos.x + RenderDistance; ++x)
-            {
-                AddChunk({ x, y, z });
-            }
-        }
-    }
-
-    std::erase_if(m_Chunks, [chunkPos](auto& p)
-    {
-        return (std::abs(p.first.x - chunkPos.x) > RenderDistance || std::abs(p.first.z - chunkPos.z) > RenderDistance || std::abs(p.first.y - chunkPos.y) > RenderDistance);
+        return ChunkOutOfBounds(playerPos, p.first);
     });
 }

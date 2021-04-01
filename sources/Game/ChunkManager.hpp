@@ -15,6 +15,8 @@ class ChunkManager
         const Camera& m_Camera;
 
         ChunkMap m_Chunks;
+
+        bool ChunkOutOfBounds(const ChunkPosition& playerPosition, const ChunkPosition& chunkPosition);
     public:
         ChunkManager(const Camera& camera);
 
@@ -27,7 +29,7 @@ class ChunkManager
         /// Take global voxel position and check is chunk exist on position
         bool HasChunk(const ChunkPosition& position) const;
 
-        const ChunkMap& GetChunkMap() const { return m_Chunks; }
-
         void OnUpdate();
+
+        const ChunkMap& GetChunkMap() const { return m_Chunks; }
 };
