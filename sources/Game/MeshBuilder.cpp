@@ -70,7 +70,7 @@ void MeshBuilder::BuildMesh(Mesh& mesh, const Chunk& chunk)
     }
 }
 
-void MeshBuilder::Process()
+void MeshBuilder::OnUpdate()
 {
     for (const auto& [position, chunk] : m_ChunkManager.GetChunkMap())
     {

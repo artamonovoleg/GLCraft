@@ -137,8 +137,9 @@ int main()
             deltaTime = currentFrame - lastFrame;
             lastFrame = currentFrame;
 
-            camera.Update(deltaTime);
-            meshBuilder.Process();
+            camera.OnUpdate(deltaTime);
+            manager.OnUpdate();
+            meshBuilder.OnUpdate();
             
             window->Clear();
 
@@ -175,7 +176,6 @@ int main()
 
             crosshair.Draw();
             skybox.Draw(camera.GetProjectionMatrix(), camera.GetViewMatrix());
-            manager.Process();
             
             window->SwapBuffers();
         }

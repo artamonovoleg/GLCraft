@@ -16,6 +16,10 @@ void EventSystem::SetupCallbacks(GLFWwindow* pWindow)
     {
         Engine::GetWindow()->m_Width = width;
         Engine::GetWindow()->m_Height = height;
+    });
+
+    glfwSetFramebufferSizeCallback(pWindow, [](GLFWwindow*, int width, int height)
+    {
         glViewport(0, 0, width, height);
     });
 }

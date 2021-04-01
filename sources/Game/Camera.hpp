@@ -24,7 +24,7 @@ class Camera
     public:
         Camera(const glm::vec3& position);
 
-        void Update(float dt);
+        void OnUpdate(float dt);
 
         const glm::vec3& GetPosition() const { return m_Position; }
         const glm::vec3& GetViewDirection() const { return m_ViewDirection; }

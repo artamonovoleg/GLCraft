@@ -23,7 +23,7 @@ class MeshBuilder
     public:
         MeshBuilder(const ChunkManager& chunkManager);
         
-        void Process();
+        void OnUpdate();
 
         const std::unordered_map<VoxelPosition, Mesh>& GetMeshes() const { return m_Meshes; }
 };

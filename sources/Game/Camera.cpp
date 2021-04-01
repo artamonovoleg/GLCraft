@@ -26,7 +26,7 @@ void Camera::RecalculateVectors()
     m_Up    = glm::normalize(glm::cross(m_Right, m_ViewDirection));
 }
 
-void Camera::Update(float dt)
+void Camera::OnUpdate(float dt)
 {
     static auto& keyboard = Engine::GetEventSystem()->GetKeyboard();
     static auto& mouse = Engine::GetEventSystem()->GetMouse();

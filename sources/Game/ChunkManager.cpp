@@ -58,10 +58,23 @@ bool ChunkManager::HasChunk(const ChunkPosition& position) const
     return m_Chunks.find(position) != m_Chunks.cend();
 }
 
-void ChunkManager::Process()
+void ChunkManager::OnUpdate()
 {
-    auto currCamPos = ToVoxelPosition(m_Camera.GetPosition());
+    auto chunkPos = ToChunkPosition(ToVoxelPosition(m_Camera.GetPosition()));
 
-    if (!HasChunk(currCamPos) && currCamPos.y <= 128)
-        AddChunk(ToChunkPosition(currCamPos));
+    for (int z = chunkPos.z - RenderDistance; z < chunkPos.z + RenderDistance; ++z)
+    {
+        for (int y = chunkPos.y - RenderDistance; y < chunkPos.y + RenderDistance; ++y)
+        {
+            for (int x = chunkPos.x - RenderDistance; x < chunkPos.x + RenderDistance; ++x)
+            {
+                AddChunk({ x, y, z });
+            }
+        }
+    }
+
+    std::erase_if(m_Chunks, [chunkPos](auto& p)
+    {
+        return (std::abs(p.first.x - chunkPos.x) > RenderDistance || std::abs(p.first.z - chunkPos.z) > RenderDistance || std::abs(p.first.y - chunkPos.y) > RenderDistance);
+    });
 }

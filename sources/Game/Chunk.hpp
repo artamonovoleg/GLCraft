@@ -14,7 +14,7 @@ class Chunk
         VoxelPosition m_Position;
         std::array<Voxel, ChunkVolume> m_Data;
 
-        mutable bool m_WasModified = false;
+        mutable bool m_WasModified = true;
 
         static size_t PositionToIndex(const VoxelPosition& position);
         static bool PositionInBounds(const VoxelPosition& position);

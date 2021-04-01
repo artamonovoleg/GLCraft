@@ -29,5 +29,5 @@ class ChunkManager
 
         const ChunkMap& GetChunkMap() const { return m_Chunks; }
 
-        void Process();
+        void OnUpdate();
 };
