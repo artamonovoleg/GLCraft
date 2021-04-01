@@ -57,3 +57,11 @@ bool ChunkManager::HasChunk(const ChunkPosition& position) const
 {
     return m_Chunks.find(position) != m_Chunks.cend();
 }
+
+void ChunkManager::Process()
+{
+    auto currCamPos = ToVoxelPosition(m_Camera.GetPosition());
+
+    if (!HasChunk(currCamPos) && currCamPos.y <= 128)
+        AddChunk(ToChunkPosition(currCamPos));
+}

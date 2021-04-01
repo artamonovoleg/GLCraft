@@ -139,7 +139,7 @@ int main()
 
             camera.Update(deltaTime);
             meshBuilder.Process();
-
+            
             window->Clear();
 
             shader.Bind();
@@ -168,9 +168,15 @@ int main()
                 std::cout << (int) currentBuildVoxel << std::endl;
             }
 
+            if (keyboard.GetKeyDown(GLFW_KEY_P))
+                glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+            if (keyboard.GetKeyDown(GLFW_KEY_F))
+                glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+
             crosshair.Draw();
             skybox.Draw(camera.GetProjectionMatrix(), camera.GetViewMatrix());
-
+            manager.Process();
+            
             window->SwapBuffers();
         }
     }

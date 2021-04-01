@@ -28,4 +28,6 @@ class ChunkManager
         bool HasChunk(const ChunkPosition& position) const;
 
         const ChunkMap& GetChunkMap() const { return m_Chunks; }
+
+        void Process();
 };

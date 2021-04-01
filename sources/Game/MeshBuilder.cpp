@@ -30,10 +30,10 @@ void MeshBuilder::PushFace(Mesh& mesh, const VoxelPosition& position, Voxel voxe
 
     mesh.vertices.insert(mesh.vertices.end(),
     {
-        { vertices.at(0) + position, { u, v + UVSize } },
-        { vertices.at(1) + position, { u + UVSize, v + UVSize } },
-        { vertices.at(2) + position, { u, v } },
-        { vertices.at(3) + position, { u + UVSize, v } }
+        { vertices.at(0) + position, { u, v + UVSize }, 0},
+        { vertices.at(1) + position, { u + UVSize, v + UVSize }, 0},
+        { vertices.at(2) + position, { u, v }, 0},
+        { vertices.at(3) + position, { u + UVSize, v }, 0}
     });
 
     PushIndices(mesh.indices);
