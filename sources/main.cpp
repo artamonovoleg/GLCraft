@@ -3,6 +3,7 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glad/glad.h>
 #include <fstream>
+#include <thread>
 #include "Engine.hpp"
 #include "Shader.hpp"
 #include "Texture.hpp"
@@ -178,6 +179,7 @@ int main()
             
             window->SwapBuffers();
         }
+
     }
 
     Engine::Shutdown();

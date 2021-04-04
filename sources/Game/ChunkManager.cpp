@@ -1,4 +1,5 @@
 #include <algorithm>
+#include <future>
 #include <iostream>
 #include "ChunkManager.hpp"
 #include "Chunk.hpp"
@@ -62,14 +63,19 @@ void ChunkManager::OnUpdate()
 {
     auto chunkPos = ToChunkPosition(ToVoxelPosition(m_Camera.GetPosition()));
 
+    std::vector<std::future<void>> futures;
+
     for (int z = chunkPos.z - RenderDistance; z < chunkPos.z + RenderDistance; ++z)
     {
         for (int y = chunkPos.y - RenderDistance; y < chunkPos.y + RenderDistance; ++y)
         {
             for (int x = chunkPos.x - RenderDistance; x < chunkPos.x + RenderDistance; ++x)
-                AddChunk({ x, y, z });
+                futures.push_back(std::async(std::launch::async, [&](){ AddChunk({ x, y, z }); }));
         }
     }
+
+    for (auto& f : futures)
+        f.get();
 }
 
 bool ChunkManager::InRenderDistance(const ChunkPosition& position) const
