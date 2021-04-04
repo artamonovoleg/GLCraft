@@ -1,5 +1,6 @@
 #include <vector>
 #include <iostream>
+#include <future>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glad/glad.h>
 #include <fstream>
@@ -127,6 +128,7 @@ int main()
 
         static Voxel currentBuildVoxel = Voxel::Glass;
 
+        std::future<void> f;
         while (!keyboard.GetKey(GLFW_KEY_ESCAPE))
         {
             Engine::GetEventSystem()->Process();
@@ -139,7 +141,7 @@ int main()
             lastFrame = currentFrame;
 
             camera.OnUpdate(deltaTime);
-            manager.OnUpdate();
+            f = std::async(std::launch::async, [&](){ manager.OnUpdate(); });
             meshBuilder.OnUpdate();
             
             window->Clear();
@@ -178,6 +180,8 @@ int main()
             skybox.Draw(camera.GetProjectionMatrix(), camera.GetViewMatrix());
             
             window->SwapBuffers();
+            
+            f.get();
         }
 
     }
